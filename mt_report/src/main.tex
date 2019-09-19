@@ -1,0 +1,32 @@
+\documentclass[a4paper,11pt]{article}
+
+\input{setup.tex}
+
+\begin{document}
+
+\include{title}
+
+\tableofcontents
+
+\newpage
+
+\pagenumbering{arabic}
+
+\include{sections/1-introduction}
+
+Bla
+
+\begin{figure}
+  \includestandalone[width=\textwidth]{diagrams/model_point1}%     without .tex extension
+  % or use \input{mytikz}
+  \caption{My TikZ picture}
+  \label{fig:tikz:particule1}
+\end{figure}
+
+\newpage
+
+\cite{ref:FT_graph}
+\bibliographystyle{abbrv}
+\bibliography{ref}
+
+\end{document}
