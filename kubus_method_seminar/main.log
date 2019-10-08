@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.9.17)  3 OCT 2019 18:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.9.17)  8 OCT 2019 17:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1179,9 +1179,9 @@ Overfull \hbox (73.8803pt too wide) has occurred while \output is active
  [][][][]  
  []
 
-[1
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+] (/home/francois/latex/kubus_method_seminar/main.toc)
 Overfull \hbox (73.8803pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1189,57 +1189,57 @@ Overfull \hbox (73.8803pt too wide) has occurred while \output is active
 [2
 
 ]
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 65.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 59.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 65.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 59.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 65.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 59.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 65.
+(Font)              <10> on input line 59.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 65.
+(Font)              <7> on input line 59.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 65.
-LaTeX Font Info:    Try loading font information for U+msa on input line 65.
+(Font)              <5> on input line 59.
+LaTeX Font Info:    Try loading font information for U+msa on input line 59.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 65.
+LaTeX Font Info:    Try loading font information for U+msb on input line 59.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 65.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 59.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <7> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 65.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 59.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <5> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 65.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 59.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 65.
+(Font)              <10.95> on input line 59.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 65.
+(Font)              <8> on input line 59.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 65.
+(Font)              <6> on input line 59.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 65.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 59.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <8> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 65.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 59.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <6> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 65.
- <images/scheme.png, id=86, 450.68375pt x 283.0575pt>
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 59.
+ <images/scheme.png, id=145, 450.68375pt x 283.0575pt>
 File: images/scheme.png Graphic file (type png)
  <use images/scheme.png>
-Package pdftex.def Info: images/scheme.png used on input line 65.
+Package pdftex.def Info: images/scheme.png used on input line 59.
 (pdftex.def)             Requested size: 180.2703pt x 113.22098pt.
 
-Overfull \hbox (26.62537pt too wide) in paragraph at lines 65--65
+Overfull \hbox (26.62537pt too wide) in paragraph at lines 59--59
  [][] 
  []
 
@@ -1258,14 +1258,6 @@ Overfull \hbox (73.8803pt too wide) has occurred while \output is active
 [4
 
 ]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 105.
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <9> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 105.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 105.
- (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
 Overfull \hbox (73.8803pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1273,6 +1265,14 @@ Overfull \hbox (73.8803pt too wide) has occurred while \output is active
 [5
 
 ]
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 128.
+ (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Overfull \vbox (0.52185pt too high) detected at line 128
+ []
+
+
 Overfull \hbox (73.8803pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1286,12 +1286,69 @@ Overfull \hbox (73.8803pt too wide) has occurred while \output is active
 
 [7
 
-]
+] <images/LS_vs_TLS.png, id=310, 779.91376pt x 740.7675pt>
+File: images/LS_vs_TLS.png Graphic file (type png)
+ <use images/LS_vs_TLS.png>
+Package pdftex.def Info: images/LS_vs_TLS.png used on input line 173.
+(pdftex.def)             Requested size: 155.97998pt x 148.15086pt.
+
 Overfull \hbox (73.8803pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [8
+
+ </home/francois/latex/kubus_method_seminar/images/LS_vs_TLS.png>]
+Overfull \hbox (73.8803pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[9
+
+]
+Overfull \hbox (73.8803pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[10
+
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 243.
+LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <9> not available
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 243.
+
+Overfull \hbox (73.8803pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[11
+
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 259.
+LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <14.4> not available
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 259.
+
+Overfull \hbox (73.8803pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[12
+
+]
+Overfull \hbox (73.8803pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[13
+
+]
+Overfull \hbox (73.8803pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[14
 
 ]
 \tf@nav=\write6
@@ -1303,28 +1360,29 @@ Overfull \hbox (73.8803pt too wide) has occurred while \output is active
 \tf@snm=\write8
 \openout8 = `main.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 157.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 157.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 289.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 289.
  (/home/francois/latex/kubus_method_seminar/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 157.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 157.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 289.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 289.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 157.
+(rerunfilecheck)             Checksum: 39E6AC1F71613D5C9F38630DE13B66AC;605.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 289.
  ) 
 Here is how much of TeX's memory you used:
- 17866 strings out of 493029
- 338088 string characters out of 6136234
- 409715 words of memory out of 5000000
- 20914 multiletter control sequences out of 15000+600000
- 72441 words of font info for 73 fonts, out of 8000000 for 9000
+ 18072 strings out of 493029
+ 342513 string characters out of 6136234
+ 412755 words of memory out of 5000000
+ 21090 multiletter control sequences out of 15000+600000
+ 93553 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,19n,65p,401b,621s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss8.pfb></usr/share/texmf/fonts/type1/public/lm/lmss9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /home/francois/latex/kubus_method_seminar/main.pdf (8 pages, 230919 bytes).
+ 56i,19n,65p,401b,622s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi9.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss8.pfb></usr/share/texmf/fonts/type1/public/lm/lmss9.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso8.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmsso9.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /home/francois/latex/kubus_method_seminar/main.pdf (14 pages, 337853 bytes).
 PDF statistics:
- 310 PDF objects out of 1000 (max. 8388607)
- 267 compressed objects within 3 object streams
- 17 named destinations out of 1000 (max. 500000)
- 90 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 621 PDF objects out of 1000 (max. 8388607)
+ 556 compressed objects within 6 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 165 words of extra memory for PDF output out of 10000 (max. 10000000)
 

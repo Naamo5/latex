@@ -1,0 +1,8 @@
+\BOOKMARK [2][]{Outline0.1}{Definition of the problem}{}% 1
+\BOOKMARK [2][]{Outline0.2}{Estimation of the inertial parameters}{}% 2
+\BOOKMARK [3][]{Outline0.2.1.7}{Estimation method}{Outline0.2}% 3
+\BOOKMARK [3][]{Outline0.2.2.9}{Relevance of a recursive least-square algorithm}{Outline0.2}% 4
+\BOOKMARK [2][]{Outline0.3}{Performance improvement}{}% 5
+\BOOKMARK [3][]{Outline0.3.1.11}{Estimation of the sensor offsets}{Outline0.3}% 6
+\BOOKMARK [3][]{Outline0.3.2.12}{Estimation of the error sensitivity}{Outline0.3}% 7
+\BOOKMARK [2][]{Outline0.4}{Details of the Recursive Total Least-Squares Method}{}% 8
