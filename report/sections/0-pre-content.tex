@@ -1,0 +1,86 @@
+\documentclass[/home/francois/latex/report/main.tex]{subfiles}
+
+\begin{document}
+
+\newpage
+\thispagestyle{plain}
+
+~
+
+\vfill
+
+{ \setstretch{1.1}
+	\subsection*{Author}
+	François LE RALL – flr@kth.se\\
+	School of Electrical Engineering and Computer Science\\
+	KTH Royal Institute of Technology
+
+	\subsection*{Place for Project}
+	NoMagic Sp. z o. o.\\
+	Rakowiecka 36 – 02-532 Warszawa – POLAND\\
+	info@nomagic.ai
+
+	\subsection*{Examiner}
+	Joakim GUSTAFSON – KTH Royal Institute of Technology
+
+	\subsection*{Supervisor}
+	Piotr POLATOWSKI – NoMagic\\
+	Patric JENSFELT – KTH Royal Institute of Technology
+	~
+}
+
+
+\newpage
+\thispagestyle{plain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  The English abstract          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% What is the problem
+% How did you approach it and why is this novel/different/interesting
+% What are your results
+%
+% Write an abstract. Introduce the subject area for the project and describe the problems that are solved and described in the thesis. Present how the problems have been solved, methods used and present results for the project. Use probably one sentence for each chapter in the final report.
+%
+% The presentation of the results should be the main part of the abstract. Use about ½ A4-page.
+
+\subsection*{Keywords}
+
+inertial parameters, estimation, least-squares, angular mass-spring-damper system
+
+\newpage
+\thispagestyle{plain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%	 The Swedish abstract         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Sammanfattning}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Svenskt abstract
+
+\subsection*{Nyckelord}
+
+
+\newpage
+\thispagestyle{plain}
+\chapter*{Acknowledgements}
+
+Write a short acknowledgements. Don't forget to give some credit to the examiner and supervisor.
+
+\newpage
+
+\input{/home/francois/latex/report/sections/0.1-acronyms}
+
+\newpage
+
+\etocdepthtag.toc{mtchapter}
+\etocsettagdepth{mtchapter}{subsection}
+\etocsettagdepth{mtappendix}{none}
+\thispagestyle{plain}
+\tableofcontents
+
+\newpage
+
+\end{document}

@@ -1,0 +1,1028 @@
+\newpage
+\appendix
+\newpage
+\etocdepthtag.toc{mtappendix}
+\etocsettagdepth{mtchapter}{none}
+\etocsettagdepth{mtappendix}{section}
+\etoctocstyle{1}{Appendix - Contents}
+\tableofcontents
+\newpage
+
+
+\chapter{Mechanical model of the \{ tool + item \} system}
+
+\section{Quick reminder}
+
+\subsection{Kinematics wrench}
+
+Considering A, a point of \{2\}, the motion of \{2\} with respect to \{1\} is described by the following wrench:
+
+\begin{equation}
+ \{ \mathcal{V}_{2/1} \}
+ = \leftidx{_A}{
+  \left \{ \begin{array}{c}
+  \overrightarrow{\Omega}_{2/1} \\
+  \overrightarrow{V}_{A, 2/1}
+  \end{array} \right \}
+  }{}
+\end{equation}
+
+\begin{itemize}
+ \item $\overrightarrow{\Omega}_{2/1}$ is the angular velocity of \{2\} with respect to \{1\},
+ \item $\overrightarrow{V}_{A, 2/1}$ is the linear velocity of A $\in$ \{2\} with respect to \{1\}.
+\end{itemize}
+
+\subsection{Momentum wrench}
+
+Considering A, a point of \{2\}, $m$ its mass and G its the center of mass, the momentum wrench describes the motion of \{2\} with respect to \{1\}:
+
+\begin{equation}
+ \{ \mathcal{C}_{2/1} \}
+ = \leftidx{_A}{
+  \left \{ \begin{array}{ll}
+  \overrightarrow{p}_{2/1} & = m \overrightarrow{V}_{G, 2/1} \\
+  \overrightarrow{\sigma}_{A, 2/1} &
+  = I_{2, A} \ast \overrightarrow{\Omega}_{2/1} + m \overrightarrow{AG} \times \overrightarrow{V}_{A, 2/1}
+  \end{array} \right \}
+  }{}
+\end{equation}
+
+\begin{itemize}
+ \item $\overrightarrow{p}_{2/1}$ is the linear momentum of \{2\} with respect to \{1\},
+ \item $\overrightarrow{V}_{G, 2/1}$ is the linear velocity of G $\in$ \{2\} with respect to \{1\},
+ \item $\overrightarrow{\sigma}_{A, 2/1}$ is the angular momentum of A $\in$ \{2\} with respect to \{1\},
+ \item $I_{2, A}$ is the tensor of inertia of \{2\} about the point A.
+\end{itemize}
+
+\subsection{Dynamic wrench}
+
+Considering A, a point of \{2\}, its mass $m$ and its center of mass G, the dynamic wrench describes the motion of \{2\} with respect to \{1\}:
+
+\begin{equation}
+ \{ \mathcal{D}_{2/1} \}
+ = \leftidx{_A}{
+  \left \{ \begin{array}{ll}
+  \overrightarrow{\mathcal{A}}_{2/1} & = m \overrightarrow{\Gamma}_{G, 2/1} \\
+  \overrightarrow{\delta}_{A, 2/1} &
+  = \frac{\partial}{\partial t}\overrightarrow{\sigma}_{A, 2/1} + m \overrightarrow{V}_{A/1} \times \overrightarrow{V}_{G, 2/1}
+  \end{array} \right \}
+  }{}
+\end{equation}
+
+
+\begin{itemize}
+ \item $\overrightarrow{\mathcal{A}}_{2/1}$ is the linear dynamic momentum of \{2\} with respect to \{1\},
+ \item $\overrightarrow{\Gamma}_{G, 2/1}$ is the acceleration of G $\in$ \{2\} with respect to \{1\},
+ \item $\overrightarrow{\delta}_{A, 2/1}$ is the angular dynamic momentum of A $\in$ \{2\} with respect to \{1\},
+ \item $\overrightarrow{V}_{A/1}$ is the linear velocity of A with respect to \{1\} (note that A is not necessarily a point of \{2\}).
+\end{itemize}
+
+\subsection{Parallel axis theorem}
+
+For an inertia tensor $I_{1, G}$ computed at the center of mass of a rigid body of mass $m$ the tensor for a parallel axis is:
+
+\begin{equation}
+ \label{pat}
+ I_{1, A} = I_{1, G} - m d^2
+\end{equation}
+
+with $d$ the skew-symmetric matrix constructed from the vector $\overrightarrow{AG} = \begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix}
+=d$.
+
+{\centering
+ $ -d^2 = -\begin{pmatrix}
+ 0 & -z & y \\
+ z & 0 & -x \\
+ -y & x & 0
+ \end{pmatrix}^2
+ = \begin{pmatrix}
+ y^2 + z^2 & -xy & -xz \\
+ -yx & x^2 + z^2 & -yz \\
+ -zx & -zy & x^2 + y^2
+ \end{pmatrix}
+ = (d^T d) \ \mathbb{I}_3 - (d d^T)$
+ \par}
+
+
+\subsection{Fundamental Principle of Dynamics}
+
+Considering $\sum_{}^{} \{ \mathcal{S}_{ext/1} \}$ the global external actions on the system \{1\} and $R_g$ a Galilean reference:
+
+\begin{equation}
+ \sum_{}^{} \{ \mathcal{S}_{ext/1} \} = \{ \mathcal{D}_{1/R_G} \}
+ \label{fdp}
+\end{equation}
+
+
+\subsection{Notations for systems of linear equations}
+
+{\centering
+ $ \theta \times c =
+ \begin{pmatrix}
+  0         & -\theta_z & \theta_y  \\
+  \theta_z  & 0         & -\theta_x \\
+  -\theta_y & \theta_x  & 0
+ \end{pmatrix}
+ \begin{pmatrix}
+  c_x \\
+  c_y \\
+  c_z
+ \end{pmatrix}
+ \coloneqq \left[ \theta \times \right] c$
+ \par}
+
+{\centering
+ $ I \ast \theta =
+ \begin{pmatrix}
+  \theta_x & \theta_y & \theta_z & 0        & 0        & 0        \\
+  0        & \theta_x & 0        & \theta_y & \theta_z & 0        \\
+  0        & 0        & \theta_x & 0        & \theta_y & \theta_z
+ \end{pmatrix}
+ \begin{pmatrix}
+  I_{xx} \\
+  I_{xy} \\
+  I_{xz} \\
+  I_{yy} \\
+  I_{yz} \\
+  I_{zz} \\
+ \end{pmatrix}
+ \coloneqq \left[ \bullet \theta \right]
+ \begin{pmatrix}
+  I_{xx} \\
+  I_{xy} \\
+  I_{xz} \\
+  I_{yy} \\
+  I_{yz} \\
+  I_{zz} \\
+ \end{pmatrix}$
+ \par}
+
+with $I = I^T =
+\begin{pmatrix}
+ I_{xx} & I_{xy} & I_{xz} \\
+ I_{xy} & I_{yy} & I_{yz} \\
+ I_{xz} & I_{yz} & I_{zz}
+\end{pmatrix}
+$.
+
+
+\subsection{Rotation matrix}
+
+\label{rotation}
+
+Considering the orientation $\theta =
+\begin{pmatrix}
+ \theta_x \\
+ \theta_y \\
+ \theta_z \\
+\end{pmatrix}
+$,
+the corresponding rotation matrix is $R = R_z(\theta_z)R_y(\theta_y)R_x(\theta_x)$ or:
+
+\begin{equation*}
+ R =
+ \begin{pmatrix}
+  \cos \theta_y \cos \theta_z & \sin \theta_x \sin \theta_y \cos \theta_z - \cos \theta_x \sin \theta_z & \cos \theta_x \sin \theta_y \cos \theta_z + \sin \theta_x \sin \theta_z \\
+  \cos \theta_y \sin \theta_z & \sin \theta_x \sin \theta_y \sin \theta_z + \cos \theta_x \cos \theta_z & \cos \theta_x \sin \theta_y \sin \theta_z - \sin \theta_x \cos \theta_z \\
+  - \sin \theta_y             & \sin \theta_x \cos \theta_y                                             & \cos \theta_x \cos \theta_y
+ \end{pmatrix}
+\end{equation*}
+
+Considering the small-angle approximation ($\cos \alpha \approx 1$, $\sin \alpha \approx \alpha$ and $\alpha \beta \approx 0$ for small $\alpha$ and $\beta$):
+
+\begin{equation}
+ R \approx
+ \begin{pmatrix}
+  1         & \theta_x \theta_y -\theta_z    & \theta_y + \theta_x \theta_z \\
+  \theta_z  & \theta_x \theta_y \theta_z + 1 & \theta_y \theta_z -\theta_x  \\
+  -\theta_y & \theta_x                       & 1
+ \end{pmatrix}
+ \approx
+ \begin{pmatrix}
+  1         & -\theta_z & \theta_y  \\
+  \theta_z  & 1         & -\theta_x \\
+  -\theta_y & \theta_x  & 1
+ \end{pmatrix}
+ = \mathbb{I}_3 + \left[ \theta \times \right]
+\end{equation}
+
+\newpage
+
+\section{1-body rigid model of the \{tool + item\} system}
+
+The system considered is a single-body system \{1\} composed of the tool and the item rigidly linked to it. The mass of \{1\} is $m$, its global center of mass is $G$ and the global inertia about the center of mass is $I_{1, G}$. The F/T sensor measures the force and the torque about the joint $S$.
+
+\subsection{External mechanical actions}
+
+\begin{itemize}
+ \item Action of the robotic arm on the last link about the joint $S$:
+
+       {\centering
+        $\{ \mathcal{S}_{arm/1} \}
+        = \leftidx{_S}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{F}_{arm/1} = \overrightarrow{f} \\
+         \overrightarrow{T}_{S, arm/1} = \overrightarrow{\tau}
+         \end{array} \right \}
+         }{}$
+        \par}
+
+ \item Action of the gravitational force:
+
+       {\centering
+        $\{ \mathcal{S}_{grav/1} \}
+        = \leftidx{_{G}}{
+         \left \{ \begin{array}{c}
+         m \overrightarrow{g} \\
+         \overrightarrow{0}
+         \end{array} \right \}
+         }{}
+        = \leftidx{_{S}}{
+         \left \{ \begin{array}{c}
+         m \overrightarrow{g} \\
+         m \overrightarrow{SG} \times \overrightarrow{g}
+         \end{array} \right \}
+         }{}$
+        \par}
+
+\end{itemize}
+
+\subsection{Dynamics wrench}
+
+\label{dynamic}
+
+Considering the dynamic angular momentum of the system \{1\} about the joint $S$:
+
+{\centering
+ $\overrightarrow{\delta}_{S, 1/0}
+ = \frac{\partial}{\partial t}\overrightarrow{\sigma}_{S, 1/0} + m \overrightarrow{V}_{S/0} \times \overrightarrow{V}_{G, 1/0}$
+ \par}
+
+The angular momentum of the system \{1\} about the joint $S$ is:
+
+{\centering
+ $\overrightarrow{\sigma}_{S, 1/0}
+ = I_{1, S} \ast \overrightarrow{\Omega}_{1/0} + m \overrightarrow{SG} \times \overrightarrow{V}_{S, 1/0}$
+ \par}
+
+Its time derivative is:
+
+\begin{align*}
+ {\left[ \frac{\partial}{\partial t} \overrightarrow{\sigma}_{S, 1/0} \right]}_{R_0} &
+ = {\left[ \frac{\partial}{\partial t}  (I_{1, S} \ast \overrightarrow{\Omega}_{1/0}) \right]}_{R_1}
+ + \overrightarrow{\Omega}_{1/0} \times  (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ + m  \frac{\partial}{\partial t} (\overrightarrow{SG} \times \overrightarrow{V}_{S, 1/0} ) \\
+                                                                                     & = I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ + m \frac{\partial}{\partial t} (\overrightarrow{SG}) \times \overrightarrow{V}_{S, 1/0}
+ + m \overrightarrow{SG} \times  \frac{\partial}{\partial t} (\overrightarrow{V}_{S, 1/0} ) \\
+                                                                                     & =  I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ + m  \overrightarrow{V}_{G, 1/0}  \times \overrightarrow{V}_{S, 1/0}
+ + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
+\end{align*}
+
+Consequently, the dynamic rotational momentum is:
+
+
+\begin{align*}
+ \overrightarrow{\delta}_{S, 1/0}
+ & = I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
+ && + m  \overrightarrow{V}_{G, 1/0}  \times \overrightarrow{V}_{S, 1/0} \\
+   &   &   & + m \overrightarrow{V}_{S/0} \times \overrightarrow{V}_{G, 1/0} \\
+ & = I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
+\end{align*}
+
+Thus the dynamics wrench of the system \{1\} in the in the Galilean reference \{0\} is:
+
+\begin{align*}
+ \{ \mathcal{D}_{1/0} \}
+ = \leftidx{_{S}}{
+ \left \{
+ \begin{array}{ll}
+ \overrightarrow{\mathcal{A}}_{1/0} & = m \overrightarrow{\Gamma}_{G, 1/0} \\
+ \overrightarrow{\delta}_{S, 1/0}   &
+ = I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
+ \end{array}
+ \right \}
+ }{}
+\end{align*}
+
+The position –hence, the acceleration– of the center of mass is unknown. The acceleration is computed with the position of the joint $S$.
+
+\begin{align*}
+ \overrightarrow{\Gamma}_{G, 1/0} = \frac{\partial}{\partial t} \overrightarrow{V}_{G, 1/0}
+   & = \frac{\partial}{\partial t} (\overrightarrow{V}_{S, 1/0} + \overrightarrow{GS} \times \overrightarrow{\Omega}_{1/0})                                                                           \\
+   & = \overrightarrow{\Gamma}_{S, 1/0} + \frac{\partial}{\partial t} (\overrightarrow{GS}) \times \overrightarrow{\Omega}_{1/0} + \overrightarrow{GS} \times \overrightarrow{\alpha}_{1/0}           \\
+   & = \overrightarrow{\Gamma}_{S, 1/0} + (\overrightarrow{\Omega}_{1/0} \times \overrightarrow{GS}) \times \overrightarrow{\Omega}_{1/0} + \overrightarrow{GS} \times \overrightarrow{\alpha}_{1/0}  \\
+   & = \overrightarrow{\Gamma}_{S, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times \overrightarrow{SG}) + \overrightarrow{\alpha}_{1/0} \times \overrightarrow{SG}
+\end{align*}
+
+The the dynamics wrench of the system \{1\} becomes:
+
+\begin{align*}
+ \{ \mathcal{D}_{1/0} \}
+ = \leftidx{_{S}}{
+ \left \{
+ \begin{array}{ll}
+ \overrightarrow{\mathcal{A}}_{1/0} & = m \overrightarrow{\Gamma}_{S, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m \overrightarrow{SG}) + \overrightarrow{\alpha}_{1/0} \times m \overrightarrow{SG} \\
+ \overrightarrow{\delta}_{S, 1/0}   &
+ = I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
+ \end{array}
+ \right \}
+ }{}
+\end{align*}
+
+\subsection{Fondamental Principle of Dynamics}
+
+From the equation of the FDP (\ref{fdp}) on \{1\} at point $S$:
+
+\begin{equation*}
+ \leftidx{_{S}}{
+  \left \{ \begin{array}{c}
+  \overrightarrow{f} \\
+  \overrightarrow{\tau}
+  \end{array} \right \}
+  }{}
+ + \leftidx{_{S}}{
+  \left \{ \begin{array}{c}
+  m \overrightarrow{g} \\
+  m \overrightarrow{SG} \times \overrightarrow{g}
+  \end{array} \right \}
+  }{}
+ = \leftidx{_{S}}{
+  \left \{
+  \begin{array}{ll}
+   m \overrightarrow{\Gamma}_{S, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m \overrightarrow{SG}) + \overrightarrow{\alpha}_{1/0} \times m \overrightarrow{SG} \\
+   I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+   + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
+  \end{array}
+  \right \}
+  }{}
+\end{equation*}
+
+Force and torque at the joint are derived as follows:
+
+\begin{equation}
+ \overrightarrow{f} = m (\overrightarrow{\Gamma}_{S, 1/0} - \overrightarrow{g}) + \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m \overrightarrow{SG}) + \overrightarrow{\alpha}_{1/0} \times m \overrightarrow{SG}
+\end{equation}
+
+\begin{equation}
+ \overrightarrow{\tau} =
+ m \overrightarrow{SG} \times (\overrightarrow{\Gamma}_{S, 1/0} - \overrightarrow{g})
+ + I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+\end{equation}
+
+With the aim of shrinking the equation, the following notation are used:
+
+\begin{align*}
+ \dot{\theta} = \overrightarrow{\Omega}_{1/0} \qquad \ddot{\theta} = \overrightarrow{\alpha}_{1/0} \qquad a = \overrightarrow{\Gamma}_{S, 1/0} \qquad g = \overrightarrow{g} \qquad c  = \overrightarrow{SG} \qquad I = I_{1,S}
+\end{align*}
+
+\begin{equation}
+ \label{1dimfdp}
+ \left \{
+ \begin{array}{l l}
+  f =    & m (a - g) + \dot{\theta} \times (\dot{\theta} \times m c) + \ddot{\theta} \times m c \\
+  \tau = & m c \times (a - g)
+  + I_{1, S} \ast \ddot{\theta} + \dot{\theta} \times (I_{1, S} \ast \dot{\theta})
+ \end{array}
+ \right.
+\end{equation}
+
+\subsection{Inertial parameters estimation}
+\label{olinpe}
+
+From the FDP equations (\ref{1dimfdp}) it is possible to estimate the inertial parameters of the item grasped by the tool using the following matrix equation.
+
+\begin{equation}
+ \begin{pmatrix}
+  f    \\
+  \tau
+ \end{pmatrix}
+ =
+ \begin{pmatrix}
+  a - g & \left[ \ddot{\theta} \times \right] +  \left[ \dot{\theta} \times \right] \left[ \dot{\theta} \times \right] & 0                                                                                                             \\
+  0     & \left[ (g - a) \times \right]                                                                                & \left[ \bullet \ddot{\theta} \right] + \left[ \dot{\theta} \times \right] \left[ \bullet \dot{\theta} \right]
+ \end{pmatrix}
+ \begin{pmatrix}
+  m      \\
+  m c_x  \\
+  m c_y  \\
+  m c_z  \\
+  I_{xx} \\
+  I_{xy} \\
+  I_{xz} \\
+  I_{yy} \\
+  I_{yz} \\
+  I_{zz}
+ \end{pmatrix}
+\end{equation}
+
+{\it
+ The idea is to optimize the 10 parameters vector $\varphi$ such that $
+ \begin{pmatrix}
+  f    \\
+  \tau
+ \end{pmatrix} = A \varphi$
+ for every time $t$.
+}
+
+\newpage
+
+\section{2-bodies rigid model of the \{tool\} + \{item\} system}
+
+
+The F/T sensor measures the force and the torque about the joint $S$.
+The system considered is a two-bodies system: \{1\} for the tool and \{2\} for the item grasped. The mass of \{1\} –respectively \{2\}– is $m_1$ –respectively $m_2$, its center of mass is $G_1$ –respectively $G_2$– and the inertia about the center of mass is $I_{1, G_1}$ –respectively $I_{2, G_2}$. The mechanical link between the two systems is modeled as a spherical link (as known as ball joint) with a spring-damper system about the three axes of rotation.
+
+\subsection{External mechanical actions}
+
+\begin{itemize}
+ \item Action of the robotic arm on the tool about the grasping point $A$:
+
+       {\centering
+        $\{ \mathcal{S}_{arm/1} \}
+        = \leftidx{_S}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{F}_{arm/1} = \overrightarrow{f} \\
+         \overrightarrow{T}_{S, arm/1} = \overrightarrow{\tau}
+         \end{array} \right \}
+         }{}
+        = \leftidx{_A}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{f} \\
+         \overrightarrow{\tau} + \overrightarrow{AS} \times \overrightarrow{f}
+         \end{array} \right \}
+         }{}$
+        \par}
+
+ \item Action of the tool \{2\} on the item \{1\} about the grasp point $A$:
+
+       {\centering
+        $\{ \mathcal{S}_{2/1} \}
+        = \leftidx{_A}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{F}_{2/1} \\
+         \overrightarrow{T}_{A, 2/1} = \overrightarrow{0}
+         \end{array} \right \}
+         }{}$
+        and respectively
+        $\{ \mathcal{S}_{1/2} \}
+        = \leftidx{_A}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{F}_{1/2} = - \overrightarrow{F}_{2/1}  \\
+         \overrightarrow{T}_{A, 1/2} = \overrightarrow{0}
+         \end{array} \right \}
+         }{}$
+        \par}
+
+ \item Action of the gravitational force on \{1\} and on \{2\}:
+
+       {\centering
+        $\{ \mathcal{S}_{grav/1} \}
+        = \leftidx{_{G_1}}{
+         \left \{ \begin{array}{c}
+         m_1 \overrightarrow{g} \\
+         \overrightarrow{0}
+         \end{array} \right \}
+         }{}
+        = \leftidx{_{A}}{
+         \left \{ \begin{array}{c}
+         m_1 \overrightarrow{g} \\
+         m_1 \overrightarrow{AG_1} \times \overrightarrow{g}
+         \end{array} \right \}
+         }{}
+        $
+        \par}
+
+       {\centering
+        $ \{ \mathcal{S}_{grav/2} \}
+        = \leftidx{_{G_2}}{
+         \left \{ \begin{array}{c}
+         m_2 \overrightarrow{g} \\
+         \overrightarrow{0}
+         \end{array} \right \}
+         }{}
+        = \leftidx{_{A}}{
+         \left \{ \begin{array}{c}
+         m_2 \overrightarrow{g} \\
+         m_2 \overrightarrow{AG_2} \times \overrightarrow{g}
+         \end{array} \right \}
+         }{}
+        $
+        \par}
+
+ \item Action of spring-damper system on the item \{1\} and \{2\} about the grasp point $A$:
+
+       {\centering
+        $\{ \mathcal{S}_{spring/1} \}
+        + \{ \mathcal{S}_{damper/1} \}
+        = \leftidx{_A}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{0} \\
+         K \ast \overrightarrow{\Theta}_{2/1}
+         \end{array} \right \}
+         }{}
+        + \leftidx{_A}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{0} \\
+         \Lambda \ast \overrightarrow{\Omega}_{2/1}
+         \end{array} \right \}
+         }{}
+        = \leftidx{_A}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{0} \\
+         K \ast \overrightarrow{\Theta}_{2/1} + \Lambda \ast \overrightarrow{\Omega}_{2/1}
+         \end{array} \right \}
+         }{}$
+        \par}
+
+       {\centering
+        $\{ \mathcal{S}_{spring/2} \}
+        + \{ \mathcal{S}_{damper/2} \}
+        = \leftidx{_A}{
+         \left \{ \begin{array}{c}
+         \overrightarrow{0} \\
+         K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2}
+         \end{array} \right \}
+         }{}$
+        \par}
+
+       with $K = K^T =
+       \begin{pmatrix}
+        k_{xx} & k_{xy} & k_{xz} \\
+        k_{xy} & k_{yy} & k_{yz} \\
+        k_{xz} & k_{yz} & k_{zz}
+       \end{pmatrix}
+       $
+       and
+       $\Lambda = \Lambda^T =
+       \begin{pmatrix}
+        \lambda_{xx} & \lambda_{xy} & \lambda_{xz} \\
+        \lambda_{xy} & \lambda_{yy} & \lambda_{yz} \\
+        \lambda_{xz} & \lambda_{yz} & \lambda_{zz}
+       \end{pmatrix}
+       $.
+
+\end{itemize}
+
+\subsection{Dynamics wrench}
+
+By using the equations derived in \refeq{dynamic}, the dynamic wrenches of \{1\} and \{2\} are:
+
+\begin{align*}
+ \{ \mathcal{D}_{1/0} \}
+ = \leftidx{_{A}}{
+ \left \{
+ \begin{array}{ll}
+ \overrightarrow{\mathcal{A}}_{1/0} & = m_1 \overrightarrow{\Gamma}_{A, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m_1 \overrightarrow{AG_1}) + \overrightarrow{\alpha}_{1/0} \times m_1 \overrightarrow{AG_1} \\
+ \overrightarrow{\delta}_{A, 1/0}   &
+ = I_{1, A} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, A} \ast \overrightarrow{\Omega}_{1/0})
+ + m_1 \overrightarrow{AG_1} \times  \overrightarrow{\Gamma}_{A, 1/0}
+ \end{array}
+ \right \}
+ }{}
+\end{align*}
+
+\begin{align*}
+ \{ \mathcal{D}_{2/0} \}
+ = \leftidx{_{A}}{
+ \left \{
+ \begin{array}{ll}
+ \overrightarrow{\mathcal{A}}_{2/0} & = m_2 \overrightarrow{\Gamma}_{A, 2/0} +  \overrightarrow{\Omega}_{2/0} \times (\overrightarrow{\Omega}_{2/0} \times m_2 \overrightarrow{AG_2}) + \overrightarrow{\alpha}_{2/0} \times m_2 \overrightarrow{AG_2} \\
+ \overrightarrow{\delta}_{A, 2/0}   &
+ = I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
+ + m_2 \overrightarrow{AG_2} \times  \overrightarrow{\Gamma}_{A, 2/0}
+ \end{array}
+ \right \}
+ }{}
+\end{align*}
+
+
+\subsection{Fondamental Principle of Dynamics on \{2\}}
+
+From the equation of the FDP (\ref{fdp}) on \{2\} at point $A$:
+
+\begin{align*}
+   & \leftidx{_A}{
+ \left \{ \begin{array}{c}
+ -\overrightarrow{F}_{2/1} \\
+ \overrightarrow{0}
+ \end{array} \right \}
+ }{}
+ + \leftidx{_{A}}{
+ \left \{ \begin{array}{c}
+ m_2 \overrightarrow{g} \\
+ m_2 \overrightarrow{AG_2} \times \overrightarrow{g}
+ \end{array} \right \}
+ }{}
+ + \leftidx{_A}{
+ \left \{ \begin{array}{c}
+ \overrightarrow{0} \\
+ K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2}
+ \end{array} \right \}
+ }{} \\
+ = & \leftidx{_{A}}{
+ \left \{
+ \begin{array}{ll}
+ m_2 \overrightarrow{\Gamma}_{A, 2/0} +  \overrightarrow{\Omega}_{2/0} \times (\overrightarrow{\Omega}_{2/0} \times m_2 \overrightarrow{AG_2}) + \overrightarrow{\alpha}_{2/0} \times m_2 \overrightarrow{AG_2} \\
+ I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
+ + m_2 \overrightarrow{AG_2} \times  \overrightarrow{\Gamma}_{A, 2/0}
+ \end{array}
+ \right \}
+ }{}
+\end{align*}
+
+Considering only the equation on torques:
+
+\begin{equation}
+ m_2 \overrightarrow{AG_2} \times \overrightarrow{g} + K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2} = I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
+ + m_2 \overrightarrow{AG_2} \times  \overrightarrow{\Gamma}_{A, 2/0}
+ \label{pfd2}
+\end{equation}
+
+With the aim of shrinking the equation, the following notation are used:
+
+{\centering
+ $
+ \theta_1 = \overrightarrow{\Theta}_{1/0} \qquad \theta_2 = \overrightarrow{\Theta}_{2/0} \qquad \dot{\theta}_1 = \overrightarrow{\Omega}_{1/0} \qquad \dot{\theta}_2 = \overrightarrow{\Omega}_{2/0} \qquad \ddot{\theta}_1 = \overrightarrow{\alpha}_{1/0}  \qquad \ddot{\theta}_2 = \overrightarrow{\alpha}_{2/0}
+ $
+ \par}
+
+{\centering
+ $
+ a = \overrightarrow{\Gamma}_{A, 1/0} = \overrightarrow{\Gamma}_{A, 2/0} \qquad g = \overrightarrow{g} \qquad c_1 = \overrightarrow{AG_1} \qquad c_2 = \overrightarrow{AG_2} \qquad I_1 = I_{1,A}  \qquad I_2 = I_{2,A}
+ $
+ \par}
+
+By rearranging (\ref{pfd2}):
+
+% {\centering
+% $
+% m_2 c_2 \times g + K \ast (\theta_1 - \theta_2) + \Lambda \ast (\dot{\theta}_1 - \dot{\theta}_2) = I_2 \ast \ddot{\theta}_2 + \dot{\theta}_2 \times (I_2 \ast \dot{\theta}_2)
+% + m_2 c_2 \times  a
+% $
+% \par}
+
+{\centering
+ $
+ I_2 \ast \ddot{\theta}_2 + \dot{\theta}_2 \times (I_2 \ast \dot{\theta}_2) + \Lambda \ast \dot{\theta}_2 + K \ast \theta_2 + m_2 c_2 \times  (a - g)
+ = \Lambda \ast \dot{\theta}_1 + K \ast \theta_1
+ $
+ \par}
+
+The vector from the grasp point and the center of mass of the item $\overrightarrow{AG_2}$ can be computed as $\overrightarrow{AG_2} = R(\theta_{2/1}) \ast \overrightarrow{AG_2}_{init}$ with $R(\theta_{2/1})$ the rotation matrix from \{2\} to \{1\} and $\overrightarrow{AG_2}_{init}$ the initial vector from $A$ to the center of mass $G_2$ (at the moment the tool move to contact). With the approximation of the sec.~\ref{rotation}: $c_2 = R(\theta_{2/1}) \ast c_{2, init} \approx c_{2, init} + \theta_{2/1} \times c_{2, init}$, the equation (\ref{pfd2}) is rearranged:
+
+\begin{equation}
+ \label{bigone}
+ I_2 \ast \ddot{\theta}_2 + \dot{\theta}_2 \times (I_2 \ast \dot{\theta}_2) + \Lambda \ast \dot{\theta}_2 + K \ast \theta_2 + m_2 (\theta_2 \times c_{2, init}) \times  (a - g)
+ = \Lambda \ast \dot{\theta}_1 + K \ast \theta_1 + m_2 (\theta_1 \times c_{2, init} - c_{2, init}) \times  (a - g)
+\end{equation}
+
+{\it
+In order to estimate the inertial parameters of the item ($m_2$, $c_{2, init}$ and $I_2$), the idea is to compute the orientation of the item as a function of the F/T sensor measurement ($\theta_2(f, \tau)$) by using the FDP on the tool \{1\}. Then derive a matrix equation from a known-variables-only equation as in the sec.~\ref{olinpe} to estimate the inertial parameters.  Hence, the parameters of the spring-damper system has to be estimated. A method to estimate those parameters is introduced later in the next sections.
+}
+
+
+\subsection{Fondamental Principle of Dynamics on \{1\}}
+\label{sec_fdp1}
+
+From the equation of the FDP (\ref{fdp}) on \{1\} at point A:
+
+\begin{align*}
+   & \leftidx{_A}{
+ \left \{ \begin{array}{c}
+ \overrightarrow{f} \\
+ \overrightarrow{\tau} + \overrightarrow{AS} \times \overrightarrow{f}
+ \end{array} \right \}
+ }{}
+ + \leftidx{_A}{
+ \left \{ \begin{array}{c}
+ \overrightarrow{F}_{2/1} \\
+ \overrightarrow{0}
+ \end{array} \right \}
+ }{}
+ + \leftidx{_{A}}{
+ \left \{ \begin{array}{c}
+ m_1 \overrightarrow{g} \\
+ m_1 \overrightarrow{AG_1} \times \overrightarrow{g}
+ \end{array} \right \}
+ }{}
+ + \leftidx{_A}{
+ \left \{ \begin{array}{c}
+ \overrightarrow{0} \\
+ K \ast \overrightarrow{\Theta}_{2/1} + \Lambda \ast \overrightarrow{\Omega}_{2/1}
+ \end{array} \right \}
+ }{} \\
+ = & \leftidx{_{A}}{
+ \left \{
+ \begin{array}{ll}
+ m_1 \overrightarrow{\Gamma}_{A, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m_1 \overrightarrow{AG_1}) + \overrightarrow{\alpha}_{1/0} \times m_1 \overrightarrow{AG_1} \\
+ I_{1, A} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, A} \ast \overrightarrow{\Omega}_{1/0})
+ + m_1 \overrightarrow{AG_1} \times  \overrightarrow{\Gamma}_{A, 1/0}
+ \end{array}
+ \right \}
+ }{}
+\end{align*}
+
+
+The equation on force is:
+
+\begin{equation}
+  \overrightarrow{f} + \overrightarrow{F}_{2/1} + m_1 \overrightarrow{g}
+  = m_1 \overrightarrow{\Gamma}_{A, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m_1 \overrightarrow{AG_1}) + \overrightarrow{\alpha}_{1/0} \times m_1 \overrightarrow{AG_1}
+\end{equation}
+
+
+% Considering only the equation on torques:
+%
+% \begin{equation}
+%   \overrightarrow{\tau} + \overrightarrow{AS} \times \overrightarrow{f} + m_1 \overrightarrow{AG_1} \times \overrightarrow{g} + K \ast \overrightarrow{\Omega}_{1/2} + \Lambda \ast \overrightarrow{\alpha}_{1/2} = I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
+%   + m_1 \overrightarrow{AG_1} \times  \overrightarrow{\Gamma}_{A, 2/0}
+%   \label{pfd1}
+% \end{equation}
+
+
+\subsection{Spring-damper parameters estimation}
+
+\begin{figure}[H]
+\centering
+   \includestandalone[width=10cm]{figures/two_bodies} %     without .tex extension
+   % or use \input{mytikz}
+   \caption{2-bodies with 2-dimensions assumptions system.}
+   \label{fig:tikz:2_bodies}
+\end{figure}
+
+Considering the following assumptions (see Figure \ref{fig:tikz:2_bodies} for details):
+
+\begin{itemize}
+
+ \item A 2-dimensions problem is considered: $\overrightarrow{\Omega}_{2/0} =
+       \begin{pmatrix}
+        \dot{\theta} \\
+        0            \\
+        0
+       \end{pmatrix}$ and $\overrightarrow{V}_{G_2, 2/0} =
+       \begin{pmatrix}
+        0      \\
+        v_{2y} \\
+        v_{2z}
+       \end{pmatrix}$.
+
+ \item The spring-damper has a circular symmetry about the $z$-axis:
+
+       {\centering
+        $K =
+        \begin{pmatrix}
+         k & 0 & 0  \\
+         0 & k & 0  \\
+         0 & 0 & k'
+        \end{pmatrix}$ and $\Lambda =
+        \begin{pmatrix}
+         \lambda & 0       & 0        \\
+         0       & \lambda & 0        \\
+         0       & 0       & \lambda'
+        \end{pmatrix}$
+        \par}
+
+ \item The excitation is in the $yz$-plane: $\overrightarrow{\Omega}_{1/0} = \overrightarrow{0}$ and $\overrightarrow{V}_{A, 2/0}
+       =
+       \begin{pmatrix}
+        0      \\
+        v_{1y} \\
+        v_{1z}
+       \end{pmatrix}$
+       and $\overrightarrow{\Gamma}_{A, 2/0}
+       =
+       \begin{pmatrix}
+        0      \\
+        a_y \\
+        a_z
+       \end{pmatrix}$.
+
+ \item The initial position is: $\theta_1 =
+       \begin{pmatrix}
+        0 \\
+        0 \\
+        0
+       \end{pmatrix}$, $\theta_2 =
+       \begin{pmatrix}
+        0 \\
+        0 \\
+        0
+       \end{pmatrix}$, $c_{2, init} =
+       \begin{pmatrix}
+        0 \\
+        0 \\
+        -c
+       \end{pmatrix}$ with $c > 0$, $\overrightarrow{AS} =
+       \begin{pmatrix}
+        0  \\
+        0  \\
+        s
+       \end{pmatrix}$ with $s > 0$ and $\overrightarrow{AG_1} =
+       \begin{pmatrix}
+        0  \\
+        0  \\
+        q
+       \end{pmatrix}$ with $q > 0$.
+
+\end{itemize}
+
+Hence, the equation (\ref{bigone}) is projected on the $x$-axis:
+
+\begin{equation*}
+ \ddot{\theta} + \frac{\lambda}{I_{2xx}} \dot{\theta} + \frac{k + m_2 c (a_z + g)}{I_{2xx}} \theta = - \frac{m_2 c}{I_{2xx}} a_y
+\end{equation*}
+
+The solution parameters of $\theta$ can be computed with the measured force $f$. From the FDP on \{1\} (\ref{sec_fdp1}), the force equation within the assumptions becomes:
+
+\begin{gather}
+  \label{fdp1_2d}
+ \overrightarrow{f} = m_1 (\overrightarrow{a} - \overrightarrow{g}) - \overrightarrow{F_{2/1}} \\
+ \overrightarrow{f} = m_1
+ \begin{pmatrix}
+  0  \\
+  a_y  \\
+  a_z + g
+ \end{pmatrix}
+ - \begin{pmatrix}
+ F_x \\
+ F_y \\
+ F_z
+ \end{pmatrix}
+ = \begin{pmatrix}
+ - F_x \\
+ m_1 a_y - F_y \\
+ m_1 (a_z + g) - F_z
+ \end{pmatrix}
+\end{gather}
+
+% Substituting the force $\overrightarrow{f}$ into the torque equation projected on the $x$-axis:
+%
+% \begin{gather*}
+%  \tau_x + s (m_1 a - F_y) + k \theta + \lambda \dot{\theta} = m_1 q a \\
+%  - s F_y + k \theta + \lambda \dot{\theta} = m_1 a (q - s) - \tau_x
+% \end{gather*}
+
+Then using the force equation of the FDP on \{2\}:
+
+\begin{gather*}
+  \begin{pmatrix}
+  - F_x \\
+  - F_y \\
+  - F_z
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+  0 \\
+  0 \\
+  -m_2 g
+  \end{pmatrix}
+  = m_2
+  \left[
+  \begin{pmatrix}
+  0 \\
+  a_y \\
+  a_z
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+  \dot{\theta} \\
+  0 \\
+  0
+  \end{pmatrix}
+  \times
+  \left(
+  \begin{pmatrix}
+  \dot{\theta} \\
+  0 \\
+  0
+  \end{pmatrix}
+  \times
+  \begin{pmatrix}
+  0 \\
+  -\theta c \\
+  c
+  \end{pmatrix}
+  \right)
+  +
+  \begin{pmatrix}
+  \ddot{\theta} \\
+  0 \\
+  0
+  \end{pmatrix}
+  \times
+  \begin{pmatrix}
+  0 \\
+  -\theta c \\
+  c
+  \end{pmatrix}
+  \right] \\
+  \begin{pmatrix}
+  - F_x \\
+  - F_y \\
+  - F_z
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  0 \\
+  m_2 [a_y + c (\dot{\theta}^2 \theta - \ddot{\theta})] \\
+  m_2 [a_z + g + c (\dot{\theta}^2 + \ddot{\theta} \theta)]
+  \end{pmatrix}
+\end{gather*}
+
+
+$F_x$, $F_y$ and $F_z$ are substituted in~\eqref{fdp1_2d}:
+
+\begin{equation}
+  \label{force_2d}
+  \overrightarrow{f}
+  =
+  \begin{pmatrix}
+  0 \\
+  m_1 a_y + m_2 [a_y + c (\dot{\theta}^2 \theta - \ddot{\theta})] \\
+  m_1 (a_z + g) + m_2 [a_z + g + c (\dot{\theta}^2 + \ddot{\theta} \theta)]
+  \end{pmatrix}
+\end{equation}
+
+In order to estimate $\lambda$ and $k$, the motion of the point A is sinusoidal: $\overrightarrow{OA} = \alpha \sin(\omega t) \cdot \overrightarrow{y_0}$
+
+\begin{equation}
+ \label{1d}
+ \ddot{\theta}(t) + \frac{\omega_0}{Q} \dot{\theta}(t) + \omega_0^2 \theta(t) = B \sin(\omega t)
+\end{equation}
+
+with $\omega_0 = \sqrt{\frac{k + m_2 c g}{I_{2xx}}}$, $Q = \frac{\omega_0 I_{xx}}{\lambda}$ and $B = -\frac{m_2 c \omega^2 \alpha}{I_{2xx}}$.
+
+The solution of (\ref{1d}) is then:
+
+
+\begin{equation}
+  \label{theta2d}
+  \theta(t) = \theta_m \sin(\omega t + \phi)
+\end{equation}
+
+
+with:
+{\centering
+ \begin{tabular}{cc}
+  $\theta_m = \frac{B}{\sqrt{{(\omega_0^2 - \omega^2)}^2 + {\left( \frac{\omega \omega_0}{Q}\right)}^2}}$
+    & $\phi = - \frac{\pi}{2} - \arctan \left[ Q \left( \frac{\omega}{\omega_0} - \frac{\omega_0}{\omega} \right) \right] $ \\
+ \end{tabular}
+ \par}
+
+\vspace{0.5cm}
+
+Finally, the equation~\eqref{theta2d} is substituted into the previous~\eqref{force_2d} with $a_z = 0$:
+
+\begin{equation*}
+  \begin{pmatrix}
+  f_x \\
+  f_y \\
+  f_z
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  0 \\
+  (m_1 + m_2) a_y + m_2 c \theta_m \omega^2 \sin(\omega t + \phi) (\theta_m^2 \cos^2(\omega t + \phi) + 1)  \\
+  (m_1 + m_2) g + m_2 c \theta_m^2 \omega^2
+  \end{pmatrix}
+\end{equation*}
+
+Considering small-angle  approximation, $\theta_m^2 \cos^2(\omega t + \phi) + 1 \approx 1$ leads to:
+
+\begin{equation}
+  \begin{pmatrix}
+  f_x \\
+  f_y \\
+  f_z
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  0 \\
+  (m_1 + m_2) a_y + m_2 c \theta_m \omega^2 \sin(\omega t + \phi) \\
+  (m_1 + m_2) g + m_2 c \theta_m^2 \omega^2
+  \end{pmatrix}
+\end{equation}
+
+
+
+The parameters $\theta_m$ and $\phi$ can be derived and spring-damper parameters ($k$ and $\lambda$) are further computed with equations~\eqref{1d} and~\eqref{theta2d}:
+
+\begin{align}
+  \theta_m = \frac{\sqrt{f_x + (m1 + m2) g}}{ \omega \sqrt{m_2 c}} &&
+  \phi = - \omega t + \arcsin \left( \frac{f_y - a_y (m1 - m2)}{c m_2 \omega^2 \theta_m} \right)
+\end{align}
+
+
+
+\chapter{Second Appendix}
+this is the information
