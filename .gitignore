@@ -1,0 +1,16 @@
+/mt_report
+/experiments
+/half_time_thesis
+/kubus_method_seminar
+/specification
+*.toc
+*.gz
+*.xml
+*.out
+*.log
+*.fls
+*.fdb_latexmk
+*.blg
+*.bcf
+*.bbl
+*.aux 
