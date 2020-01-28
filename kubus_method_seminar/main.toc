@@ -1,9 +1,0 @@
-\beamer@endinputifotherversion {3.36pt}
-\beamer@sectionintoc {1}{Definition of the problem}{3}{0}{1}
-\beamer@sectionintoc {2}{Estimation of the inertial parameters}{7}{0}{2}
-\beamer@subsectionintoc {2}{1}{Estimation method}{7}{0}{2}
-\beamer@subsectionintoc {2}{2}{Relevance of a recursive least-square algorithm}{9}{0}{2}
-\beamer@sectionintoc {3}{Performance improvement}{11}{0}{3}
-\beamer@subsectionintoc {3}{1}{Estimation of the sensor offsets}{11}{0}{3}
-\beamer@subsectionintoc {3}{2}{Estimation of the error sensitivity}{12}{0}{3}
-\beamer@sectionintoc {4}{Details of the Recursive Total Least-Squares Method}{13}{0}{4}
