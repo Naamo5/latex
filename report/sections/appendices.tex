@@ -1,3 +1,10 @@
+\providecommand{\main}{..}
+
+\documentclass[\main/main.tex]{subfiles}
+
+\begin{document}
+
+
 \newpage
 \appendix
 \newpage
@@ -90,8 +97,7 @@ with $d$ the skew-symmetric matrix constructed from the vector $\overrightarrow{
 x \\
 y \\
 z
-\end{pmatrix}
-=d$.
+\end{pmatrix}$.
 
 {\centering
  $ -d^2 = -\begin{pmatrix}
@@ -104,7 +110,7 @@ z
  -yx & x^2 + z^2 & -yz \\
  -zx & -zy & x^2 + y^2
  \end{pmatrix}
- = (d^T d) \ \mathbb{I}_3 - (d d^T)$
+ = (\overrightarrow{AG}^T \overrightarrow{AG}) \ \mathbb{I}_3 - (\overrightarrow{AG} \overrightarrow{AG}^T)$
  \par}
 
 
@@ -638,7 +644,7 @@ From the equation of the FDP (\ref{fdp}) on \{2\} at point $A$:
  \end{array}
  \right \}
  }{}
-\end{align*}
+ \end{align*}
 
 Considering only the equation on torques:
 
@@ -691,7 +697,7 @@ In order to estimate the inertial parameters of the item ($m_2$, $c_{2, init}$ a
 }
 
 
-\subsection{Fondamental Principle of Dynamics on \{1\}}
+\subsection{Fundamental Principle of Dynamics on \{1\}}
 \label{sec_fdp1}
 
 From the equation of the FDP (\ref{fdp}) on \{1\} at point A:
@@ -754,7 +760,7 @@ The equation on force is:
 
 \begin{figure}[H]
 \centering
-   \includestandalone[width=10cm]{figures/two_bodies} %     without .tex extension
+   \input{\main/figures/two_bodies} %     without .tex extension
    % or use \input{mytikz}
    \caption{2-bodies with 2-dimensions assumptions system.}
    \label{fig:tikz:2_bodies}
@@ -809,12 +815,12 @@ Considering the following assumptions (see Figure \ref{fig:tikz:2_bodies} for de
 
  \item The initial position is: $\theta_1 =
        \begin{pmatrix}
-        0 \\
+        \pi \\
         0 \\
         0
        \end{pmatrix}$, $\theta_2 =
        \begin{pmatrix}
-        0 \\
+        \pi \\
         0 \\
         0
        \end{pmatrix}$, $c_{2, init} =
@@ -1026,3 +1032,5 @@ The parameters $\theta_m$ and $\phi$ can be derived and spring-damper parameters
 
 \chapter{Second Appendix}
 this is the information
+
+\end{document}

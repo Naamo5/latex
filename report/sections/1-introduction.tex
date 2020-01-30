@@ -4,23 +4,75 @@
 
 \chapter{Introduction}
 
+A growing number of logistics companies are incorporating robots to automate order fulfillment and warehousing processes. In storehouses with less and less human presence, automated systems run tasks as storing, moving, scanning and wrapping goods. Logistic robots guarantee a great uptime over manual labor while taking over alienating tasks. Warehousing companies garner the benefits of speed, efficiency and increased profits to remain competitive in a market driven by consumers wishing for faster and more reliable deliveries. The past decade has witnessed a very rapid increase in robots installed in 2017 with 69,000 units – a 162 \% increase over 2016 (26,294) according to the \ac{IFR} \cite{industrialRobot2018}. The same organization estimates that 485,300 unit sales will be sold for the period between 2019 and 2021.
 
-Somewhat big picture describing where the work fits in. How far to zoom out depends on the topic. It should be one or two levels of abstraction up. Does not have to be all the way to “drones are important…”
+The high expectations of this growing e-commerce market has raised challenges for autonomous systems. Traditional robots programmed with hard-coded moves quickly reach limits when it comes to dealing with order disparities in size, shape, weight, volume and mechanical properties \cite{GQHuang2015}. Logistics robots might be able to adapt to a wide diversity of situations with fewer human-in-the-loop interaction. Those challenging tasks have required major research on various fields such as Object Recognition, Motion Control, Perception, Machine Learning, Reinforcement Learning.
 
-Describe what the problem you study is using words that one can understand without having read the thesis first. It is good if this ends in a very explicit problem statement.
+\textit{TODO}
 
+{\it
 \begin{itemize}
-	\item Logistic robots increase in number in warehouse: 69,000 logistic systems were installed in 2017, 162 \% more than in 2016 (26,294) accounting for 63 \% of the total units and 36 \% of the total sales (in value) of professional service robots \cite{industrialRobot2018}.
-	\item Interesting for economics, productivity reasons
+	\item Focus on pick \& place
+	\begin{itemize}
+		\item item recognition
+		\item two items detection
+		\item improve motion control
+	\end{itemize}
+	\item Focus on issues raised by suction cup
+	\begin{itemize}
+		\item item wobbling
+		\item lost item
+	\end{itemize}
 \end{itemize}
+
+
+A force/torque sensor is mounted on the wrist of the robotic arm. It easily gets a weight measurement of the grasped item when the robot is static. A reliable static measure required the robotic manipulator to be perfectly standing and the F/T sensor to stabilize. This operation takes roughly 0.5s to be executed. It would be better to be able to measure the mass of an item while the robot is in motion. It may allow saving precious time in a grasping cycle and consequently increase productivity.
+
+The focus of this thesis is to design a computational method to reliably measure the mass of an item grasped by a robotic manipulator while in motion with the use of an F/T sensor.
+}
+
 
 \section{Motivation}
 
+\textit{TODO}
+
+{\it
+Every company running robotic manipulator in an industrial context might need to measure the mass of the item grasped for several purposes: adjust the kinematics of the robot, recognize the item, spot grasping error, gather information for the user or the customers. Most of the new generation robotic manipulators are equipped with a 6 DoF F/T sensor but there is no mass estimation method built-in or pervasive in the robotic world.
+}
+
 \section{Formulation of the Problem}
+
+\textit{TODO}
+
+{\it
+To measure of the mass of an item while moving can be tough:
+
+\begin{itemize}
+	\item The dynamics of the system can be complex and the emergence of inertial side effect can make the measurement complicated.
+	\item The diversity of the grasping tools, the different natures of item handled, the different ways to grip the object make the geometry of the system fickle.
+	\item The force/torque sensor can deliver a consistent measurement while static. However, the performance can be reduced when the system is moving (due to noise of measurement, response time, . . .). A snapshot from the sensor at time t is not sufficient to guarantee a good mass measurement accuracy.
+	\item In the context of an industrial system, the computation time is a crucial point. A rule  thumb is that the running time should not break the motion of the robot.
+\end{itemize}
+}
 
 \section{Scope}
 
+\textit{TODO}
+
+{\it
+\begin{itemize}
+	\item The implementation of trajectories and motion planning is not part of the project. The solution developed should be scalable on similar systems: robot manipulator with an F/T sensor mounted on the last joint. Items, grasping tool, F/T sensor, robotic arm trajectories can be of different types.
+	\item The project does not include programming motion planning and control of the robotic arm. It does not cover the improvement of the item recognition strategy. Also, it does not comprise the creation of a dataset to evaluate the method.
+\end{itemize}
+}
+
+
 \section{Report Outline}
-In text, describe what is presented in Chapters 2 and forward. Exclude the first chapter and references as well as appendix.
+
+\textit{TODO}
+
+{\it
+
+}
 
 \end{document}
