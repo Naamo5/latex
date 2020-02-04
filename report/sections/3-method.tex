@@ -3,9 +3,70 @@
 \begin{document}
 
 \chapter{Method}
+\label{chapter:method}
 
-\section{Rotational Mass-Spring-Damper system}
+\section{Rotational Mass Spring Damper System}
+
+\textit{TODO}
+
+{\it
+Overview of the suction cup, adaptibility compared with other claw system.
+
+Problem raised by the link between the tool and the item: it wobbles a lot. For quick motion, the results are mediocre.
+}
+
+\subsection{Hypothesis}
+
+\textit{TODO}
+
+{\it
+Explain the idea behind a \ac{RMSD} system.
+
+Comparison with a damped pendulum.
+}
+
+\subsection{Formulation of the \textsc{Newton-Euler} equations}
+\label{subsection:method_newton_equation}
+
+\textit{TODO}
+
+See details in Appendix \ref{appendix:rmsd}.
+
+\subsection{Estimating the robotic manipulator tool parameters}
+
+\textit{TODO}
+
+{\it
+Estimation of the general dynamic parameters:
+
+\begin{itemize}
+  \item tool parameters: mass $m_t$, center of mass $c_t$, moment of inertia $I_t$
+  \item suction cup parameters: spring coefficient $K$, damping ratio $\Lambda$.
+\end{itemize}
+}
+
+\section{Signal Pre-processing}
+
+\textit{TODO}
+
+{\it
+\begin{itemize}
+  \item Savitzky–Golay filter
+  \item Low-pass filter
+  \item \textsc{Euler} angle continuity filter
+\end{itemize}
+}
 
 \section{Recursive Generalized Total Least Squares with Noise Covariance Estimation}
+
+\textit{TODO}
+
+{\it
+Methods presented above employ estimation trajectories. The item is moved in different directions and speeds optimized w.r.t. parameter excitation.
+
+Unlike those approaches, the goal is to keep the motion planned for an industrial purposes. The trajectory should execute the task as fast as possible. Therefore, the parameters estimation are less likely to be accurate.
+
+In order to take into account this less optimized trajectories and to have a feedback of the accuracy of the measurement. \ac{RGTLS} with \ac{NCE} is applied... \cite{Rhode2014}
+}
 
 \end{document}
