@@ -18,41 +18,29 @@ With the long-term goal of reducing costs and giving systems more flexibility, \
 	\item \textbf{overall}: the gripper should not damage the item by squeezing, scratching or shaking it.
 \end{itemize}
 
-In order to adress those challenges, some ground-breaking research have been carried in the field of item recognition, object pose w.r.t. the gripper computation, item inertial parameters estimation, item measurement. To this end, researchers have focused on gathering information before, during and after the handling time as a source of improvement. Devices to capture data range from visual sensors (RGB cameras, depth cameras, laser line scanners, structured light sensors, \ldots) to kinetic sensors (\ac{IMUs}, \ac{FT} sensors, scales, \ldots) or to more tool-specific sensors (pressure sensors, tactile sensors, \ldots). Efforts torwards object recognition mainly rely on visual information (with \textit{appearance-based} techniques \cite{Carmichael2002, Schmid1997, Viola2001, Murase1993} or \textit{purely geometric} approaches \cite{Hut1987, Sethi2001}). Features used to identify the object are usely related to the shape, the color or the texture of the object. A few projects aim at estimating the inertial parameters of the object as features for recognition \cite{Kubus2008, Kubus2007, Kubus2014, Farsoni2018}. Those methods utilize the kinematics measurement data and \ac{FT} measurement to estimate the inertial parameters. However, those approaches make use of specific excitation trajectories that barely fit with industry cycle time expectancies. They also do not take into account the mechanical link between the gripper and the item. On balance, the mass only could be estimated without impacting the time-optimized motion of the robotic arm.
+In order to adress those challenges, some ground-breaking research have been carried in the field of item recognition, object pose w.r.t. the gripper computation, item inertial parameters estimation, item measurement. To this end, researchers have focused on gathering information before, during and after the handling time as a source of improvement. Devices to capture data range from visual sensors (RGB cameras, depth cameras, laser line scanners, structured light sensors, \ldots) to kinetic sensors (\ac{IMUs}, \ac{FT} sensors, scales, \ldots) or to more tool-specific sensors (pressure sensors, tactile sensors, \ldots). Efforts torwards object recognition mainly rely on visual information (with \textit{appearance-based} techniques \cite{Carmichael2002, Schmid1997, Viola2001, Murase1993} or \textit{purely geometric} approaches \cite{Hut1987, Sethi2001}). Features used to identify the object are usely related to the shape, the color or the texture of the object. A few projects aim at estimating the inertial parameters of the object as features for recognition \cite{Kubus2008, Kubus2007, Kubus2014, Farsoni2018}. Inertial parameters comprise the mass, the position of the center of mass and the 6 independent inertia tensor coefficients. Those methods utilize the kinematics measurement data and \ac{FT} measurement to estimate the inertial parameters. However, those approaches make use of specific excitation trajectories that barely fit with industry cycle time expectancies. They also do not take into account the mechanical link between the gripper and the item. On balance, the mass only could be estimated without impacting the time-optimized motion of the robotic arm.
 
 This thesis will focus on the estimation of the mass of a manipulator payload in motion by means of a \ac{FT} sensor.
 
 \section{Motivation}
 
+Within the scope of \textit{pick-and-place}, the mass of the item grasped by the tool of the robotic manipulator is a key information for several enhancements. Mass is a meaningful feature for object recognition. It is also a critical data for the dynamic of the system, hard failures detection and estimation of the pose of the item w.r.t. the end-effector.
 
-Within the 
-Time is the most expensive resource in industry and unsatisfactory cycle times are the ain reason why many bin-picking solutions have not found their way in warehouses or factory production lines.
+Concerning item recognition, it appears that purely vision based approaches may fail if the objects to be identified are similar with respect to their visual characteristics. For instance, there is indeed no visual difference between full and empty bottles of milk that might be treated differently by a robotic system for sorting recyclables. Recognition system based on inertial parameters (or combinations of visual information and inertial data) can tackle this bottleneck.
+Visual recognition algorithm can be also computationally expensive. The use of multiple cameras and/or RGB-D cameras coupled with generation of point clouds and/or \ac{CNN} require complex hardware or time-consuming scanning. Time is the most expensive resource in industry and unsatisfactory cycle times are the main reason why many bin-picking solutions have not found their way in warehouses or factory production lines.
 
+Inertial parameters of the item grasped is highly valuable to perform highly-dynamic force-guided or force-guarded motions \cite{Garcia2006, KubusKroger2008}. In some instances, the mass of the object carried by the tool is not negligible in relation to the end-effector and the dynamic is strongly affected.
+Also, robotic manipulators are operating with unknown objects of different size, shape, material, texture and so on. As a consequence, they are more likely to yield hard failures: two items grasped instead of one, item lost during motion, item hit due to oversize. Inertial parameters estimation can induce the detection of such shortcomming.
 
-\textit{TODO}
-
-{\it
-
-\begin{itemize}
-	\item inertial parameters estimation by means of a \ac{FT} sensor
-	\begin{itemize}
-		\item purely vision based approaches may fail if the objects to be identified are similar with respect to their visual characteristics
-		\item combinations of visual and inertial features for recognition or classification methods
-		\item identification of the mass by estimating the item inertial parameters. Explain here why it is fondamental to estimate the 10 inertial parameters to access the mass of the item.
-	\end{itemize}
-	\item other purposes
-	\begin{itemize}
-		\item perform highly-dynamic force-guided or force-guarded motions \cite{Garcia2006, KubusKroger2008}
-		\item detect hard failures (two items grasped, item lost during motion)
-		\item estimate the position of the item
-	\end{itemize}
-\end{itemize}
-
-
-%Companies running robotic manipulator in an industrial context might need to measure the mass of the item grasped for several purposes: adjust the kinematics of the robot, recognize the item, spot grasping error, gather information for the user or the customers. Most of the new generation robotic manipulators are equipped with a 6 \ac{DoF} \ac{FT} sensor but there is no mass estimation method built-in or pervasive in the robotic world.
-}
+Placing the object at a desired position with a desired orientation require the knowledge of the pose of the item w.r.t. to the tool. Once the mass, the center of mass and the inertia tensor are computed, a rough measure of the size and/or shape, orientation and position of the item can be approximated.
 
 \section{Challenges}
+
+One can notice that whilst the topic of the thesis to identify the mass of the manipulator payload, inertial parameters are at the heart of the report.
+
+
+  identification of the mass by estimating the item inertial parameters. Explain here why it is fondamental to estimate the 10 inertial parameters to access the mass of the item.
+
 
 \textit{TODO}
 
