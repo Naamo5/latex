@@ -8,30 +8,26 @@ A growing number of logistics companies are incorporating robots to automate ord
 
 The high expectations of this growing e-commerce market has raised challenges for autonomous systems. Traditional robots programmed with hard-coded moves quickly reach limits when it comes to dealing with order disparities in size, shape, weight, volume and mechanical properties \cite{GQHuang2015}. Logistics robots might be able to adapt to a wide diversity of situations with fewer human-in-the-loop interaction. Those challenging tasks have required major research on various fields such as Object Recognition, Motion Control, Perception, Machine Learning, Reinforcement Learning.
 
-\vspace{1cm}
+When it comes to deliver goods or assemble a final product, moving an item from one place to another is a recurring task. The earliest known industrial robot is a \textit{programmable transfer machine} as known as \textsc{Unimation} patented by George \textsc{Devol} in 1954 \cite{Wallen2008}. Thus, the first robot aimed to perform the so-called \textit{pick-and-place}. This task consists in picking things up from one location, moving them to another location and placing them. A typical application comes with \ac{SMT} component placement systems. Robotic machines are used to place \ac{SMDs} onto a \ac{PCB}. They are used for high speed, high precision placing of broad range of electronic components, like capacitors, resistors, integrated circuits onto the \ac{PCB}.
 
-\textit{TODO}
-
-{\it
+With the long-term goal of reducing costs and giving systems more flexibility, \textit{pick-and-place} systems tend to be more generic. Industrial robot systems aim not only to \textit{pick-and-place} at high velocity but also to be able to handle unknown objects. To execute such a global task, there are multiple challenges:
 \begin{itemize}
-	\item focus on pick \& place
-	\begin{itemize}
-		\item the first industrial robot was a pick and place (Programmed Transfer Article) robot \cite{Wallen2008}
-		\item description of the pick and place task
-		\item challenges (speed, unknown items, diversity of shapes, masses, materials)
-	\end{itemize}
-	\item item recognition
-	\begin{itemize}
-		\item most 3D rigid object recognition approaches rely on vision information
-		\item limitation of visual approaches
-	\end{itemize}
-	\item identification of the mass by estimating the item inertial parameters. Explain here why it is fondamental to estimate the 10 inertial parameters to access the mass of the item.
+	\item \textbf{picking}: the system has to localize the object and find an efficient way to grasp it;
+	\item \textbf{moving}: the robot try to move the object as fast as possible without losing it;
+	\item \textbf{placing}: the manipulator should place the object ar a desired position with a desired orientation;
+	\item \textbf{overall}: the gripper should not damage the item by squeezing, scratching or shaking it.
 \end{itemize}
-}
 
-This thesis will focus on the estimation of the mass of an item carried in motion by robotic manipulator by means of a \ac{FT} sensor.
+In order to adress those challenges, some ground-breaking research have been carried in the field of item recognition, object pose w.r.t. the gripper computation, item inertial parameters estimation, item measurement. To this end, researchers have focused on gathering information before, during and after the handling time as a source of improvement. Devices to capture data range from visual sensors (RGB cameras, depth cameras, laser line scanners, structured light sensors, \ldots) to kinetic sensors (\ac{IMUs}, \ac{FT} sensors, scales, \ldots) or to more tool-specific sensors (pressure sensors, tactile sensors, \ldots). Efforts torwards object recognition mainly rely on visual information (with \textit{appearance-based} techniques \cite{Carmichael2002, Schmid1997, Viola2001, Murase1993} or \textit{purely geometric} approaches \cite{Hut1987, Sethi2001}). Features used to identify the object are usely related to the shape, the color or the texture of the object. A few projects aim at estimating the inertial parameters of the object as features for recognition \cite{Kubus2008, Kubus2007, Kubus2014, Farsoni2018}. Those methods utilize the kinematics measurement data and \ac{FT} measurement to estimate the inertial parameters. However, those approaches make use of specific excitation trajectories that barely fit with industry cycle time expectancies. They also do not take into account the mechanical link between the gripper and the item. On balance, the mass only could be estimated without impacting the time-optimized motion of the robotic arm.
+
+This thesis will focus on the estimation of the mass of a manipulator payload in motion by means of a \ac{FT} sensor.
 
 \section{Motivation}
+
+
+Within the 
+Time is the most expensive resource in industry and unsatisfactory cycle times are the ain reason why many bin-picking solutions have not found their way in warehouses or factory production lines.
+
 
 \textit{TODO}
 
@@ -42,6 +38,7 @@ This thesis will focus on the estimation of the mass of an item carried in motio
 	\begin{itemize}
 		\item purely vision based approaches may fail if the objects to be identified are similar with respect to their visual characteristics
 		\item combinations of visual and inertial features for recognition or classification methods
+		\item identification of the mass by estimating the item inertial parameters. Explain here why it is fondamental to estimate the 10 inertial parameters to access the mass of the item.
 	\end{itemize}
 	\item other purposes
 	\begin{itemize}
@@ -50,6 +47,7 @@ This thesis will focus on the estimation of the mass of an item carried in motio
 		\item estimate the position of the item
 	\end{itemize}
 \end{itemize}
+
 
 %Companies running robotic manipulator in an industrial context might need to measure the mass of the item grasped for several purposes: adjust the kinematics of the robot, recognize the item, spot grasping error, gather information for the user or the customers. Most of the new generation robotic manipulators are equipped with a 6 \ac{DoF} \ac{FT} sensor but there is no mass estimation method built-in or pervasive in the robotic world.
 }
