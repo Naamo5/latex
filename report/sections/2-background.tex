@@ -7,29 +7,82 @@
 \chapter{Background}
 \label{chapter:background}
 
-A lot of effort have been put into estimating the dynamic parameters of each rigid body link of robotic manipulators during the late century spent. An et al. \cite{An1985} have developped a method to estimate the mass, the location of the center of mass and the moment of inertia of every link of a robotic arm. The method uses the joint torques and the calculation of the kinematics of the manipulator while moving. This work provide a sound method to derive the dynamic equations (see Section \ref{subsection:background_newton_equation} and \ref{subsection:method_newton_equation}).
-
-\textit{TODO}
-
-{\it
-The estimation of the inertial parameters of an object attached to a manipulator was being addressed by researchers only within the last two decades.
-}
+This chapter introduces the hardware setup, the mechanical models and the mathematical optimization framework that will be the core of the thesis:
 
 \section{Hardware setup}
 \label{section:hardware}
 
+Below are described the hardware equipement provided by the host organisation. It comprises the robotic arm, the \ac{FT} sensor attached to the last joint, the gripper tool and its \textit{suction cup}. A typical motion of the robot during \textit{pick-and-place} operation is described. Also, key physical behaviours of the system that influence the design of the mechanical models are highlighted.
+
+\subsection{Robotic manipulator}
+
+Two models of robotic 6 \ac{DoF} arms have been used throughout the project: UR10 and UR10e from \textsc{Universal Robot}\texttrademark. They are fairly similar since they can span an area of $1300 \si{\milli\meter}$ around them and can handle payload of $10 \si{\kilo\gram}$ –as sugested by the name. The particularity of UR10e is its built-in \ac{FT} sensor and faster communication ($500 \si{\hertz}$ by contrast with $125 \si{\hertz}$ of the UR10).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.4]{\main/figures/picture_of_ur.png}
+  \caption{Robotic arm from \textsc{Universal Robot}\texttrademark grasping a box. Image from the author.}
+  \label{fig:background:albert}
+\end{figure}
+
+\subsection{\ac{FT} sensor}
+
+Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e and the \textit{Gamma} \ac{FT} sensor from ATI\texttrademark. They are both mounted on the last joint of the robotic manipulator (see Figure \ref{fig:background:tool}). The ATI\texttrademark \ sensor is mostly used throughout the evaluation of the methods. It has better measurement properties (see \ref{table:ft-sensor}).
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Specifications of the built-in UR10e sensor and \textit{Gamma} sensor \ref{ati, ur10e}. }
+    \label{tab:background:ft-sensor}
+    \begin{tabular}{l|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \renewcommand{\arraystretch}{3.5} % Default value: 1
+      & \textbf{ATI Gamma} & \textbf{UR10e}\\
+      \hline
+      Range (force)  & $F_{x/y}: 32 \ \si{\newton}$ $F_z: 100 \ \si{\newton}$ & \underline{$100 \ \si{\newton}$} \\
+      \hline
+      Range (torque)  & $2.5 \ \si{\newton} \si{\meter}$ & \underline{$10 \ \si{\newton} \si{\meter}$} \\
+      \hline
+      Resolution (force)  & \underline{$F_{x/y}: 0.0062 \ \si{\newton}$ $F_z: 0.012 \ \si{\newton}$} & $2.0 \ \si{\newton}$ \\
+      \hline
+      Resolution (torque)  & \underline{$0.0005 \ \si{\newton} \si{\meter}$} & $0.02 \ \si{\newton} \si{\meter}$ \\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+32 N	100 N	2.5 Nm	2.5 Nm	1/160 N	1/80 N	1/2000 Nm	1/2000 Nm
+
+\subsection{End-effector}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.4]{\main/figures/picture_of_tool.png}
+  \caption{Tool mount on the robotic manipulator. Image from the author.}
+  \label{fig:background:tool}
+\end{figure}
 
 
-\section{Description of the Problem}
+\subsection{Suction cup}
+
+\textit{TODO}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.4]{\main/figures/picture_of_tool.png}
+  \caption{Suction attached to the end-effector of the robotic manipulator. Image from the author.}
+  \label{fig:background:albert}
+\end{figure}
+
+
+\section{Mechanical models}
 \label{section:description}
+
+A lot of effort have been put into estimating the dynamic parameters of each rigid body link of robotic manipulators during the late century spent. An et al. \cite{An1985} have developped a method to estimate the mass, the location of the center of mass and the moment of inertia of every link of a robotic arm. The method uses the joint torques and the calculation of the kinematics of the manipulator while moving. This work provide a sound method to derive the dynamic equations (see Section \ref{subsubsection:background_newton_equation} and \ref{subsection:method_newton_equation}).
 
 \textit{TODO}
 
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.4]{\main/figures/scheme.png}
-  \caption{2-bodies with 2-dimensions assumptions system.}
-  \label{fig:background:payload_sensor}
+  \caption{\ac{FT} sensor with an object rigidly attached. Image from \cite{Kubus2007}}
 \end{figure}
 
 \begin{itemize}
@@ -37,10 +90,10 @@ The estimation of the inertial parameters of an object attached to a manipulator
  \item payload attached to the \ac{FT} sensor: mass $m$, center of mass $c$, moment of inertia $I$, linear acceleration $a$, angular acceleration $\alpha$, angular velocity $\omega$,
 \end{itemize}
 
-\section{Dynamic Model}
+\subsection{Rigid model of the \{tool + item\} system}
 
-\subsection{Formulation of the \textsc{Newton-Euler} equations}
-\label{subsection:background_newton_equation}
+\subsubsection{Formulation of the \textsc{Newton-Euler} equations}
+\label{subsubsection:background_newton_equation}
 
 \textit{TODO}
 
@@ -70,6 +123,9 @@ also in matrix form:
 \end{equation}
 
 with $\varphi = (m, m c_x, m c_y, m c_z, I_{xx}, I_{xy}, I_{xz}, I_{yy}, I_{yz}, I_{zz}) {}^T$
+
+\subsection{\ac{RMSD} model of the \{tool + item\} system}
+
 
 \subsection{Sensor offset}
 
