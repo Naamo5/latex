@@ -101,20 +101,23 @@ take an item from a given initial pose to a final pose \cite{Angeles2006}. This 
 
 The drawback of using a suction cup for grasping is that the mechanical link between the tool and the item is not rigid. Heavy items and objects with large dimension are very likely to oscillate during the motion. In logistic warehouses, robots often handles object over half a kilo and longer dimension over $0.3 \si{\meter}$. Observations show that the angle between the tool and the item may vary significantly (up to $10 \si{\degree}$). Wobbling has a knock-on effect on \ac{FT} measurement. While there should not be any oscillations of the torque in a rigid model (for more detail, please refer to Section \ref{section:mechanical-models}), significant variations can be seen in actual measurement (see Figure \ref{fig:results:torque_}).
 
-When it comes to physically model the system, different level of details can be take into account. The first approach is to considered a rigid link between the tool and the item and a second approach is to fit an appropriate mechanical model considering the number of \ac{DoF} and the damped harmonic oscillator theory.
-
+When it comes to physically model the system, different level of details can be take into account. The first approach is to considered a rigid link between the tool and the item and a second approach is to fit an appropriate mechanical model considering the \ac{DoF} and the damped harmonic oscillator theory.
 
 \section{Mechanical models}
 \label{section:mechanical-models}
 
-A lot of effort have been put into estimating the dynamic parameters of each rigid body link of robotic manipulators during the late century spent. An et al. \cite{An1985} have developped a method to estimate the mass, the location of the center of mass and the moment of inertia of every link of a robotic arm. The method uses the joint torques and the calculation of the kinematics of the manipulator while moving. This work provide a sound method to derive the dynamic equations (see Section \ref{subsubsection:background_newton_equation} and \ref{subsection:method_newton_equation}).
+A lot of effort have been put into estimating the dynamic parameters of each rigid body link of robotic manipulators during the late century spent. An \textit{et al.} \cite{An1985} have developped a method to estimate the mass, the location of the center of mass and the moment of inertia of every link of a robotic arm. The method uses the joint torques and the calculation of the kinematics of the manipulator while moving. This work provide a sound method to derive the dynamic equations. Liu \textit{et al.} enhanced this approach in 1998 \cite{Liu1998} by using a proper filtering method for velocity that avoid difficult-to-measure acceleration measurements. Both teams were working with robotic manipulators mounted \textit{on}
+a six-axis \ac{FT} sensor.
+
+More compact \ac{FT} sensors have been developped and more complex use cases needed to quantify robot interactions with its environment. Therefore, it is possible to mount \ac{FT} sensors on the last wrist and benefit from a more sensible measurement. A several research project have taken advantage of that and have developped payload inertial parameters estimation methods \cite{Kubus2008, Kubus2007, Kubus2014, Farsoni2018}. These methods similarly derive \textsc{Newton-Euler} equations in order to isolate a set of 10 inertial parameters: mass, center of mass and independant inertia tensor coeficients. 
+
 
 \textit{TODO}
 
 \begin{figure}
   \centering
   \includegraphics[scale=0.4]{\main/figures/scheme.png}
-  \caption{\ac{FT} sensor with an object rigidly attached. Image from \cite{Kubus2007}}
+  \caption{\ac{FT} sensor with an object rigidly attached. Image from \cite{Kubus2007}.}
 \end{figure}
 
 \begin{itemize}
