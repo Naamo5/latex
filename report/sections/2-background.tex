@@ -18,23 +18,23 @@ Below are described the hardware equipement provided by the host organisation. I
 
 Two models of robotic 6 \ac{DoF} arms have been used throughout the project: UR10 and UR10e from \textsc{Universal Robot}\texttrademark. They are fairly similar since they can span an area of $1300 \si{\milli\meter}$ around them and can handle payload of $10 \si{\kilo\gram}$ –as sugested by the name. The particularity of UR10e is its built-in \ac{FT} sensor and faster communication ($500 \si{\hertz}$ by contrast with $125 \si{\hertz}$ of the UR10).
 
-\begin{figure}[H]
+\begin{figure}
   \centering
-  \includegraphics[scale=0.4]{\main/figures/picture_of_ur.png}
-  \caption{Robotic arm from \textsc{Universal Robot}\texttrademark grasping a box. Image from the author.}
+  \includegraphics[scale=0.05]{\main/figures/picture_of_ur.jpg}
+  \caption{Robotic arm from \textsc{Universal Robot}\texttrademark \ grasping a box. Image from the author.}
   \label{fig:background:albert}
 \end{figure}
 
 \subsection{\ac{FT} sensor}
 
-Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e and the \textit{Gamma} \ac{FT} sensor from ATI\texttrademark. They are both mounted on the last joint of the robotic manipulator (see Figure \ref{fig:background:tool}). The ATI\texttrademark \ sensor is mostly used throughout the evaluation of the methods. It has better measurement properties (see \ref{table:ft-sensor}).
+Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e and the \textit{Gamma} \ac{FT} sensor from ATI\texttrademark. They are both mounted on the last joint of both robotic manipulators (see Figure \ref{fig:background:tool}). The ATI\texttrademark \ sensor is mostly used throughout the evaluation of the different approaches. Although its range of measurement is narrower than UR10e one, it has better resolution properties (see Table \ref{table:background:ft-sensor}).
 
 \begin{table}[h!]
   \begin{center}
     \caption{Specifications of the built-in UR10e sensor and \textit{Gamma} sensor \ref{ati, ur10e}. }
     \label{tab:background:ft-sensor}
+    \renewcommand{\arraystretch}{1.8} % Default value: 1
     \begin{tabular}{l|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-      \renewcommand{\arraystretch}{3.5} % Default value: 1
       & \textbf{ATI Gamma} & \textbf{UR10e}\\
       \hline
       Range (force)  & $F_{x/y}: 32 \ \si{\newton}$ $F_z: 100 \ \si{\newton}$ & \underline{$100 \ \si{\newton}$} \\
@@ -44,42 +44,74 @@ Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e an
       Resolution (force)  & \underline{$F_{x/y}: 0.0062 \ \si{\newton}$ $F_z: 0.012 \ \si{\newton}$} & $2.0 \ \si{\newton}$ \\
       \hline
       Resolution (torque)  & \underline{$0.0005 \ \si{\newton} \si{\meter}$} & $0.02 \ \si{\newton} \si{\meter}$ \\
+      \hline
     \end{tabular}
   \end{center}
 \end{table}
 
-32 N	100 N	2.5 Nm	2.5 Nm	1/160 N	1/80 N	1/2000 Nm	1/2000 Nm
-
 \subsection{End-effector}
+
+The end-effector of the robot fullfills the functions of grasping a wide range of items, measuring the force induced on the wrist, safely picking from diverse source totes, carts or conveyors. It consists of 4 basic elements (see Figure \ref{fig:background:tool}):
+
+\begin{itemize}
+  \item an ATI\texttrademark \ sensor which is screwed on the wrist of the robotic manipulator,
+  \item an extension tube to reach deep totes or carts,
+  \item a second cylinder inserted in the previous one with a safety-spring,
+  \item a vacuum suction cup linked to the hydraulic supply.
+\end{itemize}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.4]{\main/figures/picture_of_tool.png}
+  \includegraphics[scale=0.05, angle=-90]{\main/figures/picture_of_tool.jpg}
   \caption{Tool mount on the robotic manipulator. Image from the author.}
   \label{fig:background:tool}
 \end{figure}
 
+A suction cup with a springy extension is mounted on the tool. It allows a very simple integration logic and a versatile ability to grasp items (see Figure \ref{fig:background:suction}). The sealing lip provide a good grip on a large range of object texture.
 
-\subsection{Suction cup}
+\begin{figure}
+\centering
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[scale=0.03]{\main/figures/suction_unloaded.jpg}
+\caption{Unloaded}
+\label{fig:background:suction-unloaded}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[scale=0.03]{\main/figures/suction_loaded.jpg}
+\caption{Loaded}
+\label{fig:background:suction-loaded}
+\end{subfigure}
+\caption{Vaccum suction cup gripper. Images from the author.}
+\label{fig:background:suction}
+\end{figure}
 
-\textit{TODO}
+\subsection{Characteristics of a typical \textit{pick-and-place} motion}
+
+In the context of \textit{pick-and-place} tasks, a robotic manipulator is meant to
+take an item from a given initial pose to a final pose \cite{Angeles2006}. This type of operation is exploited in tasks like loading and unloading of conveyor belts, totes, carts. In the use case of the project, trajectories have a blending trapezoidal shape. They are optimized for high production cadence and grasping failure avoidance (see Figure \ref{fig:background:tote_cycle}).
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.4]{\main/figures/picture_of_tool.png}
-  \caption{Suction attached to the end-effector of the robotic manipulator. Image from the author.}
-  \label{fig:background:albert}
+  \includegraphics[scale=0.05]{\main/figures/tote_cycle.jpg}
+  \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. Image from the author.}
+  \label{fig:background:tote_cycle}
 \end{figure}
+
+The drawback of using a suction cup for grasping is that the mechanical link between the tool and the item is not rigid. Heavy items and objects with large dimension are very likely to oscillate during the motion. In logistic warehouses, robots often handles object over half a kilo and longer dimension over $0.3 \si{\meter}$. Observations show that the angle between the tool and the item may vary significantly (up to $10 \si{\degree}$). Wobbling has a knock-on effect on \ac{FT} measurement. While there should not be any oscillations of the torque in a rigid model (for more detail, please refer to Section \ref{section:mechanical-models}), significant variations can be seen in actual measurement (see Figure \ref{fig:results:torque_}).
+
+When it comes to physically model the system, different level of details can be take into account. The first approach is to considered a rigid link between the tool and the item and a second approach is to fit an appropriate mechanical model considering the number of \ac{DoF} and the damped harmonic oscillator theory.
 
 
 \section{Mechanical models}
-\label{section:description}
+\label{section:mechanical-models}
 
 A lot of effort have been put into estimating the dynamic parameters of each rigid body link of robotic manipulators during the late century spent. An et al. \cite{An1985} have developped a method to estimate the mass, the location of the center of mass and the moment of inertia of every link of a robotic arm. The method uses the joint torques and the calculation of the kinematics of the manipulator while moving. This work provide a sound method to derive the dynamic equations (see Section \ref{subsubsection:background_newton_equation} and \ref{subsection:method_newton_equation}).
 
 \textit{TODO}
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[scale=0.4]{\main/figures/scheme.png}
   \caption{\ac{FT} sensor with an object rigidly attached. Image from \cite{Kubus2007}}
