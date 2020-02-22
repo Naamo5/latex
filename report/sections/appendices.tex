@@ -16,12 +16,13 @@
 \newpage
 
 
-\chapter{Mechanical model of the \{ tool + item \} system}
-\label{appendix:a}
+\chapter{Mechanical model of the \{tool + item\} system}
+\label{appendix:models}
 
-\section{Notations and }
+\section{Notations and properties}
 
 \subsection{Kinematics wrench}
+\label{appendix:notation:wrench}
 
 Considering A, a point of \{2\}, the motion of \{2\} with respect to \{1\} is described by the following wrench:
 
@@ -90,7 +91,7 @@ Considering A, a point of \{2\}, its mass $m$ and its center of mass G, the dyna
 For an inertia tensor $I_{1, G}$ computed at the center of mass of a rigid body of mass $m$ the tensor for a parallel axis is:
 
 \begin{equation}
- \label{pat}
+ \label{appendix:notation:parallel_axis}
  I_{1, A} = I_{1, G} - m d^2
 \end{equation}
 
@@ -115,17 +116,26 @@ z
  \par}
 
 
-\subsection{Fundamental Principle of Dynamics}
+\subsection{\ac{FPD}}
 
-Considering $\sum_{}^{} \{ \mathcal{S}_{ext/1} \}$ the global external actions on the system \{1\} and $R_g$ a Galilean reference:
+Considering $\sum_{}^{} \{ \mathcal{V}_{ext/1} \}$ the global external actions on the system \{1\} and $R_g$ a Galilean reference:
 
 \begin{equation}
- \sum_{}^{} \{ \mathcal{S}_{ext/1} \} = \{ \mathcal{D}_{1/R_G} \}
- \label{fdp}
+ \sum_{}^{} \{ \mathcal{V}_{ext/1} \} = \{ \mathcal{D}_{1/R_G} \}
+ \label{appendix:notation:fpd}
 \end{equation}
 
 
 \subsection{Notations for systems of linear equations}
+\label{notation:matrix}
+{\centering
+ $ \begin{pmatrix}
+  a & 0 & 0 \\
+  0 & b & 0 \\
+  0 & 0 & c
+ \end{pmatrix}
+ \coloneqq diag(a, b, c)$
+ \par}
 
 {\centering
  $ \theta \times c =
@@ -137,7 +147,7 @@ Considering $\sum_{}^{} \{ \mathcal{S}_{ext/1} \}$ the global external actions o
  \begin{pmatrix}
   c_x \\
   c_y \\
-  c_z
+  c_zeq:
  \end{pmatrix}
  \coloneqq \left[ \theta \times \right] c$
  \par}
@@ -178,8 +188,7 @@ $.
 
 
 \subsection{Rotation matrix}
-
-\label{rotation}
+\label{appendix:notation:rotation}
 
 Considering the orientation $\theta =
 \begin{pmatrix}
@@ -221,7 +230,7 @@ Considering the small-angle approximation ($\cos \alpha \approx 1$, $\sin \alpha
 
 \section{1-body rigid model of the \{tool + item\} system}
 
-The system considered is a single-body system \{1\} composed of the tool and the item rigidly linked to it. The mass of \{1\} is $m$, its global center of mass is $G$ and the global inertia about the center of mass is $I_{1, G}$. The F/T sensor measures the force and the torque about the joint $S$.
+The system considered is a single-body system \{1\} composed of the tool and the item rigidly linked to it. The mass of \{1\} is $m$, its global center of mass is $G$ and the global inertia about the center of mass is $I_{G}$. The F/T sensor measures the force and the torque about the joint $S$.
 
 \subsection{External mechanical actions}
 
@@ -229,7 +238,7 @@ The system considered is a single-body system \{1\} composed of the tool and the
  \item Action of the robotic arm on the last link about the joint $S$:
 
        {\centering
-        $\{ \mathcal{S}_{arm/1} \}
+        $\{ \mathcal{V}_{arm/1} \}
         = \leftidx{_S}{
          \left \{ \begin{array}{c}
          \overrightarrow{F}_{arm/1} = \overrightarrow{f} \\
@@ -241,7 +250,7 @@ The system considered is a single-body system \{1\} composed of the tool and the
  \item Action of the gravitational force:
 
        {\centering
-        $\{ \mathcal{S}_{grav/1} \}
+        $\{ \mathcal{V}_{grav/1} \}
         = \leftidx{_{G}}{
          \left \{ \begin{array}{c}
          m \overrightarrow{g} \\
@@ -259,8 +268,7 @@ The system considered is a single-body system \{1\} composed of the tool and the
 \end{itemize}
 
 \subsection{Dynamics wrench}
-
-\label{dynamic}
+\label{appendix:rigid:dynamic}
 
 Considering the dynamic angular momentum of the system \{1\} about the joint $S$:
 
@@ -273,20 +281,20 @@ The angular momentum of the system \{1\} about the joint $S$ is:
 
 {\centering
  $\overrightarrow{\sigma}_{S, 1/0}
- = I_{1, S} \ast \overrightarrow{\Omega}_{1/0} + m \overrightarrow{SG} \times \overrightarrow{V}_{S, 1/0}$
+ = I_{S} \ast \overrightarrow{\Omega}_{1/0} + m \overrightarrow{SG} \times \overrightarrow{V}_{S, 1/0}$
  \par}
 
 Its time derivative is:
 
 \begin{align*}
  {\left[ \frac{\partial}{\partial t} \overrightarrow{\sigma}_{S, 1/0} \right]}_{R_0} &
- = {\left[ \frac{\partial}{\partial t}  (I_{1, S} \ast \overrightarrow{\Omega}_{1/0}) \right]}_{R_1}
- + \overrightarrow{\Omega}_{1/0} \times  (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ = {\left[ \frac{\partial}{\partial t}  (I_{S} \ast \overrightarrow{\Omega}_{1/0}) \right]}_{R_1}
+ + \overrightarrow{\Omega}_{1/0} \times  (I_{S} \ast \overrightarrow{\Omega}_{1/0})
  + m  \frac{\partial}{\partial t} (\overrightarrow{SG} \times \overrightarrow{V}_{S, 1/0} ) \\
-                                                                                     & = I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+                                                                                     & = I_{S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{S} \ast \overrightarrow{\Omega}_{1/0})
  + m \frac{\partial}{\partial t} (\overrightarrow{SG}) \times \overrightarrow{V}_{S, 1/0}
  + m \overrightarrow{SG} \times  \frac{\partial}{\partial t} (\overrightarrow{V}_{S, 1/0} ) \\
-                                                                                     & =  I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+                                                                                     & =  I_{S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{S} \ast \overrightarrow{\Omega}_{1/0})
  + m  \overrightarrow{V}_{G, 1/0}  \times \overrightarrow{V}_{S, 1/0}
  + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
 \end{align*}
@@ -313,7 +321,7 @@ Thus the dynamics wrench of the system \{1\} in the in the Galilean reference \{
  \begin{array}{ll}
  \overrightarrow{\mathcal{A}}_{1/0} & = m \overrightarrow{\Gamma}_{G, 1/0} \\
  \overrightarrow{\delta}_{S, 1/0}   &
- = I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ = I_{S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{S} \ast \overrightarrow{\Omega}_{1/0})
  + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
  \end{array}
  \right \}
@@ -339,16 +347,16 @@ The the dynamics wrench of the system \{1\} becomes:
  \begin{array}{ll}
  \overrightarrow{\mathcal{A}}_{1/0} & = m \overrightarrow{\Gamma}_{S, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m \overrightarrow{SG}) + \overrightarrow{\alpha}_{1/0} \times m \overrightarrow{SG} \\
  \overrightarrow{\delta}_{S, 1/0}   &
- = I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ = I_{S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{S} \ast \overrightarrow{\Omega}_{1/0})
  + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
  \end{array}
  \right \}
  }{}
 \end{align*}
 
-\subsection{Fondamental Principle of Dynamics}
+\subsection{\ac{FPD} on \{1\}}
 
-From the equation of the FDP (\ref{fdp}) on \{1\} at point $S$:
+From the equation of the \ac{FPD} (\ref{appendix:notation:fpd}) on \{1\} at point $S$:
 
 \begin{equation*}
  \leftidx{_{S}}{
@@ -367,7 +375,7 @@ From the equation of the FDP (\ref{fdp}) on \{1\} at point $S$:
   \left \{
   \begin{array}{ll}
    m \overrightarrow{\Gamma}_{S, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m \overrightarrow{SG}) + \overrightarrow{\alpha}_{1/0} \times m \overrightarrow{SG} \\
-   I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+   I_{S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{S} \ast \overrightarrow{\Omega}_{1/0})
    + m \overrightarrow{SG} \times  \overrightarrow{\Gamma}_{S, 1/0}
   \end{array}
   \right \}
@@ -383,30 +391,30 @@ Force and torque at the joint are derived as follows:
 \begin{equation}
  \overrightarrow{\tau} =
  m \overrightarrow{SG} \times (\overrightarrow{\Gamma}_{S, 1/0} - \overrightarrow{g})
- + I_{1, S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, S} \ast \overrightarrow{\Omega}_{1/0})
+ + I_{S} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{S} \ast \overrightarrow{\Omega}_{1/0})
 \end{equation}
 
 With the aim of shrinking the equation, the following notation are used:
 
 \begin{align*}
- \dot{\theta} = \overrightarrow{\Omega}_{1/0} \qquad \ddot{\theta} = \overrightarrow{\alpha}_{1/0} \qquad a = \overrightarrow{\Gamma}_{S, 1/0} \qquad g = \overrightarrow{g} \qquad c  = \overrightarrow{SG} \qquad I = I_{1,S}
+ \omega = \overrightarrow{\Omega}_{1/0} \qquad \alpha = \overrightarrow{\alpha}_{1/0} \qquad a = \overrightarrow{\Gamma}_{S, 1/0} \qquad g = \overrightarrow{g} \qquad c  = \overrightarrow{SG} \qquad I = I_{S}
 \end{align*}
 
 \begin{equation}
- \label{1dimfdp}
+ \label{appendix:eq:rigid}
  \left \{
  \begin{array}{l l}
-  f =    & m (a - g) + \dot{\theta} \times (\dot{\theta} \times m c) + \ddot{\theta} \times m c \\
+  f =    & m (a - g) + \omega \times (\omega \times m c) + \alpha \times m c \\
   \tau = & m c \times (a - g)
-  + I_{1, S} \ast \ddot{\theta} + \dot{\theta} \times (I_{1, S} \ast \dot{\theta})
+  + I_{S} \ast \alpha + \omega \times (I_{S} \ast \omega)
  \end{array}
  \right.
 \end{equation}
 
 \subsection{Inertial parameters estimation}
-\label{olinpe}
+\label{appendix:rigid:inertia_estimation}
 
-From the FDP equations (\ref{1dimfdp}) it is possible to estimate the inertial parameters of the item grasped by the tool using the following matrix equation.
+From the \ac{FPD} equations (\ref{appendix:eq:rigid}) it is possible to isolate the inertial parameters of the item grasped by the tool using the following matrix equation (see $\left[ \bullet . \right]$ and $\left[. \times \right]$ notation in Section \ref{notation:matrix}).
 
 \begin{equation}
  \begin{pmatrix}
@@ -415,8 +423,8 @@ From the FDP equations (\ref{1dimfdp}) it is possible to estimate the inertial p
  \end{pmatrix}
  =
  \begin{pmatrix}
-  a - g & \left[ \ddot{\theta} \times \right] +  \left[ \dot{\theta} \times \right] \left[ \dot{\theta} \times \right] & 0                                                                                                             \\
-  0     & \left[ (g - a) \times \right]                                                                                & \left[ \bullet \ddot{\theta} \right] + \left[ \dot{\theta} \times \right] \left[ \bullet \dot{\theta} \right]
+  a - g & \left[ \alpha \times \right] +  \left[ \omega \times \right] \left[ \omega \times \right] & 0                                                                                                             \\
+  0     & \left[ (g - a) \times \right]                                                                                & \left[ \bullet \alpha \right] + \left[ \omega \times \right] \left[ \bullet \omega \right]
  \end{pmatrix}
  \begin{pmatrix}
   m      \\
@@ -432,21 +440,21 @@ From the FDP equations (\ref{1dimfdp}) it is possible to estimate the inertial p
  \end{pmatrix}
 \end{equation}
 
-{\it
- The idea is to optimize the 10 parameters vector $\varphi$ such that $
+The matrix equation is recorded with the following notation:
+
+\begin{equation}
+  \label{appendix:rigid:matrix}
  \begin{pmatrix}
   f    \\
   \tau
- \end{pmatrix} = A \varphi$
- for every time $t$.
-}
+ \end{pmatrix}
+ = A(a, \alpha, \omega, g) \varphi
+\end{equation}
 
 \newpage
 
-\section{2-bodies rigid model of the \{tool\} + \{item\} system}
+\section{Rotational Mass Spring Damper model}
 \label{appendix:rmsd}
-
-
 
 The F/T sensor measures the force and the torque about the joint $S$.
 The system considered is a two-bodies system: \{1\} for the tool and \{2\} for the item grasped. The mass of \{1\} –respectively \{2\}– is $m_1$ –respectively $m_2$, its center of mass is $G_1$ –respectively $G_2$– and the inertia about the center of mass is $I_{1, G_1}$ –respectively $I_{2, G_2}$. The mechanical link between the two systems is modeled as a universal joint –as known as \textsc{Cardan} joint– with a spring-damper system about the transversal axes of the tool.
@@ -457,7 +465,7 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
  \item Action of the robotic arm on the tool about the grasping point $A$:
 
        {\centering
-        $\{ \mathcal{S}_{arm/1} \}
+        $\{ \mathcal{V}_{arm/1} \}
         = \leftidx{_S}{
          \left \{ \begin{array}{c}
          \overrightarrow{F}_{arm/1} = \overrightarrow{f} \\
@@ -472,10 +480,10 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
          }{}$
         \par}
 
- \item Action of the tool \{2\} on the item \{1\} about the grasp point $A$:
+ \item Action of the item \{2\} on the tool \{1\} about the grasp point $A$:
 
        {\centering
-        $\{ \mathcal{S}_{2/1} \}
+        $\{ \mathcal{V}_{2/1} \}
         = \leftidx{_A}{
          \left \{ \begin{array}{c}
          \overrightarrow{F}_{2/1} \\
@@ -483,7 +491,7 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
          \end{array} \right \}
          }{}$
         and respectively
-        $\{ \mathcal{S}_{1/2} \}
+        $\{ \mathcal{V}_{1/2} \}
         = \leftidx{_A}{
          \left \{ \begin{array}{c}
          \overrightarrow{F}_{1/2} = - \overrightarrow{F}_{2/1}  \\
@@ -495,7 +503,7 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
  \item Action of the gravitational force on \{1\} and on \{2\}:
 
        {\centering
-        $\{ \mathcal{S}_{grav/1} \}
+        $\{ \mathcal{V}_{grav/1} \}
         = \leftidx{_{G_1}}{
          \left \{ \begin{array}{c}
          m_1 \overrightarrow{g} \\
@@ -512,7 +520,7 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
         \par}
 
        {\centering
-        $ \{ \mathcal{S}_{grav/2} \}
+        $ \{ \mathcal{V}_{grav/2} \}
         = \leftidx{_{G_2}}{
          \left \{ \begin{array}{c}
          m_2 \overrightarrow{g} \\
@@ -528,11 +536,11 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
         $
         \par}
 
- \item Action of spring-damper system on the item \{1\} and \{2\} about the grasp point $A$:
+ \item Action of spring-damper system on \{1\} and \{2\} about the grasp point $A$:
 
        {\centering
-        $\{ \mathcal{S}_{spring/1} \}
-        + \{ \mathcal{S}_{damper/1} \}
+        $\{ \mathcal{V}_{spring/1} \}
+        + \{ \mathcal{V}_{damper/1} \}
         = \leftidx{_A}{
          \left \{ \begin{array}{c}
          \overrightarrow{0} \\
@@ -554,8 +562,8 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
         \par}
 
        {\centering
-        $\{ \mathcal{S}_{spring/2} \}
-        + \{ \mathcal{S}_{damper/2} \}
+        $\{ \mathcal{V}_{spring/2} \}
+        + \{ \mathcal{V}_{damper/2} \}
         = \leftidx{_A}{
          \left \{ \begin{array}{c}
          \overrightarrow{0} \\
@@ -584,7 +592,7 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
 
 \subsection{Dynamics wrench}
 
-By using the equations derived in \refeq{dynamic}, the dynamic wrenches of \{1\} and \{2\} are:
+By using the equations derived in \ref{appendix:rigid:dynamic}, the dynamic wrenches of \{1\} and \{2\} are:
 
 \begin{align*}
  \{ \mathcal{D}_{1/0} \}
@@ -615,9 +623,10 @@ By using the equations derived in \refeq{dynamic}, the dynamic wrenches of \{1\}
 \end{align*}
 
 
-\subsection{Fondamental Principle of Dynamics on \{2\}}
+\subsection{\ac{FPD} on \{2\}}
+\label{appendix:rmsd:fpd2}
 
-From the equation of the FDP (\ref{fdp}) on \{2\} at point $A$:
+From the equation of the FDP (\ref{appendix:notation:fpd}) on \{2\} at point $A$:
 
 \begin{align*}
    & \leftidx{_A}{
@@ -654,7 +663,7 @@ Considering only the equation on torques:
 \begin{equation}
  - N_{2/1} \overrightarrow{z}_{tool} + m_2 \overrightarrow{AG_2} \times \overrightarrow{g} + K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2} = I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
  + m_2 \overrightarrow{AG_2} \times  \overrightarrow{\Gamma}_{A, 2/0}
- \label{pfd2}
+ \label{appendix:eq:fpd_torque}
 \end{equation}
 
 With the aim of shrinking the equation, the following notation are used:
@@ -671,7 +680,7 @@ With the aim of shrinking the equation, the following notation are used:
  $
  \par}
 
-By rearranging (\ref{pfd2}):
+By rearranging (\ref{appendix:eq:fpd_torque}):
 
 % {\centering
 % $
@@ -687,23 +696,23 @@ By rearranging (\ref{pfd2}):
  $
  \par}
 
-The vector from the grasp point and the center of mass of the item $\overrightarrow{AG_2}$ can be computed as $\overrightarrow{AG_2} = R(\theta_{2/1}) \ast \overrightarrow{AG_2}_{init}$ with $R(\theta_{2/1})$ the rotation matrix from \{2\} to \{1\} and $\overrightarrow{AG_2}_{init}$ the initial vector from $A$ to the center of mass $G_2$ (at the moment the tool move to contact). With the approximation of the sec.~\ref{rotation}: $c_2 = R(\theta_{2/1}) \ast c_{2, init} \approx c_{2, init} + \theta_{2/1} \times c_{2, init}$, the equation (\ref{pfd2}) is rearranged:
+The vector from the grasp point and the center of mass of the item $\overrightarrow{AG_2}$ can be computed as $\overrightarrow{AG_2} = R(\theta_{2/1}) \ast \overrightarrow{AG_2}_{init}$ with $R(\theta_{2/1})$ the rotation matrix from \{2\} to \{1\} and $\overrightarrow{AG_2}_{init}$ the initial vector from $A$ to the center of mass $G_2$ (at the moment the tool move to contact). With the approximation of the sec.~\ref{appendix:notation:rotation}: $c_2 = R(\theta_{2/1}) \ast c_{2, init} \approx c_{2, init} + \theta_{2/1} \times c_{2, init}$, the equation (\ref{appendix:eq:fpd_torque}) is rearranged:
 
 \begin{equation}
- \label{bigone}
+ \label{appendix:eq:fpd_torque_approx}
  I_2 \ast \ddot{\theta}_2 + \dot{\theta}_2 \times (I_2 \ast \dot{\theta}_2) + \Lambda \ast \dot{\theta}_2 + K \ast \theta_2 + m_2 (\theta_2 \times c_{2, init}) \times  (a - g)
  = \Lambda \ast \dot{\theta}_1 + K \ast \theta_1 + m_2 (\theta_1 \times c_{2, init} - c_{2, init}) \times  (a - g)
 \end{equation}
 
 {\it
-In order to estimate the inertial parameters of the item ($m_2$, $c_{2, init}$ and $I_2$), the idea is to compute the orientation of the item as a function of the F/T sensor measurement ($\theta_2(f, \tau)$) by using the FDP on the tool \{1\}. Then derive a matrix equation from a known-variables-only equation as in the sec.~\ref{olinpe} to estimate the inertial parameters.  Hence, the parameters of the spring-damper system has to be estimated. A method to estimate those parameters is introduced later in the next sections.
+In order to estimate the inertial parameters of the item ($m_2$, $c_{2, init}$ and $I_2$), the idea is to compute the orientation of the item as a function of the F/T sensor measurement ($\theta_2(f, \tau)$) by using the FDP on the tool \{1\}. Then derive a matrix equation from a known-variables-only equation as in the sec.~\ref{appendix:rigid:inertia_estimation} to estimate the inertial parameters.  Hence, the parameters of the spring-damper system has to be estimated. A method to estimate those parameters is introduced later in the next sections.
 }
 
 
-\subsection{Fundamental Principle of Dynamics on \{1\}}
-\label{sec_fdp1}
+\subsection{\ac{FPD} on \{1\}}
+\label{appendix:rmsd:fpd1}
 
-From the equation of the FDP (\ref{fdp}) on \{1\} at point A:
+From the equation of the FDP (\ref{appendix:notation:fpd}) on \{1\} at point A:
 
 \begin{align*}
    & \leftidx{_A}{
@@ -845,13 +854,13 @@ Considering the following assumptions (see Figure \ref{fig:tikz:2_bodies} for de
 
 \end{itemize}
 
-Hence, the equation (\ref{bigone}) is projected on the $x$-axis:
+Hence, the equation (\ref{appendix:eq:fpd_torque_approx}) is projected on the $x$-axis:
 
 \begin{equation*}
  \ddot{\theta} + \frac{\lambda}{I_{2xx}} \dot{\theta} + \frac{k + m_2 c (a_z + g)}{I_{2xx}} \theta = - \frac{m_2 c}{I_{2xx}} a_y
 \end{equation*}
 
-The solution parameters of $\theta$ can be computed with the measured force $f$. From the FDP on \{1\} (\ref{sec_fdp1}), the force equation within the assumptions becomes:
+The solution parameters of $\theta$ can be computed with the measured force $f$. From the FDP on \{1\} (\ref{appendix:rmsd:fpd1}), the force equation within the assumptions becomes:
 
 \begin{gather}
   \label{fdp1_2d}
