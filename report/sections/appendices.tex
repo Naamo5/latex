@@ -457,7 +457,7 @@ The matrix equation is recorded with the following notation:
 \label{appendix:rmsd}
 
 The F/T sensor measures the force and the torque about the joint $S$.
-The system considered is a two-bodies system: \{1\} for the tool and \{2\} for the item grasped. The mass of \{1\} –respectively \{2\}– is $m_1$ –respectively $m_2$, its center of mass is $G_1$ –respectively $G_2$– and the inertia about the center of mass is $I_{1, G_1}$ –respectively $I_{2, G_2}$. The mechanical link between the two systems is modeled as a universal joint –as known as \textsc{Cardan} joint– with a spring-damper system about the transversal axes of the tool.
+The system considered is a two-bodies system: \{1\} for the tool and \{2\} for the item grasped. The mass of \{1\} –respectively \{2\}– is $m_1$ –respectively $m_2$, its center of mass is $G_1$ –respectively $G_2$– and the inertia about the center of mass is $I_{1, G_1}$ –respectively $I_{2, G_2}$. The mechanical link between the two systems is modeled as a universal joint –as known as \textsc{Cardan} joint– with a spring-damper system about the transversal axes of the tool (Figure \ref{fig:tikz:two_bodies}). It is also assumed that the tool \{1\} is always vertical which infers that $\overrightarrow{z_1} = -\overrightarrow{z_0}$.
 
 \subsection{External mechanical actions}
 
@@ -487,7 +487,7 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
         = \leftidx{_A}{
          \left \{ \begin{array}{c}
          \overrightarrow{F}_{2/1} \\
-         \overrightarrow{T}_{A, 2/1} = N_{2/1} \overrightarrow{z}_{tool}
+         \overrightarrow{T}_{A, 2/1} = N_{2/1} \overrightarrow{z_1}
          \end{array} \right \}
          }{}$
         and respectively
@@ -495,7 +495,7 @@ The system considered is a two-bodies system: \{1\} for the tool and \{2\} for t
         = \leftidx{_A}{
          \left \{ \begin{array}{c}
          \overrightarrow{F}_{1/2} = - \overrightarrow{F}_{2/1}  \\
-         \overrightarrow{T}_{A, 1/2} = -N_{2/1} \overrightarrow{z}_{tool}
+         \overrightarrow{T}_{A, 1/2} = -N_{2/1} \overrightarrow{z_1}
          \end{array} \right \}
          }{}$
         \par}
@@ -626,13 +626,13 @@ By using the equations derived in \ref{appendix:rigid:dynamic}, the dynamic wren
 \subsection{\ac{FPD} on \{2\}}
 \label{appendix:rmsd:fpd2}
 
-From the equation of the FDP (\ref{appendix:notation:fpd}) on \{2\} at point $A$:
+From the equation of the \ac{FPD} (\ref{appendix:notation:fpd}) on \{2\} at point $A$:
 
 \begin{align*}
    & \leftidx{_A}{
  \left \{ \begin{array}{c}
  -\overrightarrow{F}_{2/1} \\
- - N_{2/1} \overrightarrow{z}_{tool}
+ - N_{2/1} \overrightarrow{z_1}
  \end{array} \right \}
  }{}
  + \leftidx{_{A}}{
@@ -661,12 +661,17 @@ From the equation of the FDP (\ref{appendix:notation:fpd}) on \{2\} at point $A$
 Considering only the equation on torques:
 
 \begin{equation}
- - N_{2/1} \overrightarrow{z}_{tool} + m_2 \overrightarrow{AG_2} \times \overrightarrow{g} + K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2} = I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
- + m_2 \overrightarrow{AG_2} \times  \overrightarrow{\Gamma}_{A, 2/0}
- \label{appendix:eq:fpd_torque}
+\begin{split}
+- N_{2/1} \overrightarrow{z_1} + m_2 \overrightarrow{AG_2} \times \overrightarrow{g} + K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2} \\
+= I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
++ m_2 \overrightarrow{AG_2} \times  \overrightarrow{\Gamma}_{A, 2/0}
+\end{split}
+\label{appendix:eq:fpd_torque}
 \end{equation}
 
-With the aim of shrinking the equation, the following notation are used:
+
+
+With the aim of shrinking the equation, the following notations are used:
 
 {\centering
  $
@@ -705,14 +710,14 @@ The vector from the grasp point and the center of mass of the item $\overrightar
 \end{equation}
 
 {\it
-In order to estimate the inertial parameters of the item ($m_2$, $c_{2, init}$ and $I_2$), the idea is to compute the orientation of the item as a function of the F/T sensor measurement ($\theta_2(f, \tau)$) by using the FDP on the tool \{1\}. Then derive a matrix equation from a known-variables-only equation as in the sec.~\ref{appendix:rigid:inertia_estimation} to estimate the inertial parameters.  Hence, the parameters of the spring-damper system has to be estimated. A method to estimate those parameters is introduced later in the next sections.
+In order to estimate the inertial parameters of the item ($m_2$, $c_{2, init}$ and $I_2$), the idea is to compute the orientation of the item as a function of the F/T sensor measurement ($\theta_2(f, \tau)$) by using the \ac{FPD} on the tool \{1\}. Then derive a matrix equation from a known-variables-only equation as in the sec.~\ref{appendix:rigid:inertia_estimation} to estimate the inertial parameters.  Hence, the parameters of the spring-damper system has to be estimated. A method to estimate those parameters is introduced later in the next sections.
 }
 
 
 \subsection{\ac{FPD} on \{1\}}
 \label{appendix:rmsd:fpd1}
 
-From the equation of the FDP (\ref{appendix:notation:fpd}) on \{1\} at point A:
+From the equation of the \ac{FPD} (\ref{appendix:notation:fpd}) on \{1\} at point A:
 
 \begin{align*}
    & \leftidx{_A}{
@@ -724,7 +729,7 @@ From the equation of the FDP (\ref{appendix:notation:fpd}) on \{1\} at point A:
  + \leftidx{_A}{
  \left \{ \begin{array}{c}
  \overrightarrow{F}_{2/1} \\
- \overrightarrow{0}
+ N_{2/1} \overrightarrow{z_1}
  \end{array} \right \}
  }{}
  + \leftidx{_{A}}{
@@ -759,13 +764,11 @@ The equation on force is:
 \end{equation}
 
 
-% Considering only the equation on torques:
-%
-% \begin{equation}
-%   \overrightarrow{\tau} + \overrightarrow{AS} \times \overrightarrow{f} + m_1 \overrightarrow{AG_1} \times \overrightarrow{g} + K \ast \overrightarrow{\Omega}_{1/2} + \Lambda \ast \overrightarrow{\alpha}_{1/2} = I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
-%   + m_1 \overrightarrow{AG_1} \times  \overrightarrow{\Gamma}_{A, 2/0}
-%   \label{pfd1}
-% \end{equation}
+Considering only the projection on $\overrightarrow{z_1}$ of the torque equation:
+
+\begin{equation}
+  N_{2/1} + (\overrightarrow{\tau} + K \ast \overrightarrow{\Theta}_{2/1} + \Lambda \ast \overrightarrow{\Omega}_{2/1}) \overrightarrow{z_1} = (I_{1, A} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, A} \ast \overrightarrow{\Omega}_{1/0})) \overrightarrow{z_1}
+\end{equation}
 
 
 \subsection{Spring-damper parameters estimation}
@@ -860,10 +863,10 @@ Hence, the equation (\ref{appendix:eq:fpd_torque_approx}) is projected on the $x
  \ddot{\theta} + \frac{\lambda}{I_{2xx}} \dot{\theta} + \frac{k + m_2 c (a_z + g)}{I_{2xx}} \theta = - \frac{m_2 c}{I_{2xx}} a_y
 \end{equation*}
 
-The solution parameters of $\theta$ can be computed with the measured force $f$. From the FDP on \{1\} (\ref{appendix:rmsd:fpd1}), the force equation within the assumptions becomes:
+The solution parameters of $\theta$ can be computed with the measured force $f$. From the \ac{FPD} on \{1\} (\ref{appendix:rmsd:fpd1}), the force equation within the assumptions becomes:
 
 \begin{gather}
-  \label{fdp1_2d}
+  \label{appendix:rmsd:eq:fpd1}
  \overrightarrow{f} = m_1 (\overrightarrow{a} - \overrightarrow{g}) - \overrightarrow{F_{2/1}} \\
  \overrightarrow{f} = m_1
  \begin{pmatrix}
@@ -890,7 +893,7 @@ The solution parameters of $\theta$ can be computed with the measured force $f$.
 %  - s F_y + k \theta + \lambda \dot{\theta} = m_1 a (q - s) - \tau_x
 % \end{gather*}
 
-Then using the force equation of the FDP on \{2\}:
+Then using the force equation of the \ac{FPF} on \{2\}:
 
 \begin{gather*}
   \begin{pmatrix}
@@ -958,7 +961,7 @@ Then using the force equation of the FDP on \{2\}:
 \end{gather*}
 
 
-$F_x$, $F_y$ and $F_z$ are substituted in~\eqref{fdp1_2d}:
+$F_x$, $F_y$ and $F_z$ are substituted in~\eqref{appendix:rmsd:eq:fpd1}:
 
 \begin{equation}
   \label{force_2d}

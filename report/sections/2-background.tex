@@ -11,17 +11,17 @@ This chapter introduces the hardware setup, the mechanical models and the mathem
 %
 % \section{Hardware setup}
 % \label{section:hardware}
-%
+% 
 % Below are described the hardware equipement provided by the host organisation. It comprises the robotic arm, the \ac{FT} sensor attached to the last joint, the gripper tool and its \textit{suction cup}. A typical motion of the robot during \textit{pick-and-place} operation is described. Also, key physical behaviours of the system that influence the design of the mechanical models are highlighted.
 %
 % \subsection{Robotic manipulator}
 %
-% Two models of robotic 6 \ac{DoF} arms have been used throughout the project: UR10 and UR10e from \textsc{Universal Robot}\texttrademark. They are fairly similar since they can span an area of $1300 \si{\milli\meter}$ around them and can handle payload of $10 \si{\kilo\gram}$ –as sugested by the name. The particularity of UR10e is its built-in \ac{FT} sensor and faster communication ($500 \si{\hertz}$ by contrast with $125 \si{\hertz}$ of the UR10).
+% Two models of robotic 6 \ac{DoF} arms have been used throughout the project: UR10 and UR10e from \textsc{Universal Robot}\texttrademark (see Figure \ref{fig:background:albert}). They are fairly similar since they can span an area of $1300 \si{\milli\meter}$ around them and can handle payload of $10 \si{\kilo\gram}$ –as sugested by the name. The particularity of UR10e is its built-in \ac{FT} sensor and faster communication ($500 \si{\hertz}$ by contrast with $125 \si{\hertz}$ of the UR10).
 %
 % \begin{figure}
 %   \centering
 %   \includegraphics[scale=0.08]{\main/figures/picture_of_ur_indexed.png}
-%   \caption{Robotic arm from \textsc{Universal Robot}\texttrademark \ grasping a box. Image from the author.}
+%   \caption{Robotic arm from \textsc{Universal Robot}\texttrademark \ grasping an iPad box. The manipular is based mounted to reach a larger area. The blue cable connect the suction cup to the hydraulic network and the purple cable connect the \ac{FT} sensor to the robot unit. The two totes in the back ground can be source or target place for \textit{pick-and-place} tasks. Image from the author.}
 %   \label{fig:background:albert}
 % \end{figure}
 %
@@ -31,7 +31,6 @@ This chapter introduces the hardware setup, the mechanical models and the mathem
 %
 % \begin{table}[h!]
 %   \begin{center}
-%     \caption{Specifications of the built-in UR10e sensor and \textit{Gamma} sensor \cite{ati, ur10e}. }
 %     \label{tab:background:ft-sensor}
 %     \renewcommand{\arraystretch}{1.8} % Default value: 1
 %     \begin{tabular}{l|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
@@ -47,6 +46,7 @@ This chapter introduces the hardware setup, the mechanical models and the mathem
 %       \hline
 %     \end{tabular}
 %   \end{center}
+%   \caption{Specifications of the built-in UR10e sensor and \textit{Gamma} sensor \cite{ati, ur10e}. The \textit{Gamma} sensor offers the possibility to measure at a higher range but with lower resolution. The higher resolution is prefered in this particular case.}
 % \end{table}
 %
 % \subsection{End-effector}
@@ -63,7 +63,7 @@ This chapter introduces the hardware setup, the mechanical models and the mathem
 % \begin{figure}
 %   \centering
 %   \includegraphics[scale=0.08]{\main/figures/picture_of_tool_indexed.png}
-%   \caption{Tool mount on the robotic manipulator. Image from the author.}
+%   \caption{Tool mount on the robotic manipulator handling an iPad box. The safety-spring cannot be seen on this picture because it is inside the extension tube. Image from the author.}
 %   \label{fig:background:tool}
 % \end{figure}
 %
@@ -83,7 +83,7 @@ This chapter introduces the hardware setup, the mechanical models and the mathem
 % \caption{Loaded}
 % \label{fig:background:suction-loaded}
 % \end{subfigure}
-% \caption{Vaccum suction cup gripper. Images from the author.}
+% \caption{Vaccum suction cup gripper. The yellow part can twist with its srping shape in order to grasp tilted item. When a item is handled, the suction gripper is compressed by the air pressure. Note that the \ac{TCP} position is computed as the position of the extremity of the cup when it is not compressed. Images from the author.}
 % \label{fig:background:suction}
 % \end{figure}
 %
@@ -96,7 +96,7 @@ This chapter introduces the hardware setup, the mechanical models and the mathem
 % \begin{figure}
 %   \centering
 %   \includegraphics[scale=0.08]{\main/figures/tote_cycle_indexed.png}
-%   \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. Image from the author.}
+%   \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. The tool vertically goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, trajectory are blended for the same reasons. Image from the author.}
 %   \label{fig:background:tote_cycle}
 % \end{figure}
 %
@@ -164,14 +164,12 @@ The equation \ref{background:eq:rigid} is exploited to compose the matrix equati
 
 \begin{equation}
   \label{background:eq:inertia_estimation}
- \begin{pmatrix}
-  f    \\
-  \tau
- \end{pmatrix}
- = A(a, \alpha, \omega, g) \varphi
+B = A(a, \alpha, \omega, g) \varphi
 \end{equation}
 
-where $\varphi = (m, m c_x, m c_y, m c_z, I_{xx}, I_{xy}, I_{xz}, I_{yy}, I_{yz}, I_{zz}) {}^T$ contains the 10 independant inertial parameters.
+where $B =  \begin{pmatrix} f \\ \tau \end{pmatrix}$ and $\varphi = (m, m c_x, m c_y, m c_z, I_{xx}, I_{xy}, I_{xz}, I_{yy}, I_{yz}, I_{zz}) {}^T$ contains the 10 independant inertial parameters.
+
+Linearity w.r.t. $\varphi$ gives the opportunity to easily substract the tool inertial parameters to the \{tool + item\} system. One can note that the center of mass of multiple corpses is by definition: $c = \frac{m_1 c_1 + m_2 c_2}{m_1 + m_2}$. It further confirms that $mc = m_1 c_1 + m_2 c_2$.
 
 \subsection{\ac{RMSD} model of the \{tool + item\} system}
 
@@ -184,16 +182,24 @@ As mentioned in section \ref{background:motion}, the elasticity of the suction c
   \label{fig:background:cardan}
 \end{figure}
 
-One can notice that the combination of the two bodies behaves as a 2 \ac{DoF} harmonic pendulum. Thus, the torque transmitted by the tool \{1\} to the item \{2\} about the $x$-axis –or $y$-axis– is modeled by $T_{1/2, x} = k_x \theta_{1/2, x} + \lambda_x \dot{\theta}_{1/2, x}$ with $k_x$ a spring constant,  $\lambda_x$ a damping coefficient and $\theta_{1/2, x}$ the orientation of the tool w.r.t.\ the item about the $x$-axis. In addition, the suction cup is symetrical by rotation about the lengthwise axis of the tool. For this reason, it is considered that $k_x = k_y = k$ and $\lambda_x = \lambda_y - \lambda$.
+One can notice that the combination of the two bodies behaves as a 2 \ac{DoF} harmonic pendulum. Thus, the torque transmitted by the tool \{1\} to the item \{2\} about the $x$-axis –or $y$-axis– is modeled by $T_{1/2, x} = k_x \theta_{1/2, x} + \lambda_x \dot{\theta}_{1/2, x}$ with $k_x$ a spring constant,  $\lambda_x$ a damping coefficient and $\theta_{1/2, x}$ the orientation of the tool w.r.t.\ the item about the $x$-axis (Figure \ref{fig:tikz:two_bodies}). In addition, the suction cup is symetrical by rotation about the lengthwise axis of the tool. For this reason, it is considered that $k_x = k_y = k$ and $\lambda_x = \lambda_y - \lambda$. Also, in the specific case of \textit{pick-and-place} tasks, it can be consi that the inertia parameters estimation is processed while the tool is vertical. That simplifies equation by infering that $\overrightarrow{z_1} = -\overrightarrow{z_0}$.
 
-This said, the total mechanical action of on the item \{2\} by the tool \{1\} is as followed (see \ref{appendix:notation:wrench} for notation and Figue \ref{fig:tikz:two_bodies}):
+\begin{figure}
+\centering
+   \input{\main/figures/two_bodies} %     without .tex extension
+   % or use \input{mytikz}
+   \caption{\ac{RMSD} \{tool\} and \{item\} system.}
+   \label{fig:tikz:two_bodies}
+\end{figure}
+
+This said, the total mechanical action of on the item \{2\} by the tool \{1\} is as followed (see \ref{appendix:notation:wrench} for notation):
 
 {\centering
  $ \{ \mathcal{V}_{1/2} \}
  = \leftidx{_{A}}{
   \left \{ \begin{array}{c}
   \overrightarrow{F}_{1/2} \\
-  N_{1/2} \overrightarrow{z_1} +  K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2}
+  -N_{2/1} \overrightarrow{z_1} +  K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2}
   \end{array} \right \}
   }{}
  $
@@ -201,31 +207,31 @@ This said, the total mechanical action of on the item \{2\} by the tool \{1\} is
 
  with $\overrightarrow{\Theta}_{1/2}$ the orientation of \{1\} w.r.t.\ \{2\}, $\overrightarrow{\Omega}_{1/2}$ the angular speed of \{1\} w.r.t.\ \{2\} and $K = diag(k, k, 0)$ and $\Lambda = diag(\lambda, \lambda, 0)$.
 
- \begin{figure}
- \centering
-    \input{\main/figures/two_bodies} %     without .tex extension
-    % or use \input{mytikz}
-    \caption{\ac{RMSD} \{tool\} and \{item\} system.}
-    \label{fig:tikz:two_bodies}
- \end{figure}
-
-\subsection{Sensor offset}
-
-\textit{TODO}
-
-{\it
-Strategies to manage the (unknown) sensor offset \cite{Kubus2007, Kubus2008}.
-}
 
 \section{Estimation Approaches}
+\label{section:estimation}
+
+In this section, a brief introduction to Least-Squares methods is presented followed by a focus on the \ac{RTLS} approach.
+
+Two physical models of the tool and item system have been developped in section \ref{section:mechanical-models}. Out of these two models, a linear matrix equation describing the dynamics of the assembly have been derived. These matrix equations are of the form: $B = A\varphi$. The objective consists of adjusting the parameters $\varphi$ of the model function $B = A\varphi$ to best fit the data set. The data set consists of $n$ pairs of matrices ($(B_i, A_i)_{i \in [1, n]}$) which are found by measuring the \ac{FT} and \ac{TCP} poses. The fit of the model to the data set is measured by its residual $r_i$, defined as the norm of the difference between the actual value of the dependent variable $B_i$ and the value predicted by the model $A_i \varphi$ \cite{Simoncelli2003}.
 
 \subsection{Least-Squares method}
 
-\textit{TODO}
+The first approach considered is the \ac{LS} regression which is the most basic form of \ac{LS} optimization problem. This problem have a innate connection to distances in Euclidean geometry. The aim is minimize the sum of the squared residuals:
 
-{\it
-Brief presentation of the method in order to highlight the limit of the least-squares method.
-}
+\begin{equation}
+  \min_{\varphi} \sum_{1}^{n} r_i^2 = \min_{\varphi} \sum_{1}^{n} ||B_i - A_i \varphi||^2
+\end{equation}
+
+To derive the sum, the strategy is to stack the $(B_i, A_i)_{i \in [1, n]}$ matrices over time. Here, $\Xi$ denotes a stack of matrices. In such way that $B_\Xi = [B_1^T, B_2^T, \ldots, B_n^T]^T$ and $A_\Xi = [A_1^T, A_2^T, \ldots, A_n^T]^T$. Then the optimisation problem can be simply written down as:
+
+\begin{equation}
+  \min_{\varphi} ||B_\Xi - A_\Xi \varphi||^2
+\end{equation}
+
+The \ac{LS} is the simplest solution to implement, yet, there is a drawback. The error model does not fit the framework of the situation. This method is indeed based on the asumption that the data matrices $A_i$ are free of errors. The error is simply modelled as a \ac{FT} error of measurement ($\mathcal{B}$) such that: $\overline{B} = B + \mathcal{B}$. This error model does not consider error in the data matrix $A(a, \alpha, \omega, g)$. Thus it does not consider error in the gravity vector, \ac{TCP} pose measurements, and in the computation of the derivatives of the position and the orientation.
+
+In addition, another disadvantage of this technique is that all computations have to be done offline. At first blush, the approach is to collect the data during an adequate among of time. Then, they have to be processed so that an estimated mass can be output. In the context of industrial robotics (see \ref{chapter:introduction}), systems have to process data a great speed and might be able to address hardfailures as soon as possible. An ideal optimizer would be able to make an online estimation of the mass. It would recursively compute estimated masses with an increasing precision over time.
 
 \subsection{Recursive Total Least-Squares technique}
 
