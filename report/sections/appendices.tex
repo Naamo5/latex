@@ -414,7 +414,7 @@ With the aim of shrinking the equation, the following notation are used:
 \subsection{Inertial parameters estimation}
 \label{appendix:rigid:inertia_estimation}
 
-From the \ac{FPD} equations (\ref{appendix:eq:rigid}) it is possible to isolate the inertial parameters of the item grasped by the tool using the following matrix equation (see $\left[ \bullet . \right]$ and $\left[. \times \right]$ notation in Section \ref{notation:matrix}).
+From the \ac{FPD} equations (\ref{appendix:eq:rigid}) it is possible to isolate the inertial parameters of the item grasped by the tool using the following matrix equation (cf. $\left[ \bullet . \right]$ and $\left[. \times \right]$ notation in Section \ref{notation:matrix}).
 
 \begin{equation}
  \begin{pmatrix}
@@ -770,6 +770,15 @@ Considering only the projection on $\overrightarrow{z_1}$ of the torque equation
   N_{2/1} + (\overrightarrow{\tau} + K \ast \overrightarrow{\Theta}_{2/1} + \Lambda \ast \overrightarrow{\Omega}_{2/1}) \overrightarrow{z_1} = (I_{1, A} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, A} \ast \overrightarrow{\Omega}_{1/0})) \overrightarrow{z_1}
 \end{equation}
 
+\subsection{Inertial parameters estimation}
+\label{appendix:msd:inertia_estimation}
+
+\begin{equation}
+  \label{background:eq:rmsd_inertia_estimation}
+\begin{pmatrix}
+  f \\ \tau
+\end{pmatrix} = A'(a, \alpha_1, \alpha_2, \omega_1, \omega_2, \theta_2, g) \varphi_2
+\end{equation}
 
 \subsection{Spring-damper parameters estimation}
 
@@ -781,7 +790,7 @@ Considering only the projection on $\overrightarrow{z_1}$ of the torque equation
    \label{fig:tikz:2_bodies}
 \end{figure}
 
-Considering the following assumptions (see Figure \ref{fig:tikz:2_bodies} for details):
+Considering the following assumptions (cf. Figure \ref{fig:tikz:2_bodies} for details):
 
 \begin{itemize}
 
@@ -893,7 +902,7 @@ The solution parameters of $\theta$ can be computed with the measured force $f$.
 %  - s F_y + k \theta + \lambda \dot{\theta} = m_1 a (q - s) - \tau_x
 % \end{gather*}
 
-Then using the force equation of the \ac{FPF} on \{2\}:
+Then using the force equation of the \ac{FPD} on \{2\}:
 
 \begin{gather*}
   \begin{pmatrix}
