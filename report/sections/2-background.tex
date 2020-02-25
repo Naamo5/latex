@@ -16,7 +16,7 @@ This chapter introduces the hardware setup, the mechanical models and the mathem
 \section{Hardware setup}
 \label{section:hardware}
 
-Below are described the hardware equipement provided by the host organisation. It comprises the robotic arm, the \ac{FT} sensor attached to the last joint, the gripper tool and its \textit{suction cup}. A typical motion of the robot during \textit{pick-and-place} operation is described. Also, key physical behaviours of the system that influence the design of the mechanical models are highlighted.
+Below are described the hardware equipment provided by the host organization. It comprises the robotic arm, the \ac{FT} sensor attached to the last joint, the gripper tool, and its \textit{suction cup}. A typical motion of the robot during \textit{pick-and-place} operation is described. Also, key physical behaviors of the system that influence the design of the mechanical models are highlighted.
 
 \subsection{Robotic manipulator}
 
@@ -55,7 +55,7 @@ Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e an
 
 \subsection{End-effector}
 
-The end-effector of the robot fullfills the functions of grasping a wide range of items, measuring the force induced on the wrist, safely picking from diverse source totes, carts or conveyors. It consists of 4 basic elements (cf. Figure \ref{fig:background:tool}):
+The end-effector of the robot fulfills the functions of grasping a wide range of items, measuring the force induced on the wrist, safely picking from diverse source totes, carts or conveyors. It consists of 4 basic elements (cf. Figure \ref{fig:background:tool}):
 
 \begin{itemize}
   \item an ATI\texttrademark \ sensor which is screwed on the wrist of the robotic manipulator,
@@ -71,7 +71,7 @@ The end-effector of the robot fullfills the functions of grasping a wide range o
   \label{fig:background:tool}
 \end{figure}
 
-A suction cup with a springy extension is mounted on the tool. It allows a very simple integration logic and a versatile ability to grasp items (cf. Figure \ref{fig:background:suction}). The sealing lip provide a good grip on a large range of object textures.
+A suction cup with a springy extension is mounted on the tool. It allows a very simple integration logic and a versatile ability to grasp items (cf. Figure \ref{fig:background:suction}). The sealing lip provides a good grip on a large range of object textures.
 
 \begin{figure}
 \centering
@@ -100,13 +100,13 @@ take an item from a given initial pose to a final pose \cite{Angeles2006}. This 
 \begin{figure}
   \centering
   \includegraphics[scale=0.08]{\main/figures/tote_cycle_indexed.png}
-  \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. The tool vertically goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, trajectory are blended for the same reasons. Image from the author.}
+  \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. The tool vertically goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in the direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, the trajectory is blended for the same reasons. Image from the author.}
   \label{fig:background:tote_cycle}
 \end{figure}
 
-The drawback of using a suction cup for grasping is that the mechanical link between the tool and the item is not rigid. Heavy items and objects with large dimension are very likely to oscillate during the motion. In logistic warehouses, robots often handles object over half a kilo and longer dimension over $0.3 \si{\meter}$. Observations show that the angle between the tool and the item may vary significantly (up to $10 \si{\degree}$). Wobbling has a knock-on effect on \ac{FT} measurement. While there should not be any oscillations of the torque in a rigid model (for more detail, please refer to Section \ref{section:mechanical-models}), significant variations can be seen in actual measurement (cf. Figure \ref{fig:results:torque_}).
+The drawback of using a suction cup for grasping is that the mechanical link between the tool and the item is not rigid. Heavy items and objects with large dimensions are very likely to oscillate during the motion. In logistic warehouses, robots often handle objects over half a kilo and longer dimension over $0.3 \si{\meter}$. Observations show that the angle between the tool and the item may vary significantly (up to $10 \si{\degree}$). Wobbling has a knock-on effect on \ac{FT} measurement. While there should not be any oscillations of the torque in a rigid model (for more detail, please refer to Section \ref{section:mechanical-models}), significant variations can be seen in actual measurement (cf. Figure \ref{fig:results:torque_}).
 
-When it comes to physically model the system, different level of details can be take into account. The first approach is to considered a rigid link between the tool and the item and a second approach is to fit an appropriate mechanical model considering the \ac{DoF} and the damped harmonic oscillator theory.
+When it comes to physically model the system, different level of details can be taken into account. The first approach is to consider a rigid link between the tool and the item and a second approach is to fit an appropriate mechanical model considering the \ac{DoF} and the damped harmonic oscillator theory.
 
 \section{Mechanical models}
 \label{section:mechanical-models}
@@ -313,7 +313,7 @@ The equation \ref{eq:background:rtls-obj} can be transformed into $[(A + e_A) \ 
 \begin{enumerate}
   \item Derive an initial \ac{SVD} of $[A \ B]$ for a few steps (at least 2),
   \item Derive a new input matrix composed of the current data matrix $A$ and \ac{FT} vector $B$ and perform a \ac{SVD} update incorporating the new data.
-  \item Update estimate: If the deviation between the smallest singular values is less than a small $\varepsilon$ (of the order of the machine precision), transform left singular vectors; compute \ac{TLS} solution from the left singular vectors.
+  \item Update estimate: If the deviation between the smallest singular values is less than a small $\varepsilon$ (of the order of the machine precision); transform left singular vectors; compute \ac{TLS} solution from the left singular vectors.
   \item Continue with 2. or stop estimation.
 \end{enumerate}
 
@@ -379,7 +379,7 @@ For that purpose, the \ac{SVD} of $Z_k$ is computed such that $[U_{k}' \ S_{k}' 
   \upsilon = \sqrt{det(G_k^T G_k)}
 \end{equation}
 
-This where the step 3. comes in the picture. If the volume $\upsilon$ is less than $\varepsilon$, $Z_k$ is reduced to $Z_k = [S_k \ L_k]$ which simplify the computation.
+This where step 3. comes in the picture. If the volume $\upsilon$ is less than $\varepsilon$, $Z_k$ is reduced to $Z_k = [S_k \ L_k]$ which simplify the computation.
 
 When the ultimate time step $N$ of the estimation is reached, n parameters of $\hat{\varphi}$ are computed from the last iteration of the left singular matrix: $U_{N} = (u_{l,m})_{(l, m) \in [1,n+1]^2}$ (cf. equation \ref{eq:background:phi-final}). Note that the solution exists only if $u_{n+1, n+1}$ is different than 0.
 

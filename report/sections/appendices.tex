@@ -4,7 +4,6 @@
 
 \begin{document}
 
-
 \newpage
 \appendix
 \newpage
@@ -14,7 +13,6 @@
 \etoctocstyle{1}{Appendix - Contents}
 \tableofcontents
 \newpage
-
 
 \chapter{Mechanical model of the \{tool + item\} system}
 \label{appendix:models}
@@ -424,7 +422,7 @@ From the \ac{FPD} equations (\ref{appendix:eq:rigid}) it is possible to isolate 
  =
  \begin{pmatrix}
   a - g & \left[ \alpha \times \right] +  \left[ \omega \times \right] \left[ \omega \times \right] & 0                                                                                                             \\
-  0     & \left[ (g - a) \times \right]                                                                                & \left[ \bullet \alpha \right] + \left[ \omega \times \right] \left[ \bullet \omega \right]
+  0     & \left[ (a - g) \times \right]                                                                                & \left[ \bullet \alpha \right] + \left[ \omega \times \right] \left[ \bullet \omega \right]
  \end{pmatrix}
  \begin{pmatrix}
   m      \\
@@ -457,7 +455,7 @@ The matrix equation is recorded with the following notation:
 \label{appendix:rmsd}
 
 The F/T sensor measures the force and the torque about the joint $S$.
-The system considered is a two-bodies system: \{1\} for the tool and \{2\} for the item grasped. The mass of \{1\} –respectively \{2\}– is $m_1$ –respectively $m_2$, its center of mass is $G_1$ –respectively $G_2$– and the inertia about the center of mass is $I_{1, G_1}$ –respectively $I_{2, G_2}$. The mechanical link between the two systems is modeled as a universal joint –as known as \textsc{Cardan} joint– with a spring-damper system about the transversal axes of the tool (Figure \ref{fig:tikz:two_bodies}). It is also assumed that the tool \{1\} is always vertical which infers that $\overrightarrow{z_1} = -\overrightarrow{z_0}$.
+The system considered is a two-bodies system: \{1\} for the tool and \{2\} for the item grasped. The mass of \{1\} –respectively \{2\}– is $m_1$ –respectively $m_2$, its center of mass is $G_1$ –respectively $G_2$– and the inertia about the center of mass is $I_{1, G_1}$ –respectively $I_{2, G_2}$. The mechanical link between the two systems is modeled as a universal joint –as known as \textsc{Cardan} joint– with a spring-damper system about the transversal axes of the tool (Figure \ref{fig:tikz:two_bodies}). It is also assumed that the tool \{1\} is always vertical which infers that $\overrightarrow{z_1} = -\overrightarrow{z_0}$ and $\overrightarrow{\Omega}_{1/0} = \Omega_{1/0} \overrightarrow{z_0}$.
 
 \subsection{External mechanical actions}
 
@@ -622,6 +620,55 @@ By using the equations derived in \ref{appendix:rigid:dynamic}, the dynamic wren
  }{}
 \end{align*}
 
+\subsection{\ac{FPD} on \{1\}}
+\label{appendix:rmsd:fpd1}
+
+From the equation of the \ac{FPD} (\ref{appendix:notation:fpd}) on \{1\} at point A:
+
+\begin{align*}
+   & \leftidx{_A}{
+ \left \{ \begin{array}{c}
+ \overrightarrow{f} \\
+ \overrightarrow{\tau} + \overrightarrow{AS} \times \overrightarrow{f}
+ \end{array} \right \}
+ }{}
+ + \leftidx{_A}{
+ \left \{ \begin{array}{c}
+ \overrightarrow{F}_{2/1} \\
+ N_{2/1} \overrightarrow{z_1}
+ \end{array} \right \}
+ }{}
+ + \leftidx{_{A}}{
+ \left \{ \begin{array}{c}
+ m_1 \overrightarrow{g} \\
+ m_1 \overrightarrow{AG_1} \times \overrightarrow{g}
+ \end{array} \right \}
+ }{}
+ + \leftidx{_A}{
+ \left \{ \begin{array}{c}
+ \overrightarrow{0} \\
+ K \ast \overrightarrow{\Theta}_{2/1} + \Lambda \ast \overrightarrow{\Omega}_{2/1}
+ \end{array} \right \}
+ }{} \\
+ = & \leftidx{_{A}}{
+ \left \{
+ \begin{array}{cc}
+ m_1 \overrightarrow{\Gamma}_{A, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m_1 \overrightarrow{AG_1}) + \overrightarrow{\alpha}_{1/0} \times m_1 \overrightarrow{AG_1} \\
+ I_{1, A} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, A} \ast \overrightarrow{\Omega}_{1/0})
+ + m_1 \overrightarrow{AG_1} \times  \overrightarrow{\Gamma}_{A, 1/0}
+ \end{array}
+ \right \}
+ }{}
+\end{align*}
+
+From the \ac{FPD} on \{1\}, the force $F_{2/1}$ acting on \{1\} by \{2\} can derived (cf. equation \ref{eq:appendix:fpd1-force} and \ref{eq:appendix:fpd1-torque}).
+
+\begin{equation}
+  \label{eq:appendix:fpd1-force}
+  \overrightarrow{F}_{2/1} = m_1 (\overrightarrow{\Gamma}_{A, 1/0} - \overrightarrow{g}) - \overrightarrow{f} + \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m_1 \overrightarrow{AG_1}) + \overrightarrow{\alpha}_{1/0} \times m_1 \overrightarrow{AG_1}
+\end{equation}
+
+Subsequently, only the projection on $\overrightarrow{x_0}$ and $\overrightarrow{y_0}$ of the torque equation is considered. The orientation of \{2\} w.r.t.\ \{1\} ($\overrightarrow{\Theta}_{2/1}$) and the angular velocity ($\overrightarrow{\Omega}_{2/1}$) can be further computed from the tools inertial parameters and the kinetic measurements.
 
 \subsection{\ac{FPD} on \{2\}}
 \label{appendix:rmsd:fpd2}
@@ -658,129 +705,60 @@ From the equation of the \ac{FPD} (\ref{appendix:notation:fpd}) on \{2\} at poin
  }{}
  \end{align*}
 
-Considering only the equation on torques:
+ With the aim of shrinking the equation, the following notations are used (cf. Section \ref{notation:matrix}):
+
+ \begin{align*}
+ \mathcal{M}_1&= [\overrightarrow{\Omega}_{1/0} \times] [\overrightarrow{\Omega}_{1/0} \times] + [\overrightarrow{\alpha}_{1/0} \times] &
+ \mathcal{M}_2&= [\overrightarrow{\Omega}_{2/0} \times] [\overrightarrow{\Omega}_{2/0} \times] + [\overrightarrow{\alpha}_{2/0} \times] \\
+ \mathcal{N}_1&=  [\bullet \overrightarrow{\alpha}_{1/0}] + [\overrightarrow{\Omega}_{1/0} \times] [\bullet \overrightarrow{\Omega}_{1/0}] &
+\mathcal{N}_2&=  [\bullet \overrightarrow{\alpha}_{2/0}] + [\overrightarrow{\Omega}_{2/0} \times] [\bullet \overrightarrow{\Omega}_{2/0}] \\
+c_1 &= R_{10} \overrightarrow{AG_1} \qquad c_2 = R_{20} \overrightarrow{AG_2} & g&= \overrightarrow{g}\\
+I_1 &= I_{1,A} \qquad I_2 = I_{2,A} & a&= \overrightarrow{\Gamma}_{A, 1/0} = \overrightarrow{\Gamma}_{A, 2/0}
+ \end{align*}
+
+Note that the centers of mass $c_1$ and $c_2$ are constant vectors since they are expressed in the tool or item frame ($R_{ij}$ is the rotation to frame i from frame j).  The expression of the force applied on the tool $\overrightarrow{F}_{2/1}$ is substituted in the forces equation as well as spring-damper action $K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2}$ (cf. \ref{eq:appendix:fpd2}).
 
 \begin{equation}
-\begin{split}
-- N_{2/1} \overrightarrow{z_1} + m_2 \overrightarrow{AG_2} \times \overrightarrow{g} + K \ast \overrightarrow{\Theta}_{1/2} + \Lambda \ast \overrightarrow{\Omega}_{1/2} \\
-= I_{2, A} \ast \overrightarrow{\alpha}_{2/0} + \overrightarrow{\Omega}_{2/0} \times (I_{2, A} \ast \overrightarrow{\Omega}_{2/0})
-+ m_2 \overrightarrow{AG_2} \times  \overrightarrow{\Gamma}_{A, 2/0}
-\end{split}
-\label{appendix:eq:fpd_torque}
-\end{equation}
-
-
-
-With the aim of shrinking the equation, the following notations are used:
-
-{\centering
- $
- \theta_1 = \overrightarrow{\Theta}_{1/0} \qquad \theta_2 = \overrightarrow{\Theta}_{2/0} \qquad \dot{\theta}_1 = \overrightarrow{\Omega}_{1/0} \qquad \dot{\theta}_2 = \overrightarrow{\Omega}_{2/0} \qquad \ddot{\theta}_1 = \overrightarrow{\alpha}_{1/0}  \qquad \ddot{\theta}_2 = \overrightarrow{\alpha}_{2/0}
- $
- \par}
-
-{\centering
- $
- a = \overrightarrow{\Gamma}_{A, 1/0} = \overrightarrow{\Gamma}_{A, 2/0} \qquad g = \overrightarrow{g} \qquad c_1 = \overrightarrow{AG_1} \qquad c_2 = \overrightarrow{AG_2} \qquad I_1 = I_{1,A}  \qquad I_2 = I_{2,A}
- $
- \par}
-
-By rearranging (\ref{appendix:eq:fpd_torque}):
-
-% {\centering
-% $
-% m_2 c_2 \times g + K \ast (\theta_1 - \theta_2) + \Lambda \ast (\dot{\theta}_1 - \dot{\theta}_2) = I_2 \ast \ddot{\theta}_2 + \dot{\theta}_2 \times (I_2 \ast \dot{\theta}_2)
-% + m_2 c_2 \times  a
-% $
-% \par}
-
-{\centering
- $
- I_2 \ast \ddot{\theta}_2 + \dot{\theta}_2 \times (I_2 \ast \dot{\theta}_2) + \Lambda \ast \dot{\theta}_2 + K \ast \theta_2 + m_2 c_2 \times  (a - g)
- = \Lambda \ast \dot{\theta}_1 + K \ast \theta_1
- $
- \par}
-
-The vector from the grasp point and the center of mass of the item $\overrightarrow{AG_2}$ can be computed as $\overrightarrow{AG_2} = R(\theta_{2/1}) \ast \overrightarrow{AG_2}_{init}$ with $R(\theta_{2/1})$ the rotation matrix from \{2\} to \{1\} and $\overrightarrow{AG_2}_{init}$ the initial vector from $A$ to the center of mass $G_2$ (at the moment the tool move to contact). With the approximation of the sec.~\ref{appendix:notation:rotation}: $c_2 = R(\theta_{2/1}) \ast c_{2, init} \approx c_{2, init} + \theta_{2/1} \times c_{2, init}$, the equation (\ref{appendix:eq:fpd_torque}) is rearranged:
-
-\begin{equation}
- \label{appendix:eq:fpd_torque_approx}
- I_2 \ast \ddot{\theta}_2 + \dot{\theta}_2 \times (I_2 \ast \dot{\theta}_2) + \Lambda \ast \dot{\theta}_2 + K \ast \theta_2 + m_2 (\theta_2 \times c_{2, init}) \times  (a - g)
- = \Lambda \ast \dot{\theta}_1 + K \ast \theta_1 + m_2 (\theta_1 \times c_{2, init} - c_{2, init}) \times  (a - g)
-\end{equation}
-
-{\it
-In order to estimate the inertial parameters of the item ($m_2$, $c_{2, init}$ and $I_2$), the idea is to compute the orientation of the item as a function of the F/T sensor measurement ($\theta_2(f, \tau)$) by using the \ac{FPD} on the tool \{1\}. Then derive a matrix equation from a known-variables-only equation as in the sec.~\ref{appendix:rigid:inertia_estimation} to estimate the inertial parameters.  Hence, the parameters of the spring-damper system has to be estimated. A method to estimate those parameters is introduced later in the next sections.
-}
-
-
-\subsection{\ac{FPD} on \{1\}}
-\label{appendix:rmsd:fpd1}
-
-From the equation of the \ac{FPD} (\ref{appendix:notation:fpd}) on \{1\} at point A:
-
-\begin{align*}
-   & \leftidx{_A}{
- \left \{ \begin{array}{c}
- \overrightarrow{f} \\
- \overrightarrow{\tau} + \overrightarrow{AS} \times \overrightarrow{f}
- \end{array} \right \}
- }{}
- + \leftidx{_A}{
- \left \{ \begin{array}{c}
- \overrightarrow{F}_{2/1} \\
- N_{2/1} \overrightarrow{z_1}
- \end{array} \right \}
- }{}
- + \leftidx{_{A}}{
- \left \{ \begin{array}{c}
- m_1 \overrightarrow{g} \\
- m_1 \overrightarrow{AG_1} \times \overrightarrow{g}
- \end{array} \right \}
- }{}
- + \leftidx{_A}{
- \left \{ \begin{array}{c}
- \overrightarrow{0} \\
- K \ast \overrightarrow{\Theta}_{2/1} + \Lambda \ast \overrightarrow{\Omega}_{2/1}
- \end{array} \right \}
- }{} \\
- = & \leftidx{_{A}}{
+ \label{eq:appendix:fpd2}
  \left \{
- \begin{array}{ll}
- m_1 \overrightarrow{\Gamma}_{A, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m_1 \overrightarrow{AG_1}) + \overrightarrow{\alpha}_{1/0} \times m_1 \overrightarrow{AG_1} \\
- I_{1, A} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, A} \ast \overrightarrow{\Omega}_{1/0})
- + m_1 \overrightarrow{AG_1} \times  \overrightarrow{\Gamma}_{A, 1/0}
+ \begin{array}{l l}
+  f - m_1 (a - g) -  m_1 \mathcal{M}_1 R_{01} c_1 = m_2 (a - g) + m_2 \mathcal{M}_2 R_{02} c_2 \\
+  \tau + \overrightarrow{AS} \times f - \mathcal{N}_1 I_1 + m_1 R_{01} c_1 \times (g - a)
+  = \mathcal{N}_2 I_2  + m_2 R_{02} c_2 \times  (a - g)
  \end{array}
- \right \}
- }{}
-\end{align*}
-
-
-The equation on force is:
-
-\begin{equation}
-  \overrightarrow{f} + \overrightarrow{F}_{2/1} + m_1 \overrightarrow{g}
-  = m_1 \overrightarrow{\Gamma}_{A, 1/0} +  \overrightarrow{\Omega}_{1/0} \times (\overrightarrow{\Omega}_{1/0} \times m_1 \overrightarrow{AG_1}) + \overrightarrow{\alpha}_{1/0} \times m_1 \overrightarrow{AG_1}
-\end{equation}
-
-
-Considering only the projection on $\overrightarrow{z_1}$ of the torque equation:
-
-\begin{equation}
-  N_{2/1} + (\overrightarrow{\tau} + K \ast \overrightarrow{\Theta}_{2/1} + \Lambda \ast \overrightarrow{\Omega}_{2/1}) \overrightarrow{z_1} = (I_{1, A} \ast \overrightarrow{\alpha}_{1/0} + \overrightarrow{\Omega}_{1/0} \times (I_{1, A} \ast \overrightarrow{\Omega}_{1/0})) \overrightarrow{z_1}
+ \right.
 \end{equation}
 
 \subsection{Inertial parameters estimation}
 \label{appendix:msd:inertia_estimation}
 
+Along the same lines of the rigid model section (Section \ref{appendix:rigid}). The equations of the system are derived in a matrix form.
+
+The pseudo-force $f'$ and pseudo-torque $\tau'$ are set (cf. \ref{eq:appendix:pseudo}) to be able to write the matrix equation in the same manner as for the rigid model.
+
+\begin{equation}
+ \label{eq:appendix:pseudo}
+ \left \{
+ \begin{array}{l l}
+   f' &= f - m_1 (a - g) -  m_1 \mathcal{M}_1 R_{01} c_1 \\
+   \tau' &= \tau + \overrightarrow{AS} \times f - \mathcal{N}_1 I_1 + m_1 R_{01} c_1 \times (g - a)
+ \end{array}
+ \right.
+\end{equation}
+
 \begin{equation}
   \label{background:eq:rmsd_inertia_estimation}
 \begin{pmatrix}
-  f \\ \tau
-\end{pmatrix} = A'(a, \alpha_1, \alpha_2, \omega_1, \omega_2, \theta_2, g) \varphi_2
+  f' \\ \tau'
+\end{pmatrix} = A' \varphi_2
 \end{equation}
 
-\subsection{Spring-damper parameters estimation}
+with $A' = \begin{pmatrix}
+  a - g & \mathcal{M}_2 R_{02} & 0\\
+  0 & [(a - g) \times] R_{02} & \mathcal{N}_2
+\end{pmatrix}$
+
+\subsection{Particular case of the \ac{RMSD} system}
 
 \begin{figure}[H]
 \centering
