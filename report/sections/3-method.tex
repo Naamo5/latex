@@ -1,3 +1,5 @@
+\providecommand{\main}{..}
+
 \documentclass[/home/francois/latex/report/main.tex]{subfiles}
 
 \begin{document}
@@ -5,7 +7,7 @@
 \chapter{Method}
 \label{chapter:method}
 
-This chapter presents the inertial parameters estimation approach starting from the global strategy and continuing with a detailed description of the several parts of the methods including:
+This chapter presents the inertial parameters estimation approach starting from the global strategy and continuing with a detailed description of the essential parts of the methods including:
 
 \begin{itemize}
   \item Signal Pre-processing
@@ -15,19 +17,70 @@ This chapter presents the inertial parameters estimation approach starting from 
 
 \section{Signal Pre-processing}
 
-\textit{TODO}
+In the chaper \ref{chapter:background}, two models of the \{item\} and \{tool\} systems have been developed. The purpose is to compute the matrices of the equation and then use one or another optimization process. The matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of the \ac{FT} sensor measurement and the position and orientation of the \ac{TCP}. One point must be made: signals cannot be merely input in the optimization procedures. Both \ac{FT} measurements and simple method for derivation leads to noisy signals. Consequently, measured signals have to be pre-processed.
 
-{\it
+\subsection{\textsc{Euler}'s angles continuity filter}
+
+The input orientation of the \ac{TCP} is expressed as \ac{RPY} \textsc{Euler}'s angles. Thus, they are computed in a range of $[]-\pi, \pi]$. Approaching to the interval limit (cf. \ref{section:results:pre-processing}), the signal jumps from positive to negative $\pi$. In addition, the representation by \textsc{Euler}'s angles has no unicity because it depends on the order of axes (anisotropy). When deriving the angular speed and angular acceleration, the outcome is consequently unsatisfying. To tackle that unicity issue, the great properties of quaternion conversion are applied to the set of angles. Subsenquently, the \ac{RPY} angles are filtered with a continuity algorithm (cf. Algorithm \ref{alg:method:continuity}).
+
+The quaternion filter consists in three steps:
+
 \begin{itemize}
-  \item Savitzky–Golay filter
-  \item Low-pass filter
-  \item \textsc{Euler} angle continuity filter
+  \item convert the \textsc{Euler}'s angles to quaternion,
+  \item compute the rotation matrix out of the quaternion vector,
+  \item convert the rotation matrix to a \ac{RPY} set of angle.
 \end{itemize}
-}
+
+\begin{algorithm}
+\caption{Make a \textsc{Euler}'s angles signal continuous\label{alg:method:continuity}}
+\begin{algorithmic}
+\FOR{\texttt{orientation} in \texttt{signal}}
+ \FOR{\texttt{angle} in \texttt{orientation}}
+  \STATE \texttt{previous}  $\leftarrow$ \texttt{current}
+  \STATE \texttt{current}  $\leftarrow$ \texttt{angle}
+  \IF{$\text{\texttt{current}} \times \text{\texttt{previous}} < 0$}
+   \IF{$\text{\texttt{current}} - \text{\texttt{previous}} > 0$}
+    \STATE $\text{\texttt{angle}} \leftarrow \text{\texttt{current}} - 2 \pi$
+   \ELSE
+    \STATE $\text{\texttt{angle}} \leftarrow \text{\texttt{current}} + 2 \pi$
+   \ENDIF
+  \ENDIF
+ \ENDFOR
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{\textsc{Savitzky–Golay} filter}
+
+Therefore, it is needed to derived the linear and angular velocity and the linear and angular speed from the \ac{TCP} pose. First tests conducted with simple derivation method using $f'(t) \approx  [f(t+\delta) - f(t)] / \delta$ does not provide good results (cf. comparison in \ref{section:results:pre-processing}). The noise induced in the \ac{TCP} pose measurement generates spikes in the derivated signal. One approach is to use \textsc{Savitzky–Golay} filter to guatantee smooth derivated signals.
+
+The method was created in 1964 by A. \textsc{Savitzky} M. J. E. \textsc{Golay} \cite{Savitzky1964} in their seminal article. The smoothing of a signal or its derivative is achieved with a convolution process. Sub-sets of adjacent data points are fitted to a low-degree polynomial by the method of linear \ac{LS} (cf. \ref{fig:method:savit}). Convoluation coefficients are then use to give estimates of the smoothed signal, (or derivatives of the smoothed signal) at the central point of each sub-set.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.25]{\main/figures/savitzky-golay-filter.png}
+  \caption{Smoothing of noisy data by the \textsc{Savitzky–Golay} method ($3^{rd}$ degree polynomial, 9 points wide sliding window). Blue curve: raw data; blue circle: point after smoothing; yellow curve: polynomial used to determine the current point; red curve: polynomial restricted to the sliding window around the current point. Image from \cite{Cdang2013}.}
+  \label{fig:method:savit}
+\end{figure}
+
+\subsection{Low-pass filter}
+
+As mentioned above, the \ac{FT} signal is slightly noisy. As the frequency of the noise is relatively high, it is considered to use a low-pass filter. The choice fell on the \textsc{Butterworth} filter (cf. \cite{filter1923}), a signal processing filter which is having a flat frequency response in the passband can be termed as Butterworth filter and is also called as a maximally flat magnitude filter (cf. \ref{fig:method:butter}).
+
+Besides, this low-pass filter is applied twice, once forward and once backwards. The combined filter has zero phase and a filter order twice that of the original \cite{SciPy2019}.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.25]{\main/figures/butter.png}
+  \caption{Frequency response plot from different order \textsc{Butterworth} filter. Image from  \cite{filter1923}.}
+  \label{fig:method:butter}
+\end{figure}
 
 \section{Estimating the robotic manipulator tool parameters}
 
 \textit{TODO}
+
+
 
 {\it
 Estimation of the general dynamic parameters:

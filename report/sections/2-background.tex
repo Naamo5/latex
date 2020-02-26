@@ -223,10 +223,10 @@ This said, the total mechanical action of on the item \{2\} by the tool \{1\} is
 
  \begin{equation}
    \label{background:eq:rmsd_inertia_estimation}
- B = A'(a, \alpha_1, \alpha_2, \omega_1, \omega_2, \theta_2, g) \varphi_2
+ B' = A'(a, \alpha_1, \alpha_2, \omega_1, \omega_2, \theta_2, g) \varphi_2
  \end{equation}
 
- where $B =  \begin{pmatrix} f \\ \tau \end{pmatrix}$ and $\varphi_2$ contains the 10 independant inertial parameters and $A'$ is defined in the appendix \ref{appendix:msd:inertia_estimation}.
+ where  $B' = \begin{pmatrix} f' \\ \tau' \end{pmatrix}$, $\varphi_2$ contains the 10 independant inertial parameters of the item, $A'$, $f'$ and $\tau'$ are defined in the appendix \ref{appendix:msd:inertia_estimation}.
 
 Now that relation between the \ac{FT} measurement and the kinematics of the robot manipulator have been brought to life, a method to estimate the item inertial parameters has to be developed.
 
@@ -362,8 +362,6 @@ where:
   \item $L_k$ is the projection of $N_k$ onto the orthogonal basis formed by the left singular vectors: $L_k = U_k^T N_k$.
   \item $G_k$ is the projection of $N_k$ onto the subspace orthogonal to $U_k$ obtained by QR decomposition: $J_k G_k \overset{QR}{=} N_k - U_k L_k$
 \end{itemize}
-
-
 
 Besides, in order to update $M_{k+1}$, the middle matrix $Z_k=
 \begin{bmatrix}
