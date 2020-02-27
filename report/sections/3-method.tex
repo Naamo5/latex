@@ -7,21 +7,25 @@
 \chapter{Method}
 \label{chapter:method}
 
-This chapter presents the inertial parameters estimation approach starting from the global strategy and continuing with a detailed description of the essential parts of the methods including:
+This chapter presents the inertial parameters estimation approach starting with the signal pre-processing, followed by the robot manipulator calibration and the objective function computation.
 
-\begin{itemize}
-  \item Signal Pre-processing
-  \item Tool Inertial Parameters Estimation
-  \item Objective Function Computation
-\end{itemize}
+The overall idea is to compute the objective function matrices so as to estimate the parameters with a \ac{LS} method. A crucial step is the upstream calibration of the tool and gripper parameters. They are non obvious and non documented properties that have to be estimated before running the overall process. An overview of the framework of the inertial parameters estimation is depicted in the Figure \ref{fig:method:overall}.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.7]{\main/figures/olinpe.pdf}
+  \caption{Overview of the payload inertial parameters estimation approach. The calibration process is an upstream step that is done whenever the gripper tool is modified. Image from  the author.}
+  \label{fig:method:overall}
+\end{figure}
 
 \section{Signal Pre-processing}
+\label{section:pre-pro}
 
 In the chaper \ref{chapter:background}, two models of the \{item\} and \{tool\} systems have been developed. The purpose is to compute the matrices of the equation and then use one or another optimization process. The matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of the \ac{FT} sensor measurement and the position and orientation of the \ac{TCP}. One point must be made: signals cannot be merely input in the optimization procedures. Both \ac{FT} measurements and simple method for derivation leads to noisy signals. Consequently, measured signals have to be pre-processed.
 
 \subsection{\textsc{Euler}'s angles continuity filter}
 
-The input orientation of the \ac{TCP} is expressed as \ac{RPY} \textsc{Euler}'s angles. Thus, they are computed in a range of $[]-\pi, \pi]$. Approaching to the interval limit (cf. \ref{section:results:pre-processing}), the signal jumps from positive to negative $\pi$. In addition, the representation by \textsc{Euler}'s angles has no unicity because it depends on the order of axes (anisotropy). When deriving the angular speed and angular acceleration, the outcome is consequently unsatisfying. To tackle that unicity issue, the great properties of quaternion conversion are applied to the set of angles. Subsenquently, the \ac{RPY} angles are filtered with a continuity algorithm (cf. Algorithm \ref{alg:method:continuity}).
+The input orientation of the \ac{TCP} is expressed as \ac{RPY} \textsc{Euler}'s angles. Thus, they are computed in a range of $[-\pi, \pi]$. Approaching to the interval limit (cf. \ref{section:results:pre-processing}), the signal jumps from positive to negative $\pi$. In addition, the representation by \textsc{Euler}'s angles has no unicity because it depends on the order of axes (anisotropy). When deriving the angular speed and angular acceleration, the outcome is consequently unsatisfying. To tackle that unicity issue, the great properties of quaternion conversion are applied to the set of angles. Subsenquently, the \ac{RPY} angles are filtered with a continuity algorithm (cf. Algorithm \ref{alg:method:continuity}).
 
 The quaternion filter consists in three steps:
 
@@ -76,20 +80,11 @@ Besides, this low-pass filter is applied twice, once forward and once backwards.
   \label{fig:method:butter}
 \end{figure}
 
-\section{Estimating the robotic manipulator tool parameters}
+\section{Calibration of the robot manipulator}
 
-\textit{TODO}
+In the section \ref{section:pre-pro}, it was mentioned that the matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of signal measurements. One can notice, that several robot manipulator and gripper constants are necessary to completely compute the matrices. In particular, the mass of the tool $m_1$, its center of mass $c_1$, its tensor of inertia $I_1$ and the suction cup properties: the spring coefficient $k$, damping ratio $\lambda$.
 
 
-
-{\it
-Estimation of the general dynamic parameters:
-
-\begin{itemize}
-  \item tool parameters: mass $m_t$, center of mass $c_t$, moment of inertia $I_t$
-  \item suction cup parameters: spring coefficient $K$, damping ratio $\Lambda$.
-\end{itemize}
-}
 
 \section{Inertial parameters estimation strategy}
 

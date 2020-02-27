@@ -227,6 +227,7 @@ Considering the small-angle approximation ($\cos \alpha \approx 1$, $\sin \alpha
 \newpage
 
 \section{1-body rigid model of the \{tool + item\} system}
+\label{appendix:rigid}
 
 The system considered is a single-body system \{1\} composed of the tool and the item rigidly linked to it. The mass of \{1\} is $m$, its global center of mass is $G$ and the global inertia about the center of mass is $I_{G}$. The F/T sensor measures the force and the torque about the joint $S$.
 
@@ -661,7 +662,7 @@ From the equation of the \ac{FPD} (\ref{appendix:notation:fpd}) on \{1\} at poin
  }{}
 \end{align*}
 
-From the \ac{FPD} on \{1\}, the force $F_{2/1}$ acting on \{1\} by \{2\} can derived (cf. equation \ref{eq:appendix:fpd1-force} and \ref{eq:appendix:fpd1-torque}).
+From the \ac{FPD} on \{1\}, the force $F_{2/1}$ acting on \{1\} by \{2\} can derived (cf. equation \ref{eq:appendix:fpd1-force}).
 
 \begin{equation}
   \label{eq:appendix:fpd1-force}
@@ -747,7 +748,7 @@ The pseudo-force $f'$ and pseudo-torque $\tau'$ are set (cf. \ref{eq:appendix:ps
 \end{equation}
 
 \begin{equation}
-  \label{background:eq:rmsd_inertia_estimation}
+  \label{eq:appendix:rmsd_inertia_estimation}
 \begin{pmatrix}
   f' \\ \tau'
 \end{pmatrix} = A' \varphi_2
@@ -844,7 +845,7 @@ Considering the following assumptions (cf. Figure \ref{fig:tikz:2_bodies} for de
 
 \end{itemize}
 
-Hence, the equation (\ref{appendix:eq:fpd_torque_approx}) is projected on the $x$-axis:
+Hence, the equation (\ref{eq:appendix:fpd2}) is projected on the $x$-axis:
 
 \begin{equation*}
  \ddot{\theta} + \frac{\lambda}{I_{2xx}} \dot{\theta} + \frac{k + m_2 c (a_z + g)}{I_{2xx}} \theta = - \frac{m_2 c}{I_{2xx}} a_y

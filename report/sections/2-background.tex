@@ -118,6 +118,7 @@ More compact \ac{FT} sensors have been developed and more complex use cases need
 This section presents the rigid-assumptions mechanical model and an observation-based \ac{RMSD} two-bodies model.
 
 \subsection{Rigid model of the \{tool + item\} system}
+\label{section:background:rigid}
 
 The equations exploited to estimate the inertial parameters of the \{tool + item\} body (mass $m$, coordinates of the center of mass $c$, and inertia matrix $I$) are derived from the basic laws of dynamics. The motion of a rigid body (\{tool + item\}) due to external forces and torques can be described based on the \textsc{Newton-Euler} equations.
 
@@ -219,10 +220,10 @@ This said, the total mechanical action of on the item \{2\} by the tool \{1\} is
 
  By isolating the tool \{1\} only and then applying the \ac{FPD} to these system, the tool/item orientation $\overrightarrow{\Theta}_{1/2}$ and angular speed $\overrightarrow{\Omega}_{1/2}$ can be derived as function of the torque $\tau$ and of the inertial parameters of the tool $\varphi_1$ (cf. Annexe \ref{appendix:rmsd:fpd1}).
 
- In a similar way that previous section (cf. \ref{section:background:rigid}), the relation between the kinetic measurements and the inertial parameters of the item $\varphi_2$ can be derived as a matrix equation (cf. equation \ref{background:eq:rmsd_inertia_estimation}).
+ In a similar way that previous section (cf. \ref{section:background:rigid}), the relation between the kinetic measurements and the inertial parameters of the item $\varphi_2$ can be derived as a matrix equation (cf. equation \ref{eq:background:rmsd_inertia_estimation}).
 
  \begin{equation}
-   \label{background:eq:rmsd_inertia_estimation}
+   \label{eq:background:rmsd_inertia_estimation}
  B' = A'(a, \alpha_1, \alpha_2, \omega_1, \omega_2, \theta_2, g) \varphi_2
  \end{equation}
 
@@ -252,7 +253,7 @@ To derive the sum, the strategy is to stack the $(B_i, A_i)_{i \in [1, n]}$ matr
   \min_{\varphi} ||B_\Xi - A_\Xi \varphi||^2
 \end{equation}
 
-The \ac{LS} is the simplest solution to implement, yet, there is a drawback. The error model does not fit the framework of the situation. This method is indeed based on the assumption that the data matrices $A_i$ are free of errors. The error is simply modelled as a \ac{FT} error of measurement ($e_B$) such that: $\overline{B} = B + \mathcal{B}$ with $\overline{B}$ the ground-truth value. This error model does not consider error in the data matrix $A(a, \alpha, \omega, g)$: $e_A$. Thus it does not consider the error in the gravity vector, \ac{TCP} pose measurements, and in the computation of the derivatives of the position and the orientation. Yet, the output signals presented in the results section \ref{section:pre-processing} clear show noise and disturbances.
+The \ac{LS} is the simplest solution to implement, yet, there is a drawback. The error model does not fit the framework of the situation. This method is indeed based on the assumption that the data matrices $A_i$ are free of errors. The error is simply modelled as a \ac{FT} error of measurement ($e_B$) such that: $\overline{B} = B + \mathcal{B}$ with $\overline{B}$ the ground-truth value. This error model does not consider error in the data matrix $A(a, \alpha, \omega, g)$: $e_A$. Thus it does not consider the error in the gravity vector, \ac{TCP} pose measurements, and in the computation of the derivatives of the position and the orientation. Yet, the output signals presented in the results section \ref{section:results:pre-processing} clear show noise and disturbances.
 
 Besides, another disadvantage of this technique is that all computations have to be done offline. At first blush, the approach is to collect the data during an adequate among of time. Then, they have to be processed so that an estimated mass can be output. In the context of industrial robotics (cf. \ref{chapter:introduction}), systems have to process data at a great speed and might be able to address hard failures as soon as possible. An ideal optimizer would be able to make an online estimation of the mass. It would recursively compute estimated masses with increasing precision as more data are gathered.
 
@@ -387,7 +388,7 @@ When the ultimate time step $N$ of the estimation is reached, n parameters of $\
 \end{equation}
 
 \begin{algorithm}
-\caption{Update the \ac{SVD} of the stack of data matrices and \ac{FT} vectors}
+\caption{Update the \ac{SVD} of the stack of data matrices and \ac{FT} vectors \label{alg:background:adaptation}}
 \begin{algorithmic}
 \REQUIRE $N \geq j$
 \ENSURE $\hat{\varphi} = \argmin_{\varphi} ||e_B \ e_A||_F, \ B + e_B = (A + e_A) \varphi$
