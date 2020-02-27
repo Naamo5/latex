@@ -82,9 +82,40 @@ Besides, this low-pass filter is applied twice, once forward and once backwards.
 
 \section{Calibration of the robot manipulator}
 
-In the section \ref{section:pre-pro}, it was mentioned that the matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of signal measurements. One can notice, that several robot manipulator and gripper constants are necessary to completely compute the matrices. In particular, the mass of the tool $m_1$, its center of mass $c_1$, its tensor of inertia $I_1$ and the suction cup properties: the spring coefficient $k$, damping ratio $\lambda$.
+In the section \ref{section:pre-pro}, it was mentioned that the matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of signal measurements. One can notice, that several robot manipulator and gripper constants are necessary to completely compute the matrices. In particular, the mass of the tool $m_1$, its center of mass $c_1$, its tensor of inertia $I_1$ and the suction cup properties: the spring coefficient $k$, damping ratio $\lambda$ are needed.
 
+\subsection{Tool inertial parameters}
 
+The tool inertial parameters ($\varphi_1$) can be estimated by using the rigid model defined in section \ref{section:background:rigid}. Axes of inertia of the tool can be \textit{excited} by moving the tool in different directions, at different linear and rotational speeds. \textsc{Kubus} \textit{et al.} \cite{Kubus2008} advice to design sinusoidal excitation trajectories in the joint space. They can be optimized by minimizing the sensitivity of $\varphi_1$ to errors in $A$ (cf. equation \ref{background:eq:inertia_estimation}). The project does not focus on the design of such trajectories. Consequently, the motion is a simple trapezoidal speed profile in multiple directions and about multiple axes of rotation (cf. \ref{fig:method:trajectory}).
+
+\begin{figure}
+\centering
+\begin{subfigure}{\textwidth}
+\centering
+\includegraphics[scale=0.25]{\main/figures/load_free_position.pdf}
+\caption{Position of the \ac{TCP} over time}
+\label{fig:method:position}
+\end{subfigure}
+\begin{subfigure}{\textwidth}
+\centering
+\includegraphics[scale=0.25]{\main/figures/load_free_orientation.pdf}
+\caption{Orientation of the \ac{TCP} over time}
+\label{fig:method:orientation}
+\end{subfigure}
+\caption{Trajectory for the estimation of the tool inertial parameters and suction properties. The \ac{TCP} is excited in different directions and about different axes of rotation to embed as much mechanical properties as possible in the measurements. Images from the author.}
+\label{fig:method:trajectory}
+\end{figure}
+
+\subsection{Spring constant and damper coefficient estimation}
+
+The \ac{RMSD} model strongly depends on a good estimation of the spring constant and damper coefficient.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{\main/figures/suction_cup.jpg}
+  \caption{. Image from \cite{Piab2020}.}
+  \label{fig:method:butter}
+\end{figure}
 
 \section{Inertial parameters estimation strategy}
 
@@ -98,13 +129,5 @@ Estimation of the inertial parameters of the item:
   \item on-line method
 \end{itemize}
 }
-
-\begin{figure}[H]
-\centering
-   % \input{\main/figures/model} %     without .tex extension
-   % or use \input{mytikz}
-   \caption{An overview of the inertial parameters estimation framework.}
-   \label{fig:tikz:model}
-\end{figure}
 
 \end{document}

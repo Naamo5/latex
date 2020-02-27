@@ -14,7 +14,7 @@
 \tableofcontents
 \newpage
 
-\chapter{Mechanical model of the \{tool + item\} system}
+\chapter{Mechanical models}
 \label{appendix:models}
 
 \section{Notations and properties}
@@ -759,17 +759,10 @@ with $A' = \begin{pmatrix}
   0 & [(a - g) \times] R_{02} & \mathcal{N}_2
 \end{pmatrix}$
 
-\subsection{Particular case of the \ac{RMSD} system}
+\subsection{Particular case of the a plane \ac{RMSD} system}
+\label{appendix:plane-rmsd}
 
-\begin{figure}[H]
-\centering
-   \input{\main/figures/two_bodies} %     without .tex extension
-   % or use \input{mytikz}
-   \caption{2-bodies with 2-dimensions assumptions system.}
-   \label{fig:tikz:2_bodies}
-\end{figure}
-
-Considering the following assumptions (cf. Figure \ref{fig:tikz:2_bodies} for details):
+Considering the following assumptions (cf. Figure \ref{fig:tikz:two_bodies} for details):
 
 \begin{itemize}
 
@@ -784,22 +777,6 @@ Considering the following assumptions (cf. Figure \ref{fig:tikz:2_bodies} for de
         v_{2y} \\
         v_{2z}
        \end{pmatrix}$.
-
- \item The spring-damper has a circular symmetry about the $z$-axis:
-
-       {\centering
-        $K =
-        \begin{pmatrix}
-         k & 0 & 0  \\
-         0 & k & 0  \\
-         0 & 0 & k'
-        \end{pmatrix}$ and $\Lambda =
-        \begin{pmatrix}
-         \lambda & 0       & 0        \\
-         0       & \lambda & 0        \\
-         0       & 0       & \lambda'
-        \end{pmatrix}$
-        \par}
 
  \item The excitation is in the $yz$-plane: $\overrightarrow{\Omega}_{1/0} = \overrightarrow{0}$ and $\overrightarrow{V}_{A, 2/0}
        =
@@ -845,7 +822,7 @@ Considering the following assumptions (cf. Figure \ref{fig:tikz:2_bodies} for de
 
 \end{itemize}
 
-Hence, the equation (\ref{eq:appendix:fpd2}) is projected on the $x$-axis:
+Hence, the torque equation (\ref{eq:appendix:fpd2}) is projected on the $x$-axis:
 
 \begin{equation*}
  \ddot{\theta} + \frac{\lambda}{I_{2xx}} \dot{\theta} + \frac{k + m_2 c (a_z + g)}{I_{2xx}} \theta = - \frac{m_2 c}{I_{2xx}} a_y
@@ -962,6 +939,8 @@ $F_x$, $F_y$ and $F_z$ are substituted in~\eqref{appendix:rmsd:eq:fpd1}:
   \end{pmatrix}
 \end{equation}
 
+\underline{Estimation with a sinusoidal trajectory}
+
 In order to estimate $\lambda$ and $k$, the motion of the point A is sinusoidal: $\overrightarrow{OA} = \alpha \sin(\omega t) \cdot \overrightarrow{y_0}$
 
 \begin{equation}
@@ -1030,9 +1009,5 @@ The parameters $\theta_m$ and $\phi$ can be derived and spring-damper parameters
   \theta_m = \frac{\sqrt{f_x + (m1 + m2) g}}{ \omega \sqrt{m_2 c}} &&
   \phi = - \omega t + \arcsin \left( \frac{f_y - a_y (m1 - m2)}{c m_2 \omega^2 \theta_m} \right)
 \end{align}
-
-
-
-\chapter{Second Appendix}
 
 \end{document}
