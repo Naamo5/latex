@@ -1,3 +1,5 @@
+\providecommand{\main}{..}
+
 \documentclass[/home/francois/latex/report/main.tex]{subfiles}
 
 \begin{document}
@@ -5,25 +7,50 @@
 \chapter{Experimental Setup}
 \label{chapter:setup}
 
+  This chapter covers additional details on the robotic manipulator setup, the dataset that will used to test the proposed framework, as well as the requirements and assumptions used in the experiments.
+
 \section{Dataset}
 
-\textit{TODO}
+The performance of the estimation method is tested on a dataset of runs from a \textit{pick-and-place} system operating in a \textit{e-commerce} warehouse (cf. Figure \ref{fig:setup:maria}). The robot on site is a UR10 from \textsc{Universal Robot}\texttrademark \ and the hardware setup is depicted in the section \ref{section:hardware}.
 
-{\it
-Robot in production with thousands of motion recorded.
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.4]{\main/figures/maria.jpg}
+  \caption{Robot operating in a \textit{e-commerce} warehouse. The item is grasped in the deep metal cart in the bottom right part of the picture. Then, the object is brought to an area where it is identified. After, it is dropped in a box for further delivering. On the picture, the robot is about to drop an item –apparently a DVD– in the cardboard delivery box. Image from \textsc{NoMagic}.}
+  \label{fig:setup:maria}
+\end{figure}
 
-Description of the items.
-}
+This robot packs thousands of items every week. The panel of products is rather larger with over $100{,}000$ different entries. But eventually, a batch of 9 items highly picked are selected for the purpose of the evaluation. They differ in terms of their mass and shape. The table \ref{tab:setup:items} depicts the set of items and their disparities.
 
-\section{Motion of the Robotic Manipulator}
+\begin{table}[H]
+  \begin{center}
+    \renewcommand{\arraystretch}{1.2} % Default value: 1
+    \begin{tabular}{l|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \textbf{Designation} & \textbf{Mass ($\si{\kilogram}$)} & \textbf{Shape description}\\
+      \hline
+      \texttt{playstation\_plus}  & 0.0081 & Flat Cardboard \\
+      \hline
+      \texttt{sata\_480gb}  & 0.055 & Flat cuboid \\
+      \hline
+      \texttt{canon\_pixma}  & 0.133 & Flat plastic ink cartridge \\
+      \hline
+      \texttt{canon\_ink}  & 0.152 & Flat foiled ink cartridge \\
+      \hline
+      \texttt{samsung\_powerbank}  & 0.237 & Cardboard cuboid \\
+      \hline
+      \texttt{samsung\_galaxy}  & 0.281 & Cardboard cuboid \\
+      \hline
+      \texttt{android\_mini\_pc}  & 0.393 & Cardboard cuboid \\
+      \hline
+      \texttt{xiaomi\_9t}  & 0.508 & Cardboard cuboid \\
+      \hline
+      \texttt{apple\_tv}  & 0.818 & Cardboard cuboid \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Selection of items for the evaluation of the framework.\label{tab:setup:items}}
+\end{table}
 
-
-\textit{TODO}
-
-{\it
-Motion from one source tote to a target tote.
-
-Kinematic profile of the motion.
-}
+The assessment of the calibration process is realized with the setup depicted on the figure \ref{fig:background:stanislaw}. The estimation of the mass of the tool is compared with its mass measured with a scale. From the axial symmetries of the tool, it can be inferred that $c_1 = (0, 0, c_{1,z})$ in the tool frame. The value of the last coordinate can be measured by balancing the tool on a rod. One can notice that the tool in figure \ref{fig:setup:maria} is not the same as the one of figure \ref{fig:background:stanislaw}. Actually, the production robot tool parameters are estimated with another system but not assessed by ground-truth measurement. The suction cup is precisely the same as the one used on production site so the calibration can be used for further evaluation of the method.
 
 \end{document}

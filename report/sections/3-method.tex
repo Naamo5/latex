@@ -143,6 +143,16 @@ It is rather complicated to have an accurate feedback on the estimation of such 
 
 \section{Inertial parameters estimation strategy}
 
+Once that every needed parameters are estimated and that every signals are smoothed, the objective function can be derived. Based on the two estimation methods presented in the section \ref{section:estimation}, an offline and an online process are figured.
+
+\subsection{Offline estimation}
+
+The offline option is to record the \ac{FT} and \ac{TCP} pose signals as soon as the item is grasped and stop being in contact with the source container or any other objects in the environment. Recording is then stopped when the mass estimation is needed, the signals filtered and the mass computed through the least squared algorithm applied to the equation \ref{eq:background:stacked-ls} from section \ref{subsection:ls}.
+
+\subsection{Online estimation}
+
+The online option consists of outputing the estimated mass at a specific rate.
+
 
 
 \end{document}

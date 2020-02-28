@@ -2,10 +2,6 @@
 
 \documentclass[/home/francois/latex/report/main.tex]{subfiles}
 
-\makeatletter
-\def\BState{\State\hskip-\ALG@thistlm}
-\makeatother
-
 \begin{document}
 
 \chapter{Background}
@@ -25,15 +21,15 @@ Two models of robotic 6 \ac{DoF} arms have been used throughout the project: UR1
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.08]{\main/figures/picture_of_ur_indexed.png}
-  \caption{Robotic arm from \textsc{Universal Robot}\texttrademark \ grasping an iPad box. The manipular is based mounted to reach a larger area. The blue cable connect the suction cup to the hydraulic network and the purple cable connect the \ac{FT} sensor to the robot unit. The two totes in the back ground can be source or target place for \textit{pick-and-place} tasks. Image from the author.}
-  \label{fig:background:albert}
+  \caption{Robotic arm from \textsc{Universal Robot}\texttrademark \ grasping an iPad box. The manipular is based mounted to reach a larger area. The blue cable connect the suction cup to the hydraulic network and the purple cable connect the \ac{FT} sensor to the robot unit. The two totes in the background can be source or target place for \textit{pick-and-place} tasks. Image from the author.}
+  \label{fig:background:stanislaw}
 \end{figure}
 
 \subsection{\ac{FT} sensor}
 
 Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e and the \textit{Gamma} \ac{FT} sensor from ATI\texttrademark. They are both mounted on the last joint of both robotic manipulators (cf. Figure \ref{fig:background:tool}). The ATI\texttrademark \ sensor is mostly used throughout the evaluation of the different approaches. Although its range of measurement is narrower than UR10e one, it has better resolution properties (cf. Table \ref{tab:background:ft-sensor}).
 
-\begin{table}[h!]
+\begin{table}[H]
   \begin{center}
     \renewcommand{\arraystretch}{1.8} % Default value: 1
     \begin{tabular}{l|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
@@ -50,7 +46,6 @@ Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e an
     \end{tabular}
   \end{center}
   \caption{Specifications of the built-in UR10e sensor and \textit{Gamma} sensor \cite{ati, ur10e}. The \textit{Gamma} sensor offers the possibility to measure at a higher range but with lower resolution. The higher resolution is prefered in this particular case.\label{tab:background:ft-sensor}}
-
 \end{table}
 
 \subsection{End-effector}
@@ -100,7 +95,7 @@ take an item from a given initial pose to a final pose \cite{Angeles2006}. This 
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.08]{\main/figures/tote_cycle_indexed.png}
-  \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. The tool vertically goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in the direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, the trajectory is blended for the same reasons. Image from the author.}
+  \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. The tool goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in the direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, the trajectory is blended for the same reasons. Image from the author.}
   \label{fig:background:tote_cycle}
 \end{figure}
 
@@ -172,7 +167,7 @@ The equation \ref{background:eq:rigid} is exploited to compose the matrix equati
 B = A(a, \alpha, \omega, g) \varphi
 \end{equation}
 
-where $B =  \begin{pmatrix} f \\ \tau \end{pmatrix}$ and $\varphi = [m, m c_x, m c_y, m c_z, I_{xx}, I_{xy}, I_{xz}, I_{yy}, I_{yz}, I_{zz}]^T$ contains the 10 independant inertial parameters and $A$ define in the appendix \ref{appendix:rigid:inertia_estimation}.
+where $B =  \begin{pmatrix} f \\ \tau \end{pmatrix}$ and $\varphi = [m, m c_x, m c_y, m c_z, I_{xx}, I_{xy}, I_{xz}, I_{yy}, I_{yz}, I_{zz}]^T$ contains the 10 independant inertial parameters and $A$ is defined in the appendix \ref{appendix:rigid:inertia_estimation}.
 
 Linearity w.r.t.\ $\varphi$ gives the opportunity to easily substract the tool inertial parameters $\varphi_1$ to the \{tool + item\} system to get the item inertial parameters $\varphi_2$ (cf. equation \ref{eq:background:rigid:phi}). One can note that the center of mass of multiple corpses is by definition: $c = \frac{m_1 c_1 + m_2 c_2}{m_1 + m_2}$. It further confirms that $mc = m_1 c_1 + m_2 c_2$.
 
@@ -244,12 +239,13 @@ Two physical models of the tool and item system have been developed in section \
 The first approach considered is the \ac{LS} regression which is the most basic form of \ac{LS} optimization problem. This problem has an innate connection to distances in Euclidean geometry. The aim is to find the set of parameters $\varphi$ that minimize the sum of the squared residuals:
 
 \begin{equation}
-  \argmin_{\varphi} \sum_{1}^{n} r_i^2 = \argmin_{\varphi} \sum_{1}^{n} ||B_i - A_i \varphi||^2
+  \argmin_{\varphi} \sum_{i=1}^{n} r_i^2 = \argmin_{\varphi} \sum_{i=1}^{n} ||B_i - A_i \varphi||^2
 \end{equation}
 
 To derive the sum, the strategy is to stack the $(B_i, A_i)_{i \in [1, n]}$ matrices over time. Here, $\Xi$ denotes a stack of matrices. In such way that $B_\Xi = [B_1^T, B_2^T, \ldots, B_n^T]^T$ and $A_\Xi = [A_1^T, A_2^T, \ldots, A_n^T]^T$. Then the optimisation problem can be simply written down as:
 
 \begin{equation}
+  \label{eq:background:stacked-ls}
   \min_{\varphi} ||B_\Xi - A_\Xi \varphi||^2
 \end{equation}
 
