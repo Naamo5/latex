@@ -36,7 +36,7 @@ The quaternion filter consists in three steps:
 \end{itemize}
 
 \begin{algorithm}
-\caption{Make a \textsc{Euler}'s angles signal continuous\label{alg:method:continuity}}
+\caption{Ensure continuity of an \textsc{Euler}'s angles signal \label{alg:method:continuity}}
 \begin{algorithmic}
 \FOR{\texttt{orientation} in \texttt{signal}}
  \FOR{\texttt{angle} in \texttt{orientation}}
@@ -132,24 +132,17 @@ The idea is to make use of the equations of the \ac{RMSD} system to extract the 
 
 Therefore, the vacuum cup is calibrated with a standard object of known mass $m_2$, center of mass $c_2$ and inertia tensor $I_2$. This object can be a solid cuboid of aluminium which dimensions and mass are known. The robot manipulator and the suction cup are then \textit{excited} with a similar flat trajectory than the one depicted in the figure \ref{fig:method:trajectory}. One can notice here that the system is very similar to an harmonic pendulum. Hence, the transient of the system should provide sufficient information to estimate the two parameters.
 
-From the torque \ac{FPD} applied to the \{item\}, an \ac{ODE} (cf. equation \ref{eq:method:torque_2d}) is obtained. As, the angle $\theta$ is already computed, the constants are merely estimated with a \ac{LS} algorithm.
+From the torque \ac{FPD} applied to the \{item\}, an \ac{ODE} (cf. equation \ref{eq:method:torque_2d}) is obtained. As, the angle $\theta$ can be computed, the constants are merely estimated with a \ac{LS} algorithm.
 
 \begin{equation}
   \label{eq:method:torque_2d}
  \ddot{\theta} + \frac{\lambda}{I_{2xx}} \dot{\theta} + \frac{k + m_2 c (a_z + g)}{I_{2xx}} \theta = - \frac{m_2 c}{I_{2xx}} a_y
 \end{equation}
 
+It is rather complicated to have an accurate feedback on the estimation of such properties. There is no abacus from suction cup supplier to validate the result. Thus, the validation method consists of comparing the estimated force and torque signals with the measured \ac{FT} ones with a different standard item.
+
 \section{Inertial parameters estimation strategy}
 
-\textit{TODO}
 
-{\it
-Estimation of the inertial parameters of the item:
-
-\begin{itemize}
-  \item off-line method
-  \item on-line method
-\end{itemize}
-}
 
 \end{document}
