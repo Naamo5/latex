@@ -13,7 +13,7 @@
 
 The performance of the estimation method is tested on a dataset of runs from a \textit{pick-and-place} system operating in a \textit{e-commerce} warehouse (cf. Figure \ref{fig:setup:maria}). The robot on site is a UR10 from \textsc{Universal Robot}\texttrademark \ and the hardware setup is depicted in the section \ref{section:hardware}.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{\main/figures/maria.jpg}
   \caption{Robot operating in a \textit{e-commerce} warehouse. The item is grasped in the deep metal cart in the bottom right part of the picture. Then, the object is brought to an area where it is identified. After, it is dropped in a box for further delivering. On the picture, the robot is about to drop an item –apparently a DVD– in the cardboard delivery box. Image from \textsc{NoMagic}.}
@@ -22,7 +22,7 @@ The performance of the estimation method is tested on a dataset of runs from a \
 
 This robot packs thousands of items every week. The panel of products is rather larger with over $100{,}000$ different entries. But eventually, a batch of 9 items highly picked are selected for the purpose of the evaluation. They differ in terms of their mass and shape. The table \ref{tab:setup:items} depicts the set of items and their disparities.
 
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \renewcommand{\arraystretch}{1.2} % Default value: 1
     \begin{tabular}{l|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
@@ -51,6 +51,38 @@ This robot packs thousands of items every week. The panel of products is rather 
   \caption{Selection of items for the evaluation of the framework.\label{tab:setup:items}}
 \end{table}
 
-The assessment of the calibration process is realized with the setup depicted on the figure \ref{fig:background:stanislaw}. The estimation of the mass of the tool is compared with its mass measured with a scale. From the axial symmetries of the tool, it can be inferred that $c_1 = (0, 0, c_{1,z})$ in the tool frame. The value of the last coordinate can be measured by balancing the tool on a rod. One can notice that the tool in figure \ref{fig:setup:maria} is not the same as the one of figure \ref{fig:background:stanislaw}. Actually, the production robot tool parameters are estimated with another system but not assessed by ground-truth measurement. The suction cup is precisely the same as the one used on production site so the calibration can be used for further evaluation of the method.
+\section{Calibration}
+
+\subsection{Tool parameters}
+
+The assessment of the calibration process is realized with the setup depicted on the figure \ref{fig:background:stanislaw}. The estimation of the mass of the tool is compared with its mass measured with a scale. From the axial symmetries of the tool, it can be inferred that $c_1 = (0, 0, c_{1,z})$ in the tool frame. The value of the last coordinate can be measured by balancing the tool on a rod. The inertia tensor coefficients are harder to measured. However, considering the axes of symmetry, the shape of the inertia tensor can be expected. The order of magnitude of the inertia is computed with the formula of a thick-walled cylindrical tube with open ends, of inner radius $r_1$, outer radius $r_2$, length $h$ and mass $m$ (cf. equation \ref{eq:setup:tensor}). As every, \ac{FPD} are derived at the point A, the parallel axis theorem (cf. appendix \ref{appendix:notation:parallel_axis}) is used to compute $I_{A, tool}$.
+
+\begin{equation}
+  \label{eq:setup:tensor}
+  I_{G_{tool}, tool} =
+  \begin{pmatrix}
+  \frac{1}{12} m(3(r_1^2+r_2^2) + h^2) & 0 & 0  \\
+  0 & \frac{1}{12} m(3(r_1^2+r_2^2) + h^2) & 0 \\
+  0 & 0 & \frac{1}{2} m(r_1^2+r_2^2)
+  \end{pmatrix}
+\end{equation}
+
+Finally, the inertia tensor is estimated by measuring the lenght, external and internal radii.
+
+\begin{equation*}
+  I_{A, tool} = I_{G_{tool}, tool} - m d^2 =
+  \begin{pmatrix}
+  5.8 \times 10^{-4} & 0 & 0  \\
+  0 & 5.8 \times 10^{-4} & 0 \\
+  0 & 0 & 0.001
+  \end{pmatrix}
+\end{equation*}
+
+
+ In the evaluation of the process, the
+
+One can notice that the tool in figure \ref{fig:setup:maria} is not the same as the one of figure \ref{fig:background:stanislaw}. Actually, the production robot tool parameters are estimated with another system but not assessed by ground-truth measurement. The suction cup is precisely the same as the one used on production site so the calibration can be used for further evaluation of the method.
+
+To estimate the spring constant and the damper coefficient, the standard item is preferably a heavy and cuboid item ($\approx 0.5-1 \si{\kilogram}$). An iPad box filled with expansive foam (cf. figure \ref{fig:background:stanislaw}) is used for that purpose. The shape of box is $0.055 \times 0.140 \times 0.210 \si{\meter}$ and its mass ($0.519 \si{\kilogram}$) is well distributed.
 
 \end{document}

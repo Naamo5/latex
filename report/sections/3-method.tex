@@ -11,7 +11,7 @@ This chapter presents the inertial parameters estimation approach starting with 
 
 The overall idea is to compute the objective function matrices so as to estimate the parameters with a \ac{LS} method. A crucial step is the upstream calibration of the tool and gripper parameters. They are non obvious and non documented properties that have to be estimated before running the overall process. An overview of the framework of the inertial parameters estimation is depicted in the Figure \ref{fig:method:overall}.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.7]{\main/figures/olinpe.pdf}
   \caption{Overview of the payload inertial parameters estimation approach. The calibration process is an upstream step that is done whenever the gripper tool is modified. Image from  the author.}
@@ -24,6 +24,7 @@ The overall idea is to compute the objective function matrices so as to estimate
 In the chaper \ref{chapter:background}, two models of the \{item\} and \{tool\} systems have been developed. The purpose is to compute the matrices of the equation and then use one or another optimization process. The matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of the \ac{FT} sensor measurement and the position and orientation of the \ac{TCP}. One point must be made: signals cannot be merely input in the optimization procedures. Both \ac{FT} measurements and simple method for derivation leads to noisy signals. Consequently, measured signals have to be pre-processed.
 
 \subsection{\textsc{Euler}'s angles continuity filter}
+\label{subsection:method:euler-filter}
 
 The input orientation of the \ac{TCP} is expressed as \ac{RPY} \textsc{Euler}'s angles. Thus, they are computed in a range of $[-\pi, \pi]$. Approaching to the interval limit (cf. \ref{section:results:pre-processing}), the signal jumps from positive to negative $\pi$. In addition, the representation by \textsc{Euler}'s angles has no unicity because it depends on the order of axes (anisotropy). When deriving the angular speed and angular acceleration, the outcome is consequently unsatisfying. To tackle that unicity issue, the great properties of quaternion conversion are applied to the set of angles. Subsenquently, the \ac{RPY} angles are filtered with a continuity algorithm (cf. Algorithm \ref{alg:method:continuity}).
 
@@ -60,7 +61,7 @@ Therefore, it is needed to derived the linear and angular velocity and the linea
 
 The method was created in 1964 by A. \textsc{Savitzky} M. J. E. \textsc{Golay} \cite{Savitzky1964} in their seminal article. The smoothing of a signal or its derivative is achieved with a convolution process. Sub-sets of adjacent data points are fitted to a low-degree polynomial by the method of linear \ac{LS} (cf. \ref{fig:method:savit}). Convoluation coefficients are then use to give estimates of the smoothed signal, (or derivatives of the smoothed signal) at the central point of each sub-set.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.25]{\main/figures/savitzky-golay-filter.png}
   \caption{Smoothing of noisy data by the \textsc{Savitzky–Golay} method ($3^{rd}$ degree polynomial, 9 points wide sliding window). Blue curve: raw data; blue circle: point after smoothing; yellow curve: polynomial used to determine the current point; red curve: polynomial restricted to the sliding window around the current point. Image from \cite{Cdang2013}.}
@@ -73,7 +74,7 @@ As mentioned above, the \ac{FT} signal is slightly noisy. As the frequency of th
 
 Besides, this low-pass filter is applied twice, once forward and once backwards. The combined filter has zero phase and a filter order twice that of the original \cite{SciPy2019}.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.25]{\main/figures/butter.png}
   \caption{Frequency response plot from different order \textsc{Butterworth} filter. Image from the original article  \cite{filter1923}.}
@@ -88,7 +89,7 @@ In the section \ref{section:pre-pro}, it was mentioned that the matrices $A$ and
 
 The tool inertial parameters ($\varphi_1$) can be estimated by using the rigid model defined in section \ref{section:background:rigid}. Axes of inertia of the tool can be \textit{excited} by moving the tool in different directions, at different linear and rotational speeds. \textsc{Kubus} \textit{et al.} \cite{Kubus2008} advice to design sinusoidal excitation trajectories in the joint space. They can be optimized by minimizing the sensitivity of $\varphi_1$ to errors in $A$ (cf. equation \ref{background:eq:inertia_estimation}). The project does not focus on the design of such trajectories. Consequently, the motion is a simple trapezoidal speed profile in multiple directions and about multiple axes of rotation (cf. \ref{fig:method:trajectory}).
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \begin{subfigure}{\textwidth}
 \centering
@@ -110,7 +111,7 @@ The tool inertial parameters ($\varphi_1$) can be estimated by using the rigid m
 
 The \ac{RMSD} model strongly depends on a good estimation of the spring constant and damper coefficient. There is a broad range of suction cups of different diameters, lengths, materials –and colors (cf. \ref{fig:method:suction-cups}). Therefore there is as many combinations of spring and damper constants.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{\main/figures/suction_cup.jpg}
   \caption{A huge diversity of suction cups. Image from \cite{Piab2020}.}

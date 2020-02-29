@@ -1,3 +1,5 @@
+\providecommand{\main}{..}
+
 \documentclass[/home/francois/latex/report/main.tex]{subfiles}
 
 \begin{document}
@@ -5,21 +7,17 @@
 \chapter{Conclusions and Future Work}
 \label{chapter:conclusions}
 
+In this chapter, the whole project is summarized and conclusions are drawn. Future work and additional improvements are also presented.
+
 \section{Conclusions}
 
-\textit{TODO}
+In this project, a framework to estimate the mass of a robotic manipulator payload by the mean of an \ac{FT} sensor is proposed. Two specific topics are addressed: the particular case of a vacuum gripper and the capacity of the process to operate online.
 
-{\it
-Describe the conclusions (reflect on the whole introduction given in Chapter 1).
+Therefore, mechanical models of the suction cup are designed with first, a rigid body assumption and secondly, a rotational harmonic model. In order to measure the mass from the kinetic signals, two approaches are suggested: the simple least-squares algorithm and a recursive total least-squares method. In addition, a calibration procedure is developed to compute the mechanical parameters of the gripper that are necessary for the abovementioned processes.
 
-Discuss the positive effects and the drawbacks.
+The method is evaluated with a dataset of runs of a robot operating on production site. The tests executed show that the system performance are satisfying. The average absolute error is low enough to be able to detect hard failures and the mass output can be a crucial parameters in object recognition process. However, the evaluation reveal that the performance decreases noticeably when it comes to higher speed operations with shorter recording time.
 
-Describe the evaluation of the results of the degree project.
-
-Describe valid future work.
-
-The sections below are optional but could be added here.
-}
+In a nutshell, the thesis provide a method that can be used in industry to increase the among of information gathered by the robotic system and therefore improve the reliability and the performance of
 
 \section{Future Work}
 

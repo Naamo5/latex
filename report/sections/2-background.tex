@@ -16,12 +16,12 @@ Below are described the hardware equipment provided by the host organization. It
 
 \subsection{Robotic manipulator}
 
-Two models of robotic 6 \ac{DoF} arms have been used throughout the project: UR10 and UR10e from \textsc{Universal Robot}\texttrademark (cf. Figure \ref{fig:background:albert}). They are fairly similar since they can span an area of $1300 \si{\milli\meter}$ around them and can handle payload of $10 \si{\kilo\gram}$ –as sugested by the name. The particularity of UR10e is its built-in \ac{FT} sensor and faster communication ($500 \si{\hertz}$ by contrast with $125 \si{\hertz}$ of the UR10).
+Two models of robotic 6 \ac{DoF} arms have been used throughout the project: UR10 and UR10e from \textsc{Universal Robot}\texttrademark (cf. Figure \ref{fig:background:stanislaw}). They are fairly similar since they can span an area of $1300 \si{\milli\meter}$ around them and can handle payload of $10 \si{\kilo\gram}$ –as sugested by the name. The particularity of UR10e is its built-in \ac{FT} sensor and faster communication ($500 \si{\hertz}$ by contrast with $125 \si{\hertz}$ of the UR10).
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.08]{\main/figures/picture_of_ur_indexed.png}
-  \caption{Robotic arm from \textsc{Universal Robot}\texttrademark \ grasping an iPad box. The manipular is based mounted to reach a larger area. The blue cable connect the suction cup to the hydraulic network and the purple cable connect the \ac{FT} sensor to the robot unit. The two totes in the background can be source or target place for \textit{pick-and-place} tasks. Image from the author.}
+  \caption{Robotic arm from \textsc{Universal Robot}\texttrademark \ grasping an iPad box. The manipular is based mounted to reach a larger area. The blue cable connect the suction cup to the hydraulic network and the purple cable connect the \ac{FT} sensor to the robot unit. The two totes in the background can be source or target place for \textit{pick-and-place} tasks.}
   \label{fig:background:stanislaw}
 \end{figure}
 
@@ -29,7 +29,7 @@ Two models of robotic 6 \ac{DoF} arms have been used throughout the project: UR1
 
 Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e and the \textit{Gamma} \ac{FT} sensor from ATI\texttrademark. They are both mounted on the last joint of both robotic manipulators (cf. Figure \ref{fig:background:tool}). The ATI\texttrademark \ sensor is mostly used throughout the evaluation of the different approaches. Although its range of measurement is narrower than UR10e one, it has better resolution properties (cf. Table \ref{tab:background:ft-sensor}).
 
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \renewcommand{\arraystretch}{1.8} % Default value: 1
     \begin{tabular}{l|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
@@ -59,16 +59,16 @@ The end-effector of the robot fulfills the functions of grasping a wide range of
   \item a vacuum suction cup linked to the hydraulic supply.
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.08]{\main/figures/picture_of_tool_indexed.png}
-  \caption{Tool mount on the robotic manipulator handling an iPad box. The safety-spring cannot be seen on this picture because it is inside the extension tube. Image from the author.}
+  \caption{Tool mount on the robotic manipulator handling an iPad box. The safety-spring cannot be seen on this picture because it is inside the extension tube.}
   \label{fig:background:tool}
 \end{figure}
 
 A suction cup with a springy extension is mounted on the tool. It allows a very simple integration logic and a versatile ability to grasp items (cf. Figure \ref{fig:background:suction}). The sealing lip provides a good grip on a large range of object textures.
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -92,14 +92,14 @@ A suction cup with a springy extension is mounted on the tool. It allows a very 
 In the context of \textit{pick-and-place} tasks, a robotic manipulator is meant to
 take an item from a given initial pose to a final pose \cite{Angeles2006}. This type of operation is exploited in tasks like loading and unloading of conveyor belts, totes, carts. In the use case of the project, trajectories have a blending trapezoidal shape. They are optimized for high production cadence and grasping failure avoidance (cf. Figure \ref{fig:background:tote_cycle}).
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.08]{\main/figures/tote_cycle_indexed.png}
-  \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. The tool goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in the direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, the trajectory is blended for the same reasons. Image from the author.}
+  \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. The tool goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in the direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, the trajectory is blended for the same reasons.}
   \label{fig:background:tote_cycle}
 \end{figure}
 
-The drawback of using a suction cup for grasping is that the mechanical link between the tool and the item is not rigid. Heavy items and objects with large dimensions are very likely to oscillate during the motion. In logistic warehouses, robots often handle objects over half a kilo and longer dimension over $0.3 \si{\meter}$. Observations show that the angle between the tool and the item may vary significantly (up to $10 \si{\degree}$). Wobbling has a knock-on effect on \ac{FT} measurement. While there should not be any oscillations of the torque in a rigid model (for more detail, please refer to Section \ref{section:mechanical-models}), significant variations can be seen in actual measurement (cf. Figure \ref{fig:results:torque_}).
+The drawback of using a suction cup for grasping is that the mechanical link between the tool and the item is not rigid. Heavy items and objects with large dimensions are very likely to oscillate during the motion. In logistic warehouses, robots often handle objects over half a kilo and longer dimension over $0.3 \si{\meter}$. Observations show that the angle between the tool and the item may vary significantly (up to $10 \si{\degree}$). Wobbling has a knock-on effect on \ac{FT} measurement. While there should not be any oscillations of the torque in a rigid model (for more detail, please refer to Section \ref{section:mechanical-models}), significant variations can be seen in actual measurement (cf. Figure \ref{fig:results:calibration:suction-torque-x}).
 
 When it comes to physically model the system, different level of details can be taken into account. The first approach is to consider a rigid link between the tool and the item and a second approach is to fit an appropriate mechanical model considering the \ac{DoF} and the damped harmonic oscillator theory.
 
@@ -126,7 +126,7 @@ The assumptions are as followed (illustrated in Figure \ref{fig:tikz:one_body}):
  \item Centers of mass and inertia matrices are defined w.r.t.\ point $S$ such that $c = \overrightarrow{SG}$, $c_1 = \overrightarrow{SG_1}$ and $c_2 = \overrightarrow{SG_2}$.
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
    \input{\main/figures/one_body} %     without .tex extension
    % or use \input{mytikz}
@@ -181,7 +181,7 @@ Linearity w.r.t.\ $\varphi$ gives the opportunity to easily substract the tool i
 
 As mentioned in section \ref{background:motion}, the elasticity of the suction cup generate oscillations of the item w.r.t.\ tool that are not taken into account by the one-rigid-body model. The object rotates in fact about the $x_1$-axis the $y_1$-axis. There is no translation motion w.r.t.\ the tool and no rotation about the $z_0$-axis. Therefore, the mechanical link between the item and the tool can be identified as a \ac{UJ} –as known as \textsc{Cardan} joint (cf. Figure \ref{fig:background:cardan}). With this mechanical only, the tool can transfer forces, and torque about the lengthwise axis of the sensor but no torque about the transversal axes.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=0.3]{\main/figures/cardan_joint_indexed.png}
   \caption{3D model of a 2 \ac{DoF} \ac{UJ}. Image from \cite{3dexport2020}.}
@@ -190,7 +190,7 @@ As mentioned in section \ref{background:motion}, the elasticity of the suction c
 
 One can notice that the combination of the two bodies behaves as a 2 \ac{DoF} harmonic pendulum. Thus, the torque transmitted by the tool \{1\} to the item \{2\} about the $x$-axis –or $y$-axis– is modeled by $T_{1/2, x} = k_x \theta_{1/2, x} + \lambda_x \dot{\theta}_{1/2, x}$ with $k_x$ a spring constant,  $\lambda_x$ a damping coefficient and $\theta_{1/2, x}$ the orientation of the tool w.r.t.\ the item about the $x$-axis (Figure \ref{fig:tikz:two_bodies}). In addition, the suction cup is symetrical by rotation about the lengthwise axis of the tool. For this reason, it is considered that $k_x = k_y = k$ and $\lambda_x = \lambda_y - \lambda$. Also, in the specific case of \textit{pick-and-place} tasks, it can be consi that the inertia parameters estimation is processed while the tool is vertical. That simplifies equation by infering that $\overrightarrow{z_1} = -\overrightarrow{z_0}$.
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
    \input{\main/figures/two_bodies} %     without .tex extension
    % or use \input{mytikz}
@@ -264,7 +264,7 @@ As stated above, the \ac{LS} method only assumes that the data matrix $B$ is a s
 B + e_B = (A + e_A) \varphi
 \end{equation}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -278,7 +278,7 @@ B + e_B = (A + e_A) \varphi
 \caption{\ac{TLS} error model}
 \label{fig:background:tls-error}
 \end{subfigure}
-\caption{Data-fitting with the \ac{LS} and \ac{TLS} approches. The \ac{LS} method only consider error in the y-direction. \ac{TLS} also consider error in the x-direction. Images from the author.}
+\caption{Data-fitting with the \ac{LS} and \ac{TLS} approches. The \ac{LS} method only consider error in the y-direction. \ac{TLS} also consider error in the x-direction.}
 \label{fig:background:ls-tls-error}
 \end{figure}
 
