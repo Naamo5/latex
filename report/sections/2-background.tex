@@ -249,6 +249,38 @@ To derive the sum, the strategy is to stack the $(B_i, A_i)_{i \in [1, n]}$ matr
   \min_{\varphi} ||B_\Xi - A_\Xi \varphi||^2
 \end{equation}
 
+  There potentially two options to compute the \ac{LS} curve fitting. The first one is to use the \textsc{Scipy} method \texttt{scipy.optimize.least\_squares} that uses \ac{TRF}. The second is to use the \ac{SVD} of the $A$ matrix (cf. \cite{Gander2008}). The objective is to compute a pseudo inverse of $A$ to be able to simply multiply it with $B$. The pseudo inverse of diagonal non-square matrix is a matrix with inverse dimension and inverse values on the diagonal:
+
+\begin{align*}
+  \Sigma =
+  \begin{pmatrix}
+    a_1 & 0 & 0 & 0 \\
+    0 & a_2 & 0 & 0 \\
+    0 & 0 & a_3 & 0
+  \end{pmatrix}
+  &
+  \ \Sigma^{-1} =
+  \begin{pmatrix}
+    \frac{1}{a_1} & 0 & 0 \\
+    0 & \frac{1}{a_2} & 0 \\
+    0 & 0 & \frac{1}{a_3} \\
+    0 & 0 & 0
+  \end{pmatrix}
+\end{align*}
+
+
+The Algorithm \ref{alg:background:svd-ls} presents the method.
+
+\begin{algorithm}
+\caption{Estimate $\varphi$ with a \ac{SVD} \ac{LS} method \label{alg:background:svd-ls}}
+\begin{algorithmic}
+\STATE $U, \Sigma, V^T \leftarrow \text{\texttt{SVD}}(A)$
+\STATE $\Sigma^{-1} \leftarrow \text{\texttt{pseudo\_inverse}}(\Sigma)$
+\STATE $\varphi \leftarrow V \cdot \Sigma^{-1} \cdot U^T \cdot B$
+\RETURN $\varphi$
+\end{algorithmic}
+\end{algorithm}
+
 The \ac{LS} is the simplest solution to implement, yet, there is a drawback. The error model does not fit the framework of the situation. This method is indeed based on the assumption that the data matrices $A_i$ are free of errors. The error is simply modelled as a \ac{FT} error of measurement ($e_B$) such that: $\overline{B} = B + \mathcal{B}$ with $\overline{B}$ the ground-truth value. This error model does not consider error in the data matrix $A(a, \alpha, \omega, g)$: $e_A$. Thus it does not consider the error in the gravity vector, \ac{TCP} pose measurements, and in the computation of the derivatives of the position and the orientation. Yet, the output signals presented in the results section \ref{section:results:pre-processing} clear show noise and disturbances.
 
 Besides, another disadvantage of this technique is that all computations have to be done offline. At first blush, the approach is to collect the data during an adequate among of time. Then, they have to be processed so that an estimated mass can be output. In the context of industrial robotics (cf. \ref{chapter:introduction}), systems have to process data at a great speed and might be able to address hard failures as soon as possible. An ideal optimizer would be able to make an online estimation of the mass. It would recursively compute estimated masses with increasing precision as more data are gathered.

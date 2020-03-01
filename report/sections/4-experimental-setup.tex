@@ -25,26 +25,26 @@ This robot packs thousands of items every week. The panel of products is rather 
 \begin{table}[h]
   \begin{center}
     \renewcommand{\arraystretch}{1.2} % Default value: 1
-    \begin{tabular}{l|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-      \textbf{Designation} & \textbf{Mass ($\si{\kilogram}$)} & \textbf{Shape description}\\
+    \begin{tabular}{l|c|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \textbf{Designation} & \textbf{Mass ($\si{\kilogram}$)} & \textbf{Shape description} & \textbf{Number of runs}\\
       \hline
-      \texttt{playstation\_plus}  & 0.0081 & Flat Cardboard \\
+      \texttt{playstation\_plus}  & 0.0081 & Flat Cardboard & 306 \\
       \hline
-      \texttt{sata\_480gb}  & 0.055 & Flat cuboid \\
+      \texttt{sata\_480gb}  & 0.055 & Flat cuboid & 458\\
       \hline
-      \texttt{canon\_pixma}  & 0.133 & Flat plastic ink cartridge \\
+      \texttt{canon\_pixma}  & 0.133 & Flat plastic ink cartridge & 256\\
       \hline
-      \texttt{canon\_ink}  & 0.152 & Flat foiled ink cartridge \\
+      \texttt{canon\_ink}  & 0.152 & Flat foiled ink cartridge & 141 \\
       \hline
-      \texttt{samsung\_powerbank}  & 0.237 & Cardboard cuboid \\
+      \texttt{samsung\_powerbank}  & 0.237 & Cardboard cuboid & 262\\
       \hline
-      \texttt{samsung\_galaxy}  & 0.281 & Cardboard cuboid \\
+      \texttt{samsung\_galaxy}  & 0.281 & Cardboard cuboid & 849 \\
       \hline
-      \texttt{android\_mini\_pc}  & 0.393 & Cardboard cuboid \\
+      \texttt{android\_mini\_pc}  & 0.393 & Cardboard cuboid & 535\\
       \hline
-      \texttt{xiaomi\_9t}  & 0.508 & Cardboard cuboid \\
+      \texttt{xiaomi\_9t}  & 0.508 & Cardboard cuboid & 265 \\
       \hline
-      \texttt{apple\_tv}  & 0.818 & Cardboard cuboid \\
+      \texttt{apple\_tv}  & 0.818 & Cardboard cuboid & 110 \\
       \hline
     \end{tabular}
   \end{center}
@@ -54,6 +54,7 @@ This robot packs thousands of items every week. The panel of products is rather 
 \section{Calibration}
 
 \subsection{Tool parameters}
+\label{subsection:setup:calibration:tool}
 
 The assessment of the calibration process is realized with the setup depicted on the figure \ref{fig:background:stanislaw}. The estimation of the mass of the tool is compared with its mass measured with a scale. From the axial symmetries of the tool, it can be inferred that $c_1 = (0, 0, c_{1,z})$ in the tool frame. The value of the last coordinate can be measured by balancing the tool on a rod. The inertia tensor coefficients are harder to measured. However, considering the axes of symmetry, the shape of the inertia tensor can be expected. The order of magnitude of the inertia is computed with the formula of a thick-walled cylindrical tube with open ends, of inner radius $r_1$, outer radius $r_2$, length $h$ and mass $m$ (cf. equation \ref{eq:setup:tensor}). As every, \ac{FPD} are derived at the point A, the parallel axis theorem (cf. appendix \ref{appendix:notation:parallel_axis}) is used to compute $I_{A, tool}$.
 

@@ -26,7 +26,7 @@ In the chaper \ref{chapter:background}, two models of the \{item\} and \{tool\} 
 \subsection{\textsc{Euler}'s angles continuity filter}
 \label{subsection:method:euler-filter}
 
-The input orientation of the \ac{TCP} is expressed as \ac{RPY} \textsc{Euler}'s angles. Thus, they are computed in a range of $[-\pi, \pi]$. Approaching to the interval limit (cf. \ref{section:results:pre-processing}), the signal jumps from positive to negative $\pi$. In addition, the representation by \textsc{Euler}'s angles has no unicity because it depends on the order of axes (anisotropy). When deriving the angular speed and angular acceleration, the outcome is consequently unsatisfying. To tackle that unicity issue, the great properties of quaternion conversion are applied to the set of angles. Subsenquently, the \ac{RPY} angles are filtered with a continuity algorithm (cf. Algorithm \ref{alg:method:continuity}).
+The input orientation of the \ac{TCP} is expressed as \ac{RPY} \textsc{Euler}'s angles. Thus, they are computed in a range of $[-\pi, \pi]$. Approaching to the interval limit (cf. \ref{section:results:pre-processing}), the signal jumps from positive to negative $\pi$. In addition, the representation by \textsc{Euler}'s angles has no unicity because it depends on the order of axes (anisotropy). When deriving the angular speed and angular acceleration, the outcome is consequently unsatisfactory. To tackle that unicity issue, the great properties of quaternion conversion are applied to the set of angles. Subsenquently, the \ac{RPY} angles are filtered with a continuity algorithm (cf. Algorithm \ref{alg:method:continuity}).
 
 The quaternion filter consists in three steps:
 
