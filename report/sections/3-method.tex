@@ -9,7 +9,9 @@
 
 This chapter presents the inertial parameters estimation approach starting with the signal pre-processing, followed by the robot manipulator calibration and the objective function computation.
 
-The overall idea is to compute the objective function matrices so as to estimate the parameters with a \ac{LS} method. A crucial step is the upstream calibration of the tool and gripper parameters. They are non obvious and non documented properties that have to be estimated before running the overall process. An overview of the framework of the inertial parameters estimation is depicted in the Figure \ref{fig:method:overall}.
+The overall idea is to compute the objective function matrices so as to estimate the parameters with a \ac{LS} method. A crucial step is the upstream calibration of the tool and gripper parameters. They are non-obvious and non documented properties that have to be estimated before running the overall process. An overview of the framework of the estimation of the inertial parameters is depicted in the Figure \ref{fig:method:overall}.
+
+The \ac{FT} and \ac{TCP} pose signals are recorded as soon as the item is grasped and stop being in contact with the source container or any other objects in the environment. The recording is then stopped when the mass estimation is needed. If the optimization is made offline, the signals are filtered and cached afterward. Them, the mass is computed through the least squared algorithm applied to the equation \ref{eq:background:stacked-ls} from section \ref{subsection:ls}. If the optimization is made online, the signals are filtered and cached at a lower rate than the robot one. At each process step, the orientation of the item w.r.t.\ the tool is computed and the \ac{RTLS} algorithm outputs and outputs an estimation. Note that in the evaluations, the orientation is computed in an offline manner. The online implementation of the calculation of the orientation is not part of the scope of the thesis.
 
 \begin{figure}[h]
   \centering
@@ -21,19 +23,19 @@ The overall idea is to compute the objective function matrices so as to estimate
 \section{Signal Pre-processing}
 \label{section:pre-pro}
 
-In the chaper \ref{chapter:background}, two models of the \{item\} and \{tool\} systems have been developed. The purpose is to compute the matrices of the equation and then use one or another optimization process. The matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of the \ac{FT} sensor measurement and the position and orientation of the \ac{TCP}. One point must be made: signals cannot be merely input in the optimization procedures. Both \ac{FT} measurements and simple method for derivation leads to noisy signals. Consequently, measured signals have to be pre-processed.
+In the chapter \ref{chapter:background}, two models of the \{item\} and \{tool\} systems have been developed. The purpose is to compute the matrices of the equation and then use one or another optimization process. The matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of the \ac{FT} sensor measurement and the position and orientation of the \ac{TCP}. One point must be made: signals cannot be merely input in the optimization procedures. Both \ac{FT} measurements and simple method for derivation leads to noisy signals. Consequently, measured signals have to be pre-processed.
 
 \subsection{\textsc{Euler}'s angles continuity filter}
 \label{subsection:method:euler-filter}
 
-The input orientation of the \ac{TCP} is expressed as \ac{RPY} \textsc{Euler}'s angles. Thus, they are computed in a range of $[-\pi, \pi]$. Approaching to the interval limit (cf. \ref{section:results:pre-processing}), the signal jumps from positive to negative $\pi$. In addition, the representation by \textsc{Euler}'s angles has no unicity because it depends on the order of axes (anisotropy). When deriving the angular speed and angular acceleration, the outcome is consequently unsatisfactory. To tackle that unicity issue, the great properties of quaternion conversion are applied to the set of angles. Subsenquently, the \ac{RPY} angles are filtered with a continuity algorithm (cf. Algorithm \ref{alg:method:continuity}).
+The input orientation of the \ac{TCP} is expressed as \ac{RPY} \textsc{Euler}'s angles. Thus, they are computed in a range of $[-\pi, \pi]$. Approaching to the interval limit (cf. \ref{section:results:pre-processing}), the signal jumps from positive to negative $\pi$. Besides, the representation by \textsc{Euler}'s angles has no unicity because it depends on the order of axes (anisotropy). When deriving the angular speed and angular acceleration, the outcome is consequently unsatisfactory. To tackle that unicity issue, the great properties of quaternion conversion are applied to the set of angles. Subsequently, the \ac{RPY} angles are filtered with a continuity algorithm (cf. Algorithm \ref{alg:method:continuity}).
 
-The quaternion filter consists in three steps:
+The quaternion filter consists of three steps:
 
 \begin{itemize}
-  \item convert the \textsc{Euler}'s angles to quaternion,
+  \item convert the \textsc{Euler}'s angles to quaternions,
   \item compute the rotation matrix out of the quaternion vector,
-  \item convert the rotation matrix to a \ac{RPY} set of angle.
+  \item convert the rotation matrix to a \ac{RPY} set of angles.
 \end{itemize}
 
 \begin{algorithm}
@@ -57,9 +59,9 @@ The quaternion filter consists in three steps:
 
 \subsection{\textsc{Savitzky–Golay} filter}
 
-Therefore, it is needed to derived the linear and angular velocity and the linear and angular speed from the \ac{TCP} pose. First tests conducted with simple derivation method using $f'(t) \approx  [f(t+\delta) - f(t)] / \delta$ does not provide good results (cf. comparison in \ref{section:results:pre-processing}). The noise induced in the \ac{TCP} pose measurement generates spikes in the derivated signal. One approach is to use \textsc{Savitzky–Golay} filter to guatantee smooth derivated signals.
+Therefore, it is needed to derive the linear and angular velocity and the linear and angular speed from the \ac{TCP} pose. First tests conducted with simple derivation method using $f'(t) \approx  [f(t+\delta) - f(t)] / \delta$ does not provide good results (cf. comparison in \ref{section:results:pre-processing}). The noise-induced in the \ac{TCP} pose measurement generates spikes in the derivated signal. One approach is to use \textsc{Savitzky–Golay} filter to guarantee smooth derivated signals.
 
-The method was created in 1964 by A. \textsc{Savitzky} M. J. E. \textsc{Golay} \cite{Savitzky1964} in their seminal article. The smoothing of a signal or its derivative is achieved with a convolution process. Sub-sets of adjacent data points are fitted to a low-degree polynomial by the method of linear \ac{LS} (cf. \ref{fig:method:savit}). Convoluation coefficients are then use to give estimates of the smoothed signal, (or derivatives of the smoothed signal) at the central point of each sub-set.
+The method was created in 1964 by A. \textsc{Savitzky} M. J. E. \textsc{Golay} \cite{Savitzky1964} in their seminal article. The smoothing of a signal or its derivative is achieved with a convolution process. Sub-sets of adjacent data points are fitted to a low-degree polynomial by the method of linear \ac{LS} (cf. \ref{fig:method:savit}). Convolution coefficients are then used to give estimates of the smoothed signal, (or derivatives of the smoothed signal) at the central point of each sub-set.
 
 \begin{figure}[h]
   \centering
@@ -72,7 +74,7 @@ The method was created in 1964 by A. \textsc{Savitzky} M. J. E. \textsc{Golay} \
 
 As mentioned above, the \ac{FT} signal is slightly noisy. As the frequency of the noise is relatively high, it is considered to use a low-pass filter. The choice fell on the \textsc{Butterworth} filter (cf. \cite{filter1923}), a signal processing filter which is having a flat frequency response in the passband can be termed as Butterworth filter and is also called as a maximally flat magnitude filter (cf. \ref{fig:method:butter}).
 
-Besides, this low-pass filter is applied twice, once forward and once backwards. The combined filter has zero phase and a filter order twice that of the original \cite{SciPy2019}.
+Besides, this low-pass filter is applied twice, once forward and once backward. The combined filter has zero phase and a filter order twice that of the original \cite{SciPy2019}.
 
 \begin{figure}[h]
   \centering
@@ -83,11 +85,11 @@ Besides, this low-pass filter is applied twice, once forward and once backwards.
 
 \section{Calibration of the robot manipulator}
 
-In the section \ref{section:pre-pro}, it was mentioned that the matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of signal measurements. One can notice, that several robot manipulator and gripper constants are necessary to completely compute the matrices. In particular, the mass of the tool $m_1$, its center of mass $c_1$, its tensor of inertia $I_1$ and the suction cup properties: the spring coefficient $k$, damping ratio $\lambda$ are needed.
+In the section \ref{section:pre-pro}, it was mentioned that the matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of signal measurements. One can notice, that several robot manipulator and gripper constants are necessary to completely compute the matrices. In particular, the mass of the tool $m_1$, the center of mass $c_1$, the tensor of inertia $I_1$ and the suction cup properties are needed.
 
 \subsection{Tool inertial parameters}
+\label{method:calib:tool}
 
-The tool inertial parameters ($\varphi_1$) can be estimated by using the rigid model defined in section \ref{section:background:rigid}. Axes of inertia of the tool can be \textit{excited} by moving the tool in different directions, at different linear and rotational speeds. \textsc{Kubus} \textit{et al.} \cite{Kubus2008} advice to design sinusoidal excitation trajectories in the joint space. They can be optimized by minimizing the sensitivity of $\varphi_1$ to errors in $A$ (cf. equation \ref{background:eq:inertia_estimation}). The project does not focus on the design of such trajectories. Consequently, the motion is a simple trapezoidal speed profile in multiple directions and about multiple axes of rotation (cf. \ref{fig:method:trajectory}).
 
 \begin{figure}[h]
 \centering
@@ -107,11 +109,13 @@ The tool inertial parameters ($\varphi_1$) can be estimated by using the rigid m
 \label{fig:method:trajectory}
 \end{figure}
 
+The tool inertial parameters ($\varphi_1$) can be estimated by using the rigid model defined in section \ref{section:background:rigid}. Axes of inertia of the tool can be \textit{excited} by moving the tool in different directions, at different linear and rotational speeds. \textsc{Kubus} \textit{et al.} \cite{Kubus2008} advice to design sinusoidal excitation trajectories in the joint space. They can be optimized by minimizing the sensitivity of $\varphi_1$ to errors in $A$ (cf. equation \ref{background:eq:inertia_estimation}). The project does not focus on the design of such trajectories. Consequently, the motion is a simple trapezoidal speed profile in multiple directions and about multiple axes of rotation (cf. \ref{fig:method:trajectory}).
+
 \subsection{Spring constant and damper coefficient estimation}
 
-The \ac{RMSD} model strongly depends on a good estimation of the spring constant and damper coefficient. There is a broad range of suction cups of different diameters, lengths, materials –and colors (cf. \ref{fig:method:suction-cups}). Therefore there is as many combinations of spring and damper constants.
+The \ac{RMSD} model strongly depends on a good estimation of the spring constant and damper coefficient. There is a broad range of suction cups of different diameters, lengths, materials –and colors (cf. \ref{fig:method:suction-cups}). Therefore, there are as many combinations of spring and damper constants.
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[scale=0.4]{\main/figures/suction_cup.jpg}
   \caption{A huge diversity of suction cups. Image from \cite{Piab2020}.}
@@ -140,20 +144,6 @@ From the torque \ac{FPD} applied to the \{item\}, an \ac{ODE} (cf. equation \ref
  \ddot{\theta} + \frac{\lambda}{I_{2xx}} \dot{\theta} + \frac{k + m_2 c (a_z + g)}{I_{2xx}} \theta = - \frac{m_2 c}{I_{2xx}} a_y
 \end{equation}
 
-It is rather complicated to have an accurate feedback on the estimation of such properties. There is no abacus from suction cup supplier to validate the result. Thus, the validation method consists of comparing the estimated force and torque signals with the measured \ac{FT} ones with a different standard item.
-
-\section{Inertial parameters estimation strategy}
-
-Once that every needed parameters are estimated and that every signals are smoothed, the objective function can be derived. Based on the two estimation methods presented in the section \ref{section:estimation}, an offline and an online process are figured.
-
-\subsection{Offline estimation}
-
-The offline option is to record the \ac{FT} and \ac{TCP} pose signals as soon as the item is grasped and stop being in contact with the source container or any other objects in the environment. Recording is then stopped when the mass estimation is needed, the signals filtered and the mass computed through the least squared algorithm applied to the equation \ref{eq:background:stacked-ls} from section \ref{subsection:ls}.
-
-\subsection{Online estimation}
-
-The online option consists of outputing the estimated mass at a specific rate.
-
-
+It is rather complicated to have accurate feedback on the estimation of such properties. There is no abacus from suction cup suppliers to validate the result. Thus, the validation method consists of comparing the estimated force and torque signals with the measured \ac{FT} ones with a different standard item.
 
 \end{document}

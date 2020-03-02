@@ -23,7 +23,7 @@
 	\subsection*{Examiner}
 	Joakim GUSTAFSON – KTH Royal Institute of Technology
 
-	\subsection*{Supervisor}
+	\subsection*{Supervisors}
 	Piotr POLATOWSKI – NoMagic\\
 	Patric JENSFELT – KTH Royal Institute of Technology
 	~
@@ -38,36 +38,36 @@
 \chapter*{Abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The estimation of the mass of payloads, which are grasped by a vacuum cup gripper, may benefit several robotics applications, e.g.: object recognition, force-guided motions, hard failure detection. On the one hand, these applications require accurate, robust and fast estimation of the mass. On the other hand, measurement procedures might not break time-optimized motions of the robot. Existing methods, however, make use of \textit{exciting trajectories} that cannot be implemented in the context of industrial operations. Besides, no comparable projects have tackled the mechanical behavior of suction cup gripper.
+The estimation of the mass of payloads, which are grasped by a vacuum cup gripper, may benefit several robotics applications, e.g.: object recognition, force-guided motions, hard failure detection. These applications require accurate, robust and fast estimation of the mass. Existing methods use standard kinetic batch least-squares techniques and \textit{exciting trajectories} that cannot be implemented in the context of time-optimized industrial operations. Besides, no comparable projects have tackled the mechanical behavior of suction cup gripper.
 
-This project proposes a method to measure the mass of the payload grasped by a robotic manipulator by estimating its inertial parameters. A mechanical model of the suction cup is derived to approximate the inertial parameters with a Recursive Total Least Squares algorithm. A calibration process, based on the dynamic model, is developed to initialize the inner properties of the tool and the vacuum cup.
+This project proposes a method to measure the mass of the payload grasped by a robotic manipulator by estimating its inertial parameters. A mechanical model of the vacuum cup is derived to approximate the inertial parameters with a Recursive Total Least Squares algorithm. A calibration process, based on the dynamic model, is developed to determine the inner properties of the tool and the vacuum cup.
 
-The approach was evaluated on a database of a \textit{pick-and-place} robot operating in an \textit{e-commerce} warehouse and with laboratory robots. The results show that the method can accurately estimate the mass for typical scenarios, although the performance decreases for high speed and short data recording duration.
+The approach was evaluated on a database of a \textit{pick-and-place} robot operating in an \textit{e-commerce} warehouse. The results show that the method can accurately estimate the mass for typical scenarios, although the performance decreases for higher speed tasks and shorter data recording duration.
 
-\subsection*{Keywords}
-
-vacuum suction cup, robotic manipulator, inertial parameters, Least-Squares, rotational mass-spring-damper, dynamics, Recursive Total Least Squares
+% \subsection*{Keywords}
+%
+% vacuum suction cup, robotic manipulator, inertial parameters, Least-Squares, rotational mass-spring-damper, dynamics, Recursive Total Least Squares
 
 \newpage
 \thispagestyle{plain}
 
 \chapter*{Sammanfattning}
 
-Uppskattningen av massan av nyttolaster, som greppas av en vakuumkoppgripare, kan gynna flera robotapplikationer, t.ex. objektigenkänning, kraftledda rörelser, detektering av grova fel. Å ena sidan kräver dessa applikationer noggrann, robust och snabb massuppskattning. Å andra sidan kanske mätprocedurer inte bryter tidsoptimerade rörelser hos roboten. Befintliga metoder använder sig dock av \textit{exciterande banor} som inte kan implementeras inom ramen för industriell verksamhet. Dessutom har inga jämförbara projekt tacklat sugkoppens mekaniska beteende.
+Massuppskattningen av nyttolaster, som greppas av en vakuumkoppgripare, kan gynna flera robotapplikationer, t.ex. objektigenkänning, kraftledda rörelser, detektering av grova fel. Dessa applikationer kräver noggrann, robust och snabb massuppskattning. Befintliga metoder använder vanliga kinetiska batch  minst kvadratisk teknikerna och \textit{exciterande banor} som inte kan implementeras inom ramen för tidsoptimerad industriell verksamhet. Dessutom har inga jämförbara projekt tacklat sugkoppens mekaniska beteende.
 
 Detta projekt föreslår en metod för att mäta massan på nyttolasten som grips av en robotmanipulator genom att uppskatta dess tröghetsparametrar. En mekanisk modell av sugkoppen är härledd för att uppskatta tröghetsparametrarna med en Rekursiv Totala Minsta Kvadrat-algoritm. En kalibreringsprocess, baserad på den dynamiska modellen, utvecklas för att initialisera de inre egenskaperna hos verktyget och vakuumkoppen.
 
-Metoden utvärderades på en databas över en \textit{pick-and-place} robot som fungerar i ett e-handelslager och med laboratorieroboter. Resultaten visar att metoden exakt kan uppskatta massan för typiska scenarier, även om prestandan minskar för hög hastighet och kort datainspelningstid.
+Metoden utvärderades på en databas över en \textit{pick-and-place} robot som fungerar i ett e-handelslager. Resultaten visar att metoden exakt kan uppskatta massan för typiska scenarier, även om prestandan minskar för uppgifter med högre hastighet och kortare dataregistrering.
 
-\subsection*{Nyckelord}
-
-vakuum sugkopp, robotmanipulator, tröghetsparametrar, Minsta Kvadratmetoden, massa-fjäder-spjäll, dynamik, Rekursiv Totala Minsta Kvadratmetoden
+% \subsection*{Nyckelord}
+%
+% vakuum sugkopp, robotmanipulator, tröghetsparametrar, Minsta Kvadratmetoden, massa-fjäder-spjäll, dynamik, Rekursiv Totala Minsta Kvadratmetoden
 
 \newpage
 \thispagestyle{plain}
 \chapter*{Acknowledgements}
 
-First off, I want to thank the \textsc{Nomagic} team for a warm welcome during that mild Polish winter. Thank you Piotr for the advice, guidance, and everyday support. Thank Marek, Kacper, and Marek for the trust you have placed in me to produce my thesis study in the framework of an exceptional technological, scientific and multicultural project.
+First off, I want to thank the \textsc{Nomagic} team for the warm welcome during that mild Polish winter. Thank you Piotr for the advice, guidance, and everyday support. Thank Marek, Kacper, and Marek for the trust you have placed in me to produce my thesis study in the framework of an exceptional technological, scientific and multicultural project.
 
 Thanks to Patric \textsc{Jensfelt}, for being my supervisor, for inculcating me with the \textit{spirit} of a Master Thesis, for the organization of the very valuable meetings and, for reading my misspelled reports.
 

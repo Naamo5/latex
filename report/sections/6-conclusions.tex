@@ -13,14 +13,18 @@ In this chapter, the whole project is summarized and conclusions are drawn. Futu
 
 In this project, a framework to estimate the mass of a robotic manipulator payload by the mean of an \ac{FT} sensor is proposed. Two specific topics are addressed: the particular case of a vacuum gripper and the capacity of the process to operate online.
 
-Therefore, mechanical models of the suction cup are designed with first, a rigid body assumption and secondly, a rotational harmonic model. In order to measure the mass from the kinetic signals, two approaches are suggested: the simple least-squares algorithm and a recursive total least-squares method. In addition, a calibration procedure is developed to compute the mechanical parameters of the gripper that are necessary for the abovementioned processes.
+Therefore, mechanical models of the suction cup are designed with first, a rigid body assumption and secondly, a rotational harmonic model. To measure the mass from the kinetic signals, two approaches are suggested: the simple least-squares algorithm and a recursive total least-squares method. Besides, a calibration procedure is developed to compute the mechanical parameters of the gripper that are necessary for the abovementioned processes.
 
-The method is evaluated with a dataset of runs of a robot operating on production site. The tests executed show that the system performance are satisfactory. The average absolute error is low enough to be able to detect hard failures and the mass output can be a crucial parameters in object recognition process. However, the evaluation reveal that the performance decreases noticeably when it comes to higher speed operations with shorter recording time.
+The method is evaluated with a dataset of runs of a robot operating on the production site. For this specific use case, the tests executed show that the performance of the approach is satisfactory. The average absolute error is low enough to be able to detect hard failures and the mass output can be a crucial parameter in object recognition processes. However, the evaluation reveals that the performance decreases noticeably when it comes to higher speed operations with shorter recording time.
 
-In a nutshell, the thesis provide a method that can be used in industry to increase the among of information gathered by the robotic system and therefore improve the reliability and the performance of
+In a nutshell, the thesis provides a method that can be used in industry to increase the among of information gathered by the robotic system and therefore improve the reliability and the performance of the system.
 
 \section{Future Work}
 
-\textit{TODO}
+Concerning the calibration, the mass of the tool can be more precisely estimated before starting \textit{exciting trajectories}. Hence, the mass could be removed from the parameters to calibrate and be used as a ground-truth value. The trajectories could also be improved and optimized following the method introduced by \textsc{Kubus} \textit{et al.} in \cite{Kubus2008}.
+
+As mentioned at the end of the results chapter, using the \ac{RGTLS} with \ac{NCE} could be a huge improvement in terms of precision and assessment of the outputs. Being able to trust or distrust the estimated mass might avoid giving rise to false positive hard failure alert.
+
+The current way to compute of the orientation of the item w.r.t.\ the \ac{TCP} is sub-optimal as mentioned in sections \ref{results:tote} and \ref{chapter:method}. The next step would be to output the orientation in an online fashion. This would be a great step toward a wobbling-based motion control.
 
 \end{document}
