@@ -9,9 +9,9 @@
 
 This chapter presents the inertial parameters estimation approach starting with the signal pre-processing, followed by the robot manipulator calibration and the objective function computation.
 
-The overall idea is to compute the objective function matrices so as to estimate the parameters with a \ac{LS} method. A crucial step is the upstream calibration of the tool and gripper parameters. They are non-obvious and non documented properties that have to be estimated before running the overall process. An overview of the framework of the estimation of the inertial parameters is depicted in the Figure \ref{fig:method:overall}.
+The overall idea is to compute the objective function matrices so as to estimate the parameters with a Least-Squares (LS) method. A crucial step is the upstream calibration of the tool and gripper parameters. They are non-obvious and non documented properties that have to be estimated before running the overall process. An overview of the framework of the estimation of the inertial parameters is depicted in Figure \ref{fig:method:overall}.
 
-The \ac{FT} and \ac{TCP} pose signals are recorded as soon as the item is grasped and stop being in contact with the source container or any other objects in the environment. The recording is then stopped when the mass estimation is needed. If the optimization is made offline, the signals are filtered and cached afterward. Them, the mass is computed through the least squared algorithm applied to the equation \ref{eq:background:stacked-ls} from section \ref{subsection:ls}. If the optimization is made online, the signals are filtered and cached at a lower rate than the robot one. At each process step, the orientation of the item w.r.t.\ the tool is computed and the \ac{RTLS} algorithm outputs and outputs an estimation. Note that in the evaluations, the orientation is computed in an offline manner. The online implementation of the calculation of the orientation is not part of the scope of the thesis.
+The Force/Torque (FT) and Tool Center Point TCP pose signals are recorded as soon as the item is grasped and stop being in contact with the source container or any other objects in the environment. The recording is then stopped when the mass estimation is needed. If the optimization is made offline, the signals are filtered and cached afterward. Then, the mass is computed through the least squared algorithm applied to equation \ref{eq:background:stacked-ls} from section \ref{subsection:ls}. If the optimization is made online, the signals are filtered and cached at a lower rate. At each process step, the orientation of the item w.r.t.\ the tool is computed and the Recursive Total Least-Squares (RTLS) algorithm outputs an estimation. Note that in the evaluations, the orientation is computed in an offline manner. The online implementation of the calculation of the orientation is not within the scope of the thesis.
 
 \begin{figure}[h]
   \centering
@@ -23,7 +23,7 @@ The \ac{FT} and \ac{TCP} pose signals are recorded as soon as the item is graspe
 \section{Signal Pre-processing}
 \label{section:pre-pro}
 
-In the chapter \ref{chapter:background}, two models of the \{item\} and \{tool\} systems have been developed. The purpose is to compute the matrices of the equation and then use one or another optimization process. The matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of the \ac{FT} sensor measurement and the position and orientation of the \ac{TCP}. One point must be made: signals cannot be merely input in the optimization procedures. Both \ac{FT} measurements and simple method for derivation leads to noisy signals. Consequently, measured signals have to be pre-processed.
+In chapter \ref{chapter:background}, two models of the \{item\} and \{tool\} systems have been developed. The purpose is to compute the matrices of the equation and then use one or another optimization process. The matrices $A$ and $B$ (respectively $A'$ and $B'$) are computed out of the \ac{FT} sensor measurements and the position and orientation of the \ac{TCP}. One point must be made: signals cannot be merely input in the optimization procedures. Both \ac{FT} measurements and kinematic signals derived from position and orientation leads to noisy signals. Consequently, measured signals have to be pre-processed.
 
 \subsection{\textsc{Euler}'s angles continuity filter}
 \label{subsection:method:euler-filter}
@@ -59,9 +59,9 @@ The quaternion filter consists of three steps:
 
 \subsection{\textsc{Savitzky–Golay} filter}
 
-Therefore, it is needed to derive the linear and angular velocity and the linear and angular speed from the \ac{TCP} pose. First tests conducted with simple derivation method using $f'(t) \approx  [f(t+\delta) - f(t)] / \delta$ does not provide good results (cf. comparison in \ref{section:results:pre-processing}). The noise-induced in the \ac{TCP} pose measurement generates spikes in the derivated signal. One approach is to use \textsc{Savitzky–Golay} filter to guarantee smooth derivated signals.
+It is needed to derive the linear and angular velocity and the linear and angular speed from the \ac{TCP} pose. First tests conducted with simple derivation method using $f'(t) \approx  [f(t+\delta) - f(t)] / \delta$ does not provide good results (cf. comparison in \ref{section:results:pre-processing}). The noise induced in the \ac{TCP} pose measurement generates spikes in the derivated signal. One approach is to use the \textsc{Savitzky–Golay} filter to guarantee smooth derivated signals.
 
-The method was created in 1964 by A. \textsc{Savitzky} M. J. E. \textsc{Golay} \cite{Savitzky1964} in their seminal article. The smoothing of a signal or its derivative is achieved with a convolution process. Sub-sets of adjacent data points are fitted to a low-degree polynomial by the method of linear \ac{LS} (cf. \ref{fig:method:savit}). Convolution coefficients are then used to give estimates of the smoothed signal, (or derivatives of the smoothed signal) at the central point of each sub-set.
+The method was created in 1964 by A. \textsc{Savitzky} and M. J. E. \textsc{Golay} \cite{Savitzky1964} in their seminal article. The smoothing of a signal or its derivative is achieved with a convolution process. Sub-sets of adjacent data points are fitted to a low-degree polynomial by the method of linear \ac{LS} (cf. \ref{fig:method:savit}). Convolution coefficients are then used to give estimates of the smoothed signal, (or derivatives of the smoothed signal) at the central point of each sub-set.
 
 \begin{figure}[h]
   \centering
@@ -72,9 +72,9 @@ The method was created in 1964 by A. \textsc{Savitzky} M. J. E. \textsc{Golay} \
 
 \subsection{Low-pass filter}
 
-As mentioned above, the \ac{FT} signal is slightly noisy. As the frequency of the noise is relatively high, it is considered to use a low-pass filter. The choice fell on the \textsc{Butterworth} filter (cf. \cite{filter1923}), a signal processing filter which is having a flat frequency response in the passband can be termed as Butterworth filter and is also called as a maximally flat magnitude filter (cf. \ref{fig:method:butter}).
+As mentioned above, the \ac{FT} signal is slightly noisy. As the frequency of the noise is relatively high, it is considered to use a low-pass filter. The choice fell on the \textsc{Butterworth} filter (cf. \cite{filter1923}), a signal processing filter which is having a flat frequency response in the passband. It is also called maximally flat magnitude filter (cf. \ref{fig:method:butter}).
 
-Besides, this low-pass filter is applied twice, once forward and once backward. The combined filter has zero phase and a filter order twice that of the original \cite{SciPy2019}.
+This low-pass filter is applied twice, once forward and once backward. The combined filter has zero phase and a filter order twice that of the original \cite{SciPy2019}.
 
 \begin{figure}[h]
   \centering
@@ -113,7 +113,7 @@ The tool inertial parameters ($\varphi_1$) can be estimated by using the rigid m
 
 \subsection{Spring constant and damper coefficient estimation}
 
-The \ac{RMSD} model strongly depends on a good estimation of the spring constant and damper coefficient. There is a broad range of suction cups of different diameters, lengths, materials –and colors (cf. \ref{fig:method:suction-cups}). Therefore, there are as many combinations of spring and damper constants.
+The Rotational Mass Spring Damper (RMSD) (cf. section \ref{section:background:rmsd}) model strongly depends on a good estimation of the spring constant and damper coefficient. There is a broad range of suction cups of different diameters, lengths, materials –and colors (cf. figure \ref{fig:method:suction-cups}). Therefore, there are as many combinations of spring and damper constants.
 
 \begin{figure}[H]
   \centering
@@ -122,7 +122,7 @@ The \ac{RMSD} model strongly depends on a good estimation of the spring constant
   \label{fig:method:suction-cups}
 \end{figure}
 
-The idea is to make use of the equations of the \ac{RMSD} system to extract the constants $k$ and $\lambda$. For that purpose, a plane system is considered, with a limited \ac{DoF}. The \textsc{Newton-Euler} equations are derived for each subsystem \{item\} and \{tool\} to compute the orientation (cf. equation \ref{eq:method:force_2d}) of the item about the tool as a function of the force measured by the \ac{FT} sensor and the inertial parameters of the assembly (cf. details in the Appendix \ref{appendix:plane-rmsd}).
+The idea is to make use of the equations of the \ac{RMSD} system to extract the constants $k$ and $\lambda$. For that purpose, a plane system is considered, with a limited Degree of Freedom DoF. The \textsc{Newton-Euler} equations are derived for each subsystem \{item\} and \{tool\} to compute the orientation (cf. equation \ref{eq:method:force_2d}) of the item about the tool as a function of the force measured by the \ac{FT} sensor and the inertial parameters of the assembly (cf. details in the Appendix \ref{appendix:plane-rmsd}).
 
 \begin{equation}
   \label{eq:method:force_2d}
@@ -135,15 +135,15 @@ The idea is to make use of the equations of the \ac{RMSD} system to extract the 
   \end{pmatrix}
 \end{equation}
 
-Therefore, the vacuum cup is calibrated with a standard object of known mass $m_2$, center of mass $c_2$ and inertia tensor $I_2$. This object can be a solid cuboid of aluminium which dimensions and mass are known. The robot manipulator and the suction cup are then \textit{excited} with a similar flat trajectory than the one depicted in the figure \ref{fig:method:trajectory}. One can notice here that the system is very similar to an harmonic pendulum. Hence, the transient of the system should provide sufficient information to estimate the two parameters.
+Therefore, the vacuum cup is calibrated with a standard object of known mass $m_2$, center of mass $c_2$ and inertia tensor $I_2$. This object can be a solid cuboid of aluminium which dimensions and mass are known. The robot manipulator and the suction cup are then \textit{excited} with a similar flat trajectory than the one depicted in figure \ref{fig:method:trajectory}. One can notice here that the system is very similar to an harmonic pendulum. Hence, the transient of the system should provide sufficient information to estimate the two parameters.
 
-From the torque \ac{FPD} applied to the \{item\}, an \ac{ODE} (cf. equation \ref{eq:method:torque_2d}) is obtained. As, the angle $\theta$ can be computed, the constants are merely estimated with a \ac{LS} algorithm.
+From the torque Fondamental Principle of Dynamics (FDP) applied to the \{item\}, an \ac{ODE} (cf. equation \ref{eq:method:torque_2d}) is obtained. As, the angle $\theta$ can be computed, the constants are merely estimated with a \ac{LS} algorithm.
 
 \begin{equation}
   \label{eq:method:torque_2d}
  \ddot{\theta} + \frac{\lambda}{I_{2xx}} \dot{\theta} + \frac{k + m_2 c (a_z + g)}{I_{2xx}} \theta = - \frac{m_2 c}{I_{2xx}} a_y
 \end{equation}
 
-It is rather complicated to have accurate feedback on the estimation of such properties. There is no abacus from suction cup suppliers to validate the result. Thus, the validation method consists of comparing the estimated force and torque signals with the measured \ac{FT} ones with a different standard item.
+It is rather complicated to have accurate feedback on the estimation of such properties. There is no ground-truth estimation from suction cup suppliers to validate the result. Thus, the validation method consists of comparing the estimated force and torque signals with the measured \ac{FT} ones with a different standard item.
 
 \end{document}

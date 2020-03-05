@@ -1,13 +1,13 @@
-% \documentclass[tikz]{standalone}
+\documentclass[tikz]{standalone}
 
-% \usetikzlibrary{patterns}
+\usetikzlibrary{patterns}
 
 \tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
 %default radius will be 1pt.
 cross/.default={4pt}}
 
 
-% \begin{document}
+\begin{document}
 \begin{tikzpicture}[thick,>=latex,->]
 
 
@@ -32,6 +32,10 @@ cross/.default={4pt}}
 \draw[->] (0.0,5.5) -- (-1.4,5.5) node[below]{$\overrightarrow{y_1}$};
 \draw[->] (0.0,5.5) -- (0.0,4.1);
 \node[left] at (-0.3,4.1) {$\overrightarrow{z_1}$};
+
+\draw[->] (0.0,0.0) -- (-1.4,0.0) node[below]{$\overrightarrow{y_2}$};
+\draw[->] (0.0,0.0) -- (0.0,-1.4);
+\node[left] at (-0.3,-1.1) {$\overrightarrow{z_2}$};
 
 % \draw[dash dot] (0,0) -- (2.55,0) node[below]{$\overrightarrow{y_0}$};
 % \draw[dash dot] (0,0) -- (2.5, .42) node[above]{$\overrightarrow{y_2}$};
@@ -65,4 +69,4 @@ cross/.default={4pt}}
 \end{scope}
 
 \end{tikzpicture}
-% \end{document}
+\end{document}

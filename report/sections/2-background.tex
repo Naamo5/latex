@@ -12,11 +12,11 @@ This chapter introduces the hardware setup, the mechanical models and the mathem
 \section{Hardware setup}
 \label{section:hardware}
 
-Below are described the hardware equipment provided by the host organization. It comprises the robotic arm, the \ac{FT} sensor attached to the last joint, the gripper tool, and its \textit{suction cup}. A typical motion of the robot during \textit{pick-and-place} operation is described. Also, key physical behaviors of the system that influence the design of the mechanical models are highlighted.
+Below are described the hardware equipment provided by the host organization. It comprises the robotic arm, the Force/Torque (FT) sensor attached to the last joint, the gripper tool, and its \textit{suction cup}. A typical motion of the robot during \textit{pick-and-place} operation is described. Also, key physical behaviors of the system that influence the design of the mechanical models are highlighted.
 
 \subsection{Robotic manipulator}
 
-Two models of 6 \ac{DoF} robotic arms have been used throughout the project: UR10 and UR10e from \textsc{Universal Robot}\texttrademark \ (cf. Figure \ref{fig:background:stanislaw}). They are fairly similar since they can both span an area of $1300 \si{\milli\meter}$ around them and handle payloads over $10 \si{\kilo\gram}$ –as suggested by the name. The particularity of UR10e is its built-in \ac{FT} sensor and faster communication ($500 \si{\hertz}$ by contrast with $125 \si{\hertz}$ of the UR10).
+Two models of 6 Degrees of Freedom (DoF) robotic arms have been used throughout the project: UR10 and UR10e from \textsc{Universal Robot}\texttrademark \ (cf. Figure \ref{fig:background:stanislaw}). They are fairly similar since they can both span an circular area with radius $1300 \si{\milli\meter}$ around them and handle payloads over $10 \si{\kilo\gram}$ –as suggested by the name. The particularity of UR10e is its built-in \ac{FT} sensor and faster communication ($500 \si{\hertz}$ by contrast with $125 \si{\hertz}$ of the UR10).
 
 \begin{figure}[h]
   \centering
@@ -27,7 +27,7 @@ Two models of 6 \ac{DoF} robotic arms have been used throughout the project: UR1
 
 \subsection{\ac{FT} sensor}
 
-Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e and the \textit{Gamma} \ac{FT} sensor from ATI\texttrademark. They are both mounted on the last joint of both robotic manipulators (cf. Figure \ref{fig:background:tool}). The ATI\texttrademark \ sensor is mostly used throughout the evaluation of the different approaches. Although its range of measurement is narrower than UR10e one, it has better resolution properties (cf. Table \ref{tab:background:ft-sensor}).
+Two \ac{FT} sensors are used within the project. The built-in sensor of UR10e and the \textit{Gamma} \ac{FT} sensor from ATI\texttrademark. They are both mounted on the last joint of both robotic manipulators (cf. Figure \ref{fig:background:tool}). The ATI\texttrademark \ sensor is the primary sensor throughout the evaluation of the different approaches. Although its range of measurement is narrower than UR10e one, it has better resolution properties (cf. Table \ref{tab:background:ft-sensor}).
 
 \begin{table}[h]
   \begin{center}
@@ -56,7 +56,7 @@ The end-effector of the robot fulfills the functions of grasping a wide range of
   \item an ATI\texttrademark \ sensor which is screwed on the wrist of the robotic manipulator,
   \item an extension tube to reach deep totes or carts,
   \item a second cylinder inserted in the previous one with a safety-spring,
-  \item a vacuum suction cup linked to the hydraulic supply.
+  \item a vacuum suction cup linked to the pneumatic supply.
 \end{itemize}
 
 \begin{figure}[h]
@@ -82,7 +82,7 @@ A suction cup with a springy extension is mounted on the tool. It allows a very 
 \caption{Loaded}
 \label{fig:background:suction-loaded}
 \end{subfigure}
-\caption{Vaccum suction cup gripper. The yellow part can twist with its srping shape in order to grasp tilted item. When a item is handled, the suction gripper is compressed by the air pressure. Note that the \ac{TCP} position is computed as the position of the extremity of the cup when it is not compressed. Images from the author.}
+\caption{Vaccum suction cup gripper. The yellow part can twist with its srping shape in order to grasp tilted item. When a item is handled, the suction gripper is compressed by the air pressure. Note that the Tool Center Point (TCP) position is computed as the position of the extremity of the cup when it is not compressed. Images from the author.}
 \label{fig:background:suction}
 \end{figure}
 
@@ -95,22 +95,22 @@ take an item from a given initial pose to a final pose \cite{Angeles2006}. This 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.08]{\main/figures/tote_cycle_indexed.png}
-  \caption{Trajectory of the \ac{TCP} during a \textit{pick-and-place} cycle. The tool goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in the direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, the trajectory is blended for the same reasons.}
+  \caption{Trajectory of the Tool Center Point (TCP) during a \textit{pick-and-place} cycle. The tool goes in the tote until the contact with the item to grasped is made. Then it goes vertically up until it reaches a safety position where the item cannot hit the side of the tote or other items. Then the tool moves in the direction of the target tote to drop the item. The descent is slightly oblique to reduce jerk and optimize regarding the time. When it changes direction, the trajectory is blended for the same reasons.}
   \label{fig:background:tote_cycle}
 \end{figure}
 
-The drawback of using a suction cup for grasping is that the mechanical link between the tool and the item is not rigid. Heavy items and objects with large dimensions are very likely to oscillate during the motion. In logistic warehouses, robots often handle objects over half a kilo and longer dimension over $0.3 \si{\meter}$. Observations show that the angle between the tool and the item may vary significantly (up to $10 \si{\degree}$). Wobbling has a knock-on effect on \ac{FT} measurement. While there should not be any oscillations of the torque in a rigid model (for more detail, please refer to Section \ref{section:mechanical-models}), significant variations can be seen in actual measurement (cf. torque signal in the results section:   Figure \ref{fig:results:calibration:suction-torque-x}).
+The drawback of using a suction cup for grasping is that the mechanical link between the tool and the item is not rigid. Heavy items and objects with large dimensions are very likely to oscillate during the motion. In logistic warehouses, robots often handle objects over half a kilo and longer dimension over $0.3 \si{\meter}$. Observations show that the angle between the tool and the item may vary significantly (up to $10 \si{\degree}$). Wobbling has a knock-on effect on \ac{FT} measurements. While there should not be any oscillations of the torque in a rigid model (for more detail, please refer to Section \ref{section:mechanical-models}), significant variations can be seen in actual measurement (cf. torque signal in the results section:   Figure \ref{fig:results:calibration:suction-torque-x}).
 
-When it comes to physically model the system, different level of details can be taken into account. The first approach is to consider a rigid link between the tool and the item. The second approach is to fit an appropriate mechanical model considering the number of \ac{DoF} and the damped harmonic oscillator theory.
+When it comes to physically modelling the system, different level of details can be taken into account. The first approach is to consider a rigid link between the tool and the item. The second approach is to fit an appropriate mechanical model considering the number of \ac{DoF} and the damped harmonic oscillator theory.
 
 \section{Mechanical models}
 \label{section:mechanical-models}
 
-A lot of effort has been put into estimating the dynamic parameters of each rigid body link of robotic manipulators during the late century spent. An \textit{et al.} \cite{An1985} have developed a method to estimate the mass, the location of the center of mass and the moment of inertia of every link of a robotic arm. The method uses the joint torques and the calculation of the kinematics of the manipulator while moving. This work provides a sound method to derive the dynamic equations. Liu \textit{et al.} enhanced this approach in 1998 \cite{Liu1998} by using a proper filtering method for velocity that avoids difficult-to-measure acceleration measurements. Both teams were working with robotic manipulators mounted \textit{on} a six-axis \ac{FT} sensor.
+A lot of effort has been put into estimating the dynamic parameters of each rigid body link of robotic manipulators during the late century. An \textit{et al.} \cite{An1985} have developed a method to estimate the mass, the location of the center of mass and the moment of inertia of every link of a robotic arm. The method uses the joint torques and the calculation of the kinematics of the manipulator while moving. This work provides a sound method to derive the dynamic equations. Liu \textit{et al.} enhanced this approach in 1998 \cite{Liu1998} by using a proper filtering method for velocity that avoids difficult-to-measure acceleration measurements. Both teams were working with robotic manipulators mounted \textit{on} a six-axis \ac{FT} sensor screwed on a stand. The configuration is different in this project as the sensor is mounted on the last wrist. It is therefore easier to access the mass of payload as none of the joints as to be considered.
 
-Nowadays, more compact \ac{FT} sensors are developed. Also, more complex use cases require to quantify robot interactions with its environment. Therefore, it is possible to mount \ac{FT} sensors on the last wrist and benefit from a more sensible measurement. A several research project has taken advantage of that and has developed payload inertial parameters estimation methods \cite{Kubus2008, Kubus2007, Kubus2014, Farsoni2018}. These methods similarly derive \textsc{Newton-Euler} equations to isolate a set of 10 inertial parameters: the mass, the center of mass and the independent inertia tensor coefficients.
+Nowadays, more compact \ac{FT} sensors are developed. Also, more complex use cases require to quantify robot interactions with its environment. Therefore, it is possible to mount \ac{FT} sensors on the last wrist and benefit from a more sensitive measurement. Several research projects have taken advantage of that and have developed payload inertial parameters estimation methods \cite{Kubus2008, Kubus2007, Kubus2014, Farsoni2018}. These methods similarly derive \textsc{Newton-Euler} equations to isolate a set of 10 inertial parameters: the mass, the center of mass and the independent inertia tensor coefficients.
 
-This section presents the rigid-assumptions mechanical model and an observation-based \ac{RMSD} two-bodies model.
+This section presents the rigid-assumptions mechanical model and an observation-based Rotational Mass Spring Damper (RMSD) two-body model.
 
 \subsection{Rigid model of the \{tool + item\} system}
 \label{section:background:rigid}
@@ -121,9 +121,9 @@ The assumptions are as followed (illustrated in Figure \ref{fig:tikz:one_body}):
 
 \begin{itemize}
  \item \ac{FT} sensor ($S$) measures the force $f$ and torque $\tau$ applied on the \{tool + item\} system,
- \item the \ac{TCP} ($A$) moves with a linear acceleration $a$, an angular acceleration $\alpha$ and an angular velocity $\omega$,
+ \item the Tool Center Point (TCP) ($A$) moves with a linear acceleration $a$, an angular acceleration $\alpha$ and an angular velocity $\omega$,
  \item the \{tool + item\} system is composed of the extension tube, spring, suction cup –of total mass $m_1$, center of mass $c_1$ and inertia matrix $I_1$– and the object –of mass $m_2$, center of mass $c_2$ and inertia matrix $I_2$,
- \item Centers of mass and inertia matrices are defined w.r.t.\ point $S$ such that $c = \overrightarrow{SG}$, $c_1 = \overrightarrow{SG_1}$ and $c_2 = \overrightarrow{SG_2}$.
+ \item centers of mass and inertia matrices are defined w.r.t.\ point $S$ such that $c = \overrightarrow{SG}$, $c_1 = \overrightarrow{SG_1}$ and $c_2 = \overrightarrow{SG_2}$.
 \end{itemize}
 
 \begin{figure}[h]
@@ -137,9 +137,9 @@ The assumptions are as followed (illustrated in Figure \ref{fig:tikz:one_body}):
 \subsubsection{Formulation of the \textsc{Newton-Euler} equations}
 \label{subsubsection:background_newton_equation}
 
-Detailed derivation of the \textsc{Newton-Euler} equation is presented in the Appendix \ref{appendix:models}. The method followed is fairly similar to the one proposed in \cite{An1985} except that equations are directly determined w.r.t.\ point $A$, in the base link frame. This variation paves the way to the second model which is derivated in a similar fashion.
+Detailed derivation of the \textsc{Newton-Euler} equation is presented in Appendix \ref{appendix:models}. The method followed is fairly similar to the one proposed in \cite{An1985} except that equations are directly determined w.r.t.\ point $A$, in the base link frame. This variation paves the way to the second model which is derived in a similar fashion.
 
-Eventually, the dynamics of the rigid body is described by the equations \ref{background:eq:rigid} and equations \ref{appendix:eq:rigid} in Appendix \ref{appendix:models}, also used in \cite{Kubus2008, Kubus2007, Kubus2014, Farsoni2018}. They are \textit{linear} w.r.t.\ to the unknown parameters.
+The dynamics of the rigid body is described by the equations \ref{background:eq:rigid} (and equations \ref{appendix:eq:rigid} in Appendix \ref{appendix:models}), also used in \cite{Kubus2008, Kubus2007, Kubus2014, Farsoni2018}. They are \textit{linear} w.r.t.\ to the unknown parameters.
 
 \begin{equation}
  \label{background:eq:rigid}
@@ -160,16 +160,16 @@ where $I_S = I_S^T =
 \end{pmatrix}
 $.
 
-The equation \ref{background:eq:rigid} is exploited to compose the matrix equation \ref{background:eq:inertia_estimation} (cf. Appendix \ref{appendix:rigid:inertia_estimation} for detailed expression). This equation allows to isolate the 10 inertial parameters to be estimated. It can be easily adapted for least-squares-based estimation methods.
+The equation \ref{background:eq:rigid} is exploited to compose the matrix equation \ref{background:eq:inertia_estimation} (cf. Section \ref{appendix:rigid:inertia_estimation} for detailed expression). This equation allows to isolate the 10 inertial parameters to be estimated. It can be easily adapted for least-squares-based estimation methods.
 
 \begin{equation}
   \label{background:eq:inertia_estimation}
 B = A(a, \alpha, \omega, g) \varphi
 \end{equation}
 
-where $B =  \begin{pmatrix} f \\ \tau \end{pmatrix}$ and $\varphi = [m, m c_x, m c_y, m c_z, I_{xx}, I_{xy}, I_{xz}, I_{yy}, I_{yz}, I_{zz}]^T$ contains the 10 independant inertial parameters and $A$ is defined in the appendix \ref{appendix:rigid:inertia_estimation}.
+where $B =  \begin{pmatrix} f \\ \tau \end{pmatrix}$ and $\varphi = [m, m c_x, m c_y, m c_z, I_{xx}, I_{xy}, I_{xz}, I_{yy}, I_{yz}, I_{zz}]^T$ contains the 10 independant inertial parameters and $A$ is defined in section \ref{appendix:rigid:inertia_estimation}.
 
-Linearity w.r.t.\ $\varphi$ gives the opportunity to easily substract the tool inertial parameters $\varphi_1$ to the \{tool + item\} system to get the item inertial parameters $\varphi_2$ (cf. equation \ref{eq:background:rigid:phi}). One can note that the center of mass of multiple corpses is by definition: $c = \frac{m_1 c_1 + m_2 c_2}{m_1 + m_2}$. It further confirms that $mc = m_1 c_1 + m_2 c_2$.
+Linearity w.r.t.\ $\varphi$ gives the opportunity to easily subtract the tool inertial parameters $\varphi_1$ to the \{tool + item\} system to get the item inertial parameters $\varphi_2$ (cf. equation \ref{eq:background:rigid:phi}). One can note that the center of mass of multiple corpses is by definition: $c = \frac{m_1 c_1 + m_2 c_2}{m_1 + m_2}$. It further confirms that $mc = m_1 c_1 + m_2 c_2$.
 
 \begin{equation}
   \label{eq:background:rigid:phi}
@@ -178,8 +178,9 @@ Linearity w.r.t.\ $\varphi$ gives the opportunity to easily substract the tool i
 
 
 \subsection{Rotational Mass Spring Damper model of the \{tool + item\} system}
+\label{section:background:rmsd}
 
-As mentioned in section \ref{background:motion}, the elasticity of the suction cup generate oscillations of the item w.r.t.\ tool that are not taken into account by the one-rigid-body model. The object rotates in fact about the $x_1$-axis the $y_1$-axis. There is no translation motion w.r.t.\ the tool and no rotation about the $z_0$-axis. Therefore, the mechanical link between the item and the tool can be identified as a \ac{UJ} –as known as \textsc{Cardan} joint (cf. Figure \ref{fig:background:cardan}). With this mechanical connection, the tool can only transfer forces, and torque about the lengthwise axis of the sensor but no torque about the transversal axes.
+As mentioned in section \ref{background:motion}, the elasticity of the suction cup generate oscillations of the item w.r.t.\ the tool that are not taken into account by the one-rigid-body model. The object rotates in fact about the $x_1$-axis and the $y_1$-axis. There is no translation motion w.r.t.\ the tool and no rotation about the $z_0$-axis. Therefore, the mechanical link between the item and the tool can be identified as a \ac{UJ} –as known as \textsc{Cardan} joint (cf. Figure \ref{fig:background:cardan}). With this mechanical connection, the tool can only transfer forces, and torque about the lengthwise axis of the sensor but no torque about the transversal axes.
 
 \begin{figure}[h]
   \centering
@@ -188,7 +189,7 @@ As mentioned in section \ref{background:motion}, the elasticity of the suction c
   \label{fig:background:cardan}
 \end{figure}
 
-One can notice that the combination of the two bodies behaves as a 2 \ac{DoF} harmonic pendulum. Thus, the torque transmitted by the tool \{1\} to the item \{2\} about the $x$-axis –or $y$-axis– is modeled by $T_{1/2, x} = k_x \theta_{1/2, x} + \lambda_x \dot{\theta}_{1/2, x}$ with $k_x$ a spring constant,  $\lambda_x$ a damping coefficient and $\theta_{1/2, x}$ the orientation of the tool w.r.t.\ the item about the $x$-axis (Figure \ref{fig:tikz:two_bodies}). In addition, the suction cup is symetrical by rotation about the lengthwise axis of the tool. For this reason, it is considered that $k_x = k_y = k$ and $\lambda_x = \lambda_y - \lambda$. Also, in the specific case of \textit{pick-and-place} tasks, it can be considered that the inertia parameters estimation is processed while the tool is vertical. That simplifies equation by infering that $\overrightarrow{z_1} = -\overrightarrow{z_0}$.
+One can notice that the combination of the two bodies behaves as a 2 \ac{DoF} harmonic pendulum. Thus, the torque transmitted by the tool \{1\} to the item \{2\} about the $x$-axis –or $y$-axis– is modeled by $T_{1/2, x} = k_x \theta_{1/2, x} + \lambda_x \dot{\theta}_{1/2, x}$ with $k_x$ a spring constant,  $\lambda_x$ a damping coefficient and $\theta_{1/2, x}$ the orientation of the tool w.r.t.\ the item about the $x$-axis (Figure \ref{fig:tikz:two_bodies}). In addition, the suction cup is symetrical by rotation about the lengthwise axis of the tool. For this reason, it is considered that $k_x = k_y = k$ and $\lambda_x = \lambda_y - \lambda$. Also, in the specific case of \textit{pick-and-place} tasks, it can be considered that the inertia parameters estimation is processed while the tool is vertical. That simplifies equations by infering that $\overrightarrow{z_1} = -\overrightarrow{z_0}$.
 
 \begin{figure}[h]
 \centering
@@ -198,7 +199,7 @@ One can notice that the combination of the two bodies behaves as a 2 \ac{DoF} ha
    \label{fig:tikz:two_bodies}
 \end{figure}
 
-This said, the total mechanical action of on the item \{2\} by the tool \{1\} is as followed (cf. \ref{appendix:notation:wrench} for notation):
+This said, the total mechanical action on the item \{2\} by the tool \{1\} is as follows (cf. \ref{appendix:notation:wrench} for notation):
 
 {\centering
  $ \{ \mathcal{V}_{1/2} \}
@@ -213,9 +214,9 @@ This said, the total mechanical action of on the item \{2\} by the tool \{1\} is
 
  with $\overrightarrow{\Theta}_{1/2}$ the orientation of \{1\} w.r.t.\ \{2\}, $\overrightarrow{\Omega}_{1/2}$ the angular speed of \{1\} w.r.t.\ \{2\} and $K = diag(k, k, 0)$ and $\Lambda = diag(\lambda, \lambda, 0)$.
 
- By isolating the tool \{1\} only and then applying the \ac{FPD} to these system, the tool/item orientation $\overrightarrow{\Theta}_{1/2}$ and angular speed $\overrightarrow{\Omega}_{1/2}$ can be derived as function of the torque $\tau$ and of the inertial parameters of the tool $\varphi_1$ (cf. Annexe \ref{appendix:rmsd:fpd1}).
+ By isolating the tool \{1\} only and then applying the \ac{FPD} (cf. equation \ref{appendix:notation:fpd}) to this system, the tool/item orientation $\overrightarrow{\Theta}_{1/2}$ and angular speed $\overrightarrow{\Omega}_{1/2}$ can be derived as function of the torque $\tau$ and of the inertial parameters of the tool $\varphi_1$ (cf. section \ref{appendix:rmsd:fpd1}).
 
- In a similar way that previous section (cf. \ref{section:background:rigid}), the relation between the kinetic measurements and the inertial parameters of the item $\varphi_2$ can be derived as a matrix equation (cf. equation \ref{eq:background:rmsd_inertia_estimation}).
+ In a similar way to previous section (cf. \ref{section:background:rigid}), the relation between the kinetic measurements and the inertial parameters of the item $\varphi_2$ can be derived as a matrix equation (cf. equation \ref{eq:background:rmsd_inertia_estimation}).
 
  \begin{equation}
    \label{eq:background:rmsd_inertia_estimation}
@@ -229,14 +230,14 @@ Now that relation between the \ac{FT} measurement and the kinematics of the robo
 \section{Estimation Approaches}
 \label{section:estimation}
 
-In this section, a brief introduction to Least-Squares methods is presented followed by a focus on the \ac{RTLS} approach.
+In this section, a brief introduction to Least-Squares methods is presented followed by a focus on the Recursive Total Least-Squares (RTLS) approach.
 
 Two physical models of the tool and item system have been developed in section \ref{section:mechanical-models}. Out of these two models, a linear matrix equation describing the dynamics of the assembly have been derived. These matrix equations are of the form: $B = A\varphi$. The objective consists of adjusting the parameters $\varphi$ of the model function $B = A\varphi$ to best fit the data set. The data set consists of $n$ pairs of matrices ($(B_i, A_i)_{i \in [1, n]}$) which are found by measuring the \ac{FT} and \ac{TCP} poses. The fit of the model to the data set is measured by its residual $r_i$, defined as the norm of the difference between the actual value of the dependent variable $B_i$ and the value predicted by the model $A_i \varphi$ \cite{Simoncelli2003}.
 
 \subsection{Least-Squares method}
 \label{subsection:ls}
 
-The first approach considered is the \ac{LS} regression which is the most basic form of \ac{LS} optimization problem. This problem has an innate connection to distances in Euclidean geometry. The aim is to find the set of parameters $\varphi$ that minimize the sum of the squared residuals:
+The first approach considered is the \ac{LS} regression which is the most basic form of the \ac{LS} optimization problem. This problem has an innate connection to distances in Euclidean geometry. The aim is to find the set of parameters $\varphi$ that minimize the sum of the squared residuals:
 
 \begin{equation}
   \argmin_{\varphi} \sum_{i=1}^{n} r_i^2 = \argmin_{\varphi} \sum_{i=1}^{n} ||B_i - A_i \varphi||^2
@@ -249,7 +250,7 @@ To derive the sum, the strategy is to stack the $(B_i, A_i)_{i \in [1, n]}$ matr
   \min_{\varphi} ||B_\Xi - A_\Xi \varphi||^2
 \end{equation}
 
-  There potentially two options to compute the \ac{LS} curve fitting. The first one is to use the \textsc{Scipy} method \texttt{scipy.optimize.least\_squares} that uses \ac{TRF}. The second is to use the \ac{SVD} of the $A$ matrix (cf. \cite{Gander2008}). The objective is to compute a pseudo-inverse of $A$ to be able to simply multiply it with $B$. The pseudo-inverse of a diagonal non-square matrix is a matrix with inverse dimension and inverse values on the diagonal:
+There are potentially two options to compute the \ac{LS} curve fitting. The first one is to use a \ac{TRF} algorithm\footnote{This method is further implemented using the \textsc{Scipy} method \texttt{scipy.optimize.least\_squares}.}. The second is to use the \ac{SVD} of the $A$ matrix (cf. \cite{Gander2008}). The objective is to compute a pseudo-inverse of $A$ to be able to simply multiply it with $B$. The pseudo-inverse of a diagonal non-square matrix is a matrix with transposed dimensions and inverse values on the diagonal:
 
 \begin{align*}
   \Sigma =
@@ -269,7 +270,7 @@ To derive the sum, the strategy is to stack the $(B_i, A_i)_{i \in [1, n]}$ matr
 \end{align*}
 
 
-The Algorithm \ref{alg:background:svd-ls} presents the method.
+Algorithm \ref{alg:background:svd-ls} presents the method.
 
 \begin{algorithm}
 \caption{Estimate $\varphi$ with a \ac{SVD} \ac{LS} method \label{alg:background:svd-ls}}
@@ -283,13 +284,13 @@ The Algorithm \ref{alg:background:svd-ls} presents the method.
 
 The \ac{LS} is the simplest solution to implement, yet, there is a drawback. The error model does not fit the framework of the situation. This method is indeed based on the assumption that the data matrices $A_i$ are free of errors. The error is simply modelled as a \ac{FT} error of measurement ($e_B$) such that: $\overline{B} = B + e_B$ with $\overline{B}$ the ground-truth value. This error model does not consider error in the data matrix $A(a, \alpha, \omega, g)$: $e_A$. Thus it does not consider the error in the gravity vector, \ac{TCP} pose measurements, and in the computation of the derivatives of the position and the orientation. Yet, the output signals presented in the results section \ref{section:results:pre-processing} clearly show noise and disturbances.
 
-Besides, another disadvantage of this technique is that all computations have to be done offline. At first blush, the approach is to collect the data during an adequate duration. Then, they have to be processed so that an estimated mass can be output. In the context of industrial robotics (cf. chapter \ref{chapter:introduction}), systems have to process data at a great speed and might be able to address hard failures as soon as possible. An ideal optimizer would be able to make an online estimation of the mass. It would recursively compute estimated masses with increasing precision as more data are gathered.
+Besides, another disadvantage of this technique is that all computations have to be done offline. The approach is to collect the data during an adequate duration. Then, they have to be processed so that an estimated mass can be output. In the context of industrial robotics (cf. chapter \ref{chapter:introduction}), systems have to process data at a great speed and should be able to address hard failures as soon as possible. An ideal optimizer would be able to make an online estimation of the mass. It would recursively compute estimated masses with increasing precision as more data are gathered.
 
 \subsection{Recursive Total Least-Squares method}
 
 Intending to address the downsides of a simple \ac{LS} estimation, the \ac{RTLS} approach is introduced.
 
-As stated above, the \ac{LS} method only assumes that the data matrix $B$ is a source of error and the data matrix $A$ is free of errors (cf. section \ref{subsection:ls}). Thereby, a method that takes into account errors in position, orientation, linear and angular speed, and linear and angular acceleration might better perform. The \ac{TLS} method explicitly take into consideration the error in the $A$ matrix (cf. equation \ref{eq:background:tls-error}) as explain by \textsc{Golub} \textit{et al.} \cite{Golub1980}. The figure illustrates the difference between the \ac{LS} and the \ac{TLS} approach \ref{fig:background:ls-tls-error}. The \ac{LS} method considers the error as the sum of the squared \textit{vertical} distances between the model and the data set whereas the \ac{TLS} considers the sum of the squared \textit{orthogonal} distances between the model and the data set. Hence, the \ac{TLS} algorithm takes into account disturbance and noise in \ac{FT} measurements \textit{as well as} the accelerations and angular velocities.
+As stated above, the \ac{LS} method only assumes that the data matrix $B$ is a source of error and the data matrix $A$ is free of errors (cf. section \ref{subsection:ls}). Thereby, a method that takes into account errors in position, orientation, linear and angular speed, and linear and angular acceleration might perform better. The \ac{TLS} method explicitly take into consideration the error in the $A$ matrix (cf. equation \ref{eq:background:tls-error}) as explain by \textsc{Golub} \textit{et al.} \cite{Golub1980}. The figure illustrates the difference between the \ac{LS} and the \ac{TLS} approach \ref{fig:background:ls-tls-error}. The \ac{LS} method considers the error as the sum of the squared \textit{vertical} distances between the model and the data set whereas the \ac{TLS} considers the sum of the squared \textit{orthogonal} distances between the model and the data set. Hence, the \ac{TLS} algorithm takes into account disturbance and noise in \ac{FT} measurements \textit{as well as} the accelerations and angular velocities.
 
 \begin{equation}
   \label{eq:background:tls-error}
@@ -370,7 +371,7 @@ Further in the report, $k+1$ denote the current iteration. Thus, $M_k \overset{S
 
 \subsubsection{Adaptation and final phase of the \ac{RTLS} approach}
 
-The \ac{SVD} of the stack of $[A \ B]$ matrices is updated at each time step. The Algorithm \ref{alg:background:adaptation} features the adaptation loop and the final computation. The adaptation phase exploit the equation \ref{eq:background:svd-global}.
+The \ac{SVD} of the stack of $[A \ B]$ matrices is updated at each time step. The Algorithm \ref{alg:background:adaptation} features the adaptation loop and the final computation. The adaptation phase exploit equation \ref{eq:background:svd-global}.
 
 \begin{equation}
   \label{eq:background:svd-global}
@@ -392,12 +393,12 @@ where:
   \item $G_k$ is the projection of $N_k$ onto the subspace orthogonal to $U_k$ obtained by QR decomposition: $J_k G_k \overset{QR}{=} N_k - U_k L_k$
 \end{itemize}
 
-Besides, in order to update $M_{k+1}$, the middle matrix $Z_k=
+In order to update $M_{k+1}$, the middle matrix $Z_k=
 \begin{bmatrix}
   S_k &  L_k \\
   0 & G_k
 \end{bmatrix}$
-in equation \ref{eq:background:svd-global} as to be diagonalized.
+in equation \ref{eq:background:svd-global} has to be diagonalized.
 
 For that purpose, the \ac{SVD} of $Z_k$ is computed such that $[U_{k}' \ S_{k}' \ V_{k}'^T] = \overset{SVD}{=} Z_k$. But before the diagonalization of $Z_k$ is performed, the volume $\upsilon$ of $N_k$ orthogonal to $U_k$ –which is $G_k$– is derived (equation \ref{eq:background:volume}).
 
@@ -406,7 +407,7 @@ For that purpose, the \ac{SVD} of $Z_k$ is computed such that $[U_{k}' \ S_{k}' 
   \upsilon = \sqrt{det(G_k^T G_k)}
 \end{equation}
 
-This where step 3. comes in the picture. If the volume $\upsilon$ is less than $\varepsilon$, $Z_k$ is reduced to $Z_k = [S_k \ L_k]$ which simplify the computation.
+This is where step 3 comes into the picture. If the volume $\upsilon$ is less than $\varepsilon$, $Z_k$ is reduced to $Z_k = [S_k \ L_k]$ which simplify the computation.
 
 When the ultimate time step $N$ of the estimation is reached, n parameters of $\hat{\varphi}$ are computed from the last iteration of the left singular matrix: $U_{N} = (u_{l,m})_{(l, m) \in [1,n+1]^2}$ (cf. equation \ref{eq:background:phi-final}). Note that the solution exists only if $u_{n+1, n+1}$ is different than 0.
 

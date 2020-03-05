@@ -16,11 +16,11 @@ The performance of the estimation method is tested on a dataset of runs from a \
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{\main/figures/maria.jpg}
-  \caption{Robot operating in a \textit{e-commerce} warehouse. The item is grasped in the deep metal cart in the bottom right part of the picture. Then, the object is brought to an area where it is identified. After, it is dropped in a box for further delivery. On the picture, the robot is about to drop an item –apparently a DVD– in the cardboard delivery box. Image from \textsc{NoMagic}.}
+  \caption{Robot operating in an \textit{e-commerce} warehouse. The item is grasped in the deep metal cart in the bottom right part of the picture. Then, the object is brought to an area where it is identified. After, it is dropped in a box for further delivery. On the picture, the robot is about to drop an item –apparently a DVD– in the cardboard delivery box. Image from \textsc{NoMagic}.}
   \label{fig:setup:maria}
 \end{figure}
 
-This robot packs thousands of items every week. The panel of products is rather larger with over $100{,}000$ different entries. But eventually, a batch of 9 items highly picked is selected for the evaluation. They differ in terms of their mass and shape. The table \ref{tab:setup:items} depicts the set of items and their disparities.
+This robot packs thousands of items every week. The panel of products is rather larger with over $100{,}000$ different entries. A batch of 9 items highly picked is selected for the evaluation. They differ in terms of their mass and shape. Table \ref{tab:setup:items} depicts the set of items and some of their  properties.
 
 \begin{table}[h]
   \begin{center}
@@ -48,7 +48,7 @@ This robot packs thousands of items every week. The panel of products is rather 
       \hline
     \end{tabular}
   \end{center}
-  \caption{Selection of items for the evaluation of the framework.\label{tab:setup:items}}
+  \caption{Selection of items for the evaluation of the framework. The number of runs represents the \textit{pick-and-place} cycles analysed per item. \label{tab:setup:items}}
 \end{table}
 
 \section{Calibration}
@@ -56,7 +56,7 @@ This robot packs thousands of items every week. The panel of products is rather 
 \subsection{Tool parameters}
 \label{subsection:setup:calibration:tool}
 
-The assessment of the calibration process is realized with the setup depicted in figure \ref{fig:background:stanislaw}. The estimation of the mass of the tool is compared with its mass measured with a scale. From the axial symmetries of the tool, it can be inferred that $c_1 = (0, 0, c_{1,z})$ in the tool frame. The value of the last coordinate can be measured by balancing the tool on a rod. The inertia tensor coefficients are harder to measured. However, considering the axes of symmetry, the shape of the inertia tensor can be expected. The order of magnitude of the inertia is computed with the formula of a thick-walled cylindrical tube with open ends, of inner radius $r_1$, outer radius $r_2$, length $h$ and mass $m$ (cf. equation \ref{eq:setup:tensor}). As every, \ac{FPD} are derived at the point A, the parallel axis theorem (cf. appendix \ref{appendix:notation:parallel_axis}) is used to compute $I_{A, tool}$.
+The assessment of the calibration process is realized with the setup depicted in figure \ref{fig:background:stanislaw}. The estimation of the mass of the tool is compared with its mass measured with a scale. From the axial symmetries of the tool, it can be inferred that $c_1 = (0, 0, c_{1,z})$ in the tool frame. The value of the last coordinate can be measured by balancing the tool on a rod. The inertia tensor coefficients are harder to measure. However, considering the axes of symmetry, the shape of the inertia tensor can be expected. The order of magnitude of the inertia is computed with the formula of a thick-walled cylindrical tube with open ends, of inner radius $r_1$, outer radius $r_2$, length $h$ and mass $m$ (cf. equation \ref{eq:setup:tensor}). As every Fondamental Principle of Dynamics (FPD) equations are derived at the point A, the parallel axis theorem (cf. appendix \ref{appendix:notation:parallel_axis}) is used to compute $I_{A, tool}$.
 
 \begin{equation}
   \label{eq:setup:tensor}
