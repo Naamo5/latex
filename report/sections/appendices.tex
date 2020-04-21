@@ -1,4 +1,4 @@
-\providecommand{\main}{..}
+  \providecommand{\main}{..}
 
 \documentclass[\main/main.tex]{subfiles}
 
@@ -115,7 +115,7 @@ z
  \par}
 
 
-\subsection{Fondamental Principle of Dynamics}
+\subsection{Fundamental Principle of Dynamics}
 
 Considering $\sum_{}^{} \{ \mathcal{V}_{ext/1} \}$ the global external actions on the system \{1\} and $R_g$ a Galilean reference:
 
@@ -141,12 +141,12 @@ Considering $\sum_{}^{} \{ \mathcal{V}_{ext/1} \}$ the global external actions o
  \begin{pmatrix}
   0         & -\theta_z & \theta_y  \\
   \theta_z  & 0         & -\theta_x \\
-  -\theta_y & \theta_x  & 0
+  -\theta_y &   \theta_x  & 0
  \end{pmatrix}
  \begin{pmatrix}
   c_x \\
   c_y \\
-  c_zeq:
+  c_z
  \end{pmatrix}
  \coloneqq \left[ \theta \times \right] c$
  \par}
@@ -328,7 +328,7 @@ Thus the dynamics wrench of the system \{1\} in the in the Galilean reference \{
  }{}
 \end{align*}
 
-The position –hence, the acceleration– of the center of mass is unknown. The acceleration is computed with the position of the joint $S$.
+The position–hence, the acceleration–of the center of mass is unknown. The acceleration is computed with the position of the joint $S$.
 
 \begin{align*}
  \overrightarrow{\Gamma}_{G, 1/0} = \frac{\partial}{\partial t} \overrightarrow{V}_{G, 1/0}
@@ -458,7 +458,7 @@ The matrix equation is recorded with the following notation:
 \label{appendix:rmsd}
 
 The F/T sensor measures the force and the torque about the joint $S$.
-The system considered is a two-bodies system: \{1\} for the tool and \{2\} for the item grasped. The mass of \{1\} –respectively \{2\}– is $m_1$ –respectively $m_2$, its center of mass is $G_1$ –respectively $G_2$– and the inertia about the center of mass is $I_{1, G_1}$ –respectively $I_{2, G_2}$. The mechanical link between the two systems is modeled as a universal joint –as known as \textsc{Cardan} joint– with a spring-damper system about the transversal axes of the tool (Figure \ref{fig:tikz:two_bodies}). It is also assumed that the tool \{1\} is always vertical which infers that $\overrightarrow{z_1} = -\overrightarrow{z_0}$ and $\overrightarrow{\Omega}_{1/0} = \Omega_{1/0} \overrightarrow{z_0}$.
+The system considered is a two-bodies system: \{1\} for the tool and \{2\} for the item grasped. The mass of \{1\}–respectively \{2\}–is $m_1$–respectively $m_2$, its center of mass is $G_1$–respectively $G_2$–and the inertia about the center of mass is $I_{1, G_1}$–respectively $I_{2, G_2}$. The mechanical link between the two systems is modeled as a universal joint–as known as \textsc{Cardan} joint–with a spring-damper system about the transversal axes of the tool (Figure \ref{fig:tikz:two_bodies}). It is also assumed that the tool \{1\} is always vertical which infers that $\overrightarrow{z_1} = -\overrightarrow{z_0}$ and $\overrightarrow{\Omega}_{1/0} = \Omega_{1/0} \overrightarrow{z_0}$.
 
 \subsection{External mechanical actions}
 
@@ -745,7 +745,7 @@ The pseudo-force $f'$ and pseudo-torque $\tau'$ are set (cf. \ref{eq:appendix:ps
  \begin{array}{l l}
    f' &= f - m_1 (a - g) -  m_1 \mathcal{M}_1 R_{01} c_1 \\
    \tau' &= \tau + \overrightarrow{AS} \times f - \mathcal{N}_1 I_1 + m_1 R_{01} c_1 \times (g - a)
- \end{array}
+    \end{array}
  \right.
 \end{equation}
 
